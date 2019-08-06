@@ -31,15 +31,20 @@ func _process(delta):
 
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
+#		print("ship move")
 	elif Input.is_action_pressed("ui_down"):
 		acc = Vector2(thrust, 0).rotated(rot)
+#		print("ship move")
 	else:
 		acc = Vector2(0, 0)
+#		print("ship stopped")
 
 	if Input.is_action_pressed("ui_right"):
 		rot += rot_speed * delta
+#		print("ship move")
 	if Input.is_action_pressed("ui_left"):
 		rot -= rot_speed * delta
+#		print("ship move")
 	
 	acc += vel * -friction
 	vel += acc * delta

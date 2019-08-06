@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Laser.gd" type="Script" id=1]
-[ext_resource path="res://Textures/laserGreen06.png" type="Texture" id=2]
+[ext_resource path="res://Textures/laser.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.98154
-height = 45.2899
+height = 16.5538
 
 [node name="Laser" type="Area2D"]
 position = Vector2( 180, 240 )
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 z_index = 9
 script = ExtResource( 1 )
 
