@@ -17,6 +17,8 @@ _global_script_class_icons={
 
 config/name="Mathrouble"
 run/main_scene="res://Scenes/Main.tscn"
+boot_splash/image="res://Textures/nordicebeargames transparent.png"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [display]
