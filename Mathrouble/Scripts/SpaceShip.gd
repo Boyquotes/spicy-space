@@ -5,6 +5,11 @@ export var thrust = 300
 export var max_vel = 200
 export var friction = 0.65
 
+onready var laser = preload("res://Scenes/Laser.tscn")
+onready var laser_container = $laser_container
+onready var laser_muzzle = $laser_muzzle
+onready var shoot_timer = $shoot_timer
+
 var screen_size = Vector2()
 var rot = 0
 var pos = Vector2()
@@ -20,6 +25,10 @@ func _ready():
 	set_process(true)
 	
 func _process(delta):
+	if Input.is_action_pressed("spaceship_shoot"):
+		if shoot_timer.get_time_left() == 0:
+			shoot()
+
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
 	elif Input.is_action_pressed("ui_down"):
@@ -46,3 +55,13 @@ func _process(delta):
 	self.position = pos
 		
 	self.rotation = rot - PI/2
+
+func shoot():
+	shoot_timer.start()
+	var laser_ins = laser.instance()
+	laser_container.add_child(laser_ins)
+	laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
+
+
+
+

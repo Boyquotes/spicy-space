@@ -9,9 +9,18 @@ scale = Vector2( 0.3, 0.3 )
 z_index = 10
 script = ExtResource( 1 )
 
+[node name="spaceship_sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 3.62305, -37.4855, 48.7, 21.7237, 48.7, 29.2771, 13.613, 37.0742, -12.9458, 37.3179, -48.7637, 29.2771, -49.4946, 21.2363, -4.41772, -37.4855 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="laser_container" type="Node" parent="."]
+
+[node name="laser_muzzle" type="Position2D" parent="."]
+position = Vector2( 0, -35 )
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 
