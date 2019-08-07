@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-export var bounce = 1.1
-
 onready var puff_effect = $puff_particle
 
 var vel = Vector2()
@@ -17,10 +15,10 @@ func _physics_process(delta):
 	self.rotation =  self.rotation + rot_speed * delta
 	var collide = move_and_collide(delta * vel)
 	if collide:
-		vel += collide.normal * (collide.collider_velocity.length() * bounce)
+		vel = vel.bounce(collide.normal)
 		# puff effect
-#		puff_effect.global_position = collide.position
-#		puff_effect.emitting = true
+		puff_effect.global_position = collide.position
+		puff_effect.emitting = true
 
 func _on_asteroid_vis_viewport_exited(viewport):
 	call_deferred("free")
