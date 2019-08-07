@@ -32,7 +32,7 @@ rotation = -3.13144
 [node name="Asteroid_Container" type="Node" parent="Asteroid"]
 
 [node name="Asteroid_Timer" type="Timer" parent="Asteroid"]
-wait_time = 0.7
+wait_time = 2.0
 
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
 [connection signal="timeout" from="Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]

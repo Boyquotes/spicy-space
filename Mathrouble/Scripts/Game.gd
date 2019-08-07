@@ -12,9 +12,9 @@ func _on_StartGame_Timer_timeout():
 func _on_Asteroid_Timer_timeout():
     # Choose a random location on Path2D.
 	asteroid_spawn_loc.set_offset(randi())
-    # Create a enemy instance and add it to the scene.
+    # Create a asteroid instance and add it to the scene.
 	var ast = asteroid.instance()
 	asteroid_con.add_child(ast)
-#   # Set the enemy's position to a random location.
+#   # Set the asteroid's position to a random location.
 	ast.position = asteroid_spawn_loc.global_position
 

@@ -10,6 +10,8 @@ onready var puff_effect = $puff_particle
 
 var vel = Vector2()
 var rot_speed
+var screen_size
+var extents
 
 func _ready():
 	randomize()
@@ -22,6 +24,8 @@ func _ready():
 	set_physics_process(true)
 	vel = Vector2(rand_range(30, 100), 0).rotated(rand_range(0, 2 * PI))
 	rot_speed = rand_range(-1.5, 1.5)
+	screen_size = get_viewport_rect().size
+	extents = ast_sprite.get_texture().get_size() / 2
 	_choose_asteroid(number_of_ast)
 
 func _physics_process(delta):
@@ -33,8 +37,17 @@ func _physics_process(delta):
 #		puff_effect.global_position = collide.position
 #		puff_effect.emitting = true
 
-func _on_asteroid_vis_viewport_exited(viewport):
-	call_deferred("free")
+	# wrap around screen edges
+	var pos = self.position
+	if pos.x > screen_size.x + extents.x:
+		pos.x = -extents.x
+	if pos.x < -extents.x:
+		pos.x = screen_size.x + extents.x
+	if pos.y > screen_size.y + extents.y:
+		pos.y = -extents.y
+	if pos.y < -extents.y:
+		pos.y = screen_size.y + extents.y
+	self.position = pos
 
 func _choose_asteroid(number_of_ast):
 	var frame = 0
@@ -44,12 +57,15 @@ func _choose_asteroid(number_of_ast):
 		rand_frames.append(frame)
 		frame += 64
 		
-#choose random asteroid texture
+	#choose random asteroid texture
 	randomize()
 	var rand_frame = rand_frames[randi()%rand_frames.size()]
 	ast_sprite.region_rect.position.y = rand_frame
 	
-#add collision shape according to asteroid texture's size
+	#add collision shape according to asteroid texture's size
 	var shape = CircleShape2D.new()
 	shape.set_radius(min(ast_sprite.texture.get_width()/2, ast_sprite.texture.get_height()/2))
 	ast_coll.shape = shape
+
+func explode():
+	call_deferred("free")

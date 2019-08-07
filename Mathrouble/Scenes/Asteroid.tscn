@@ -6,8 +6,10 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 25.591
 
-[node name="Asteroid" type="KinematicBody2D"]
-position = Vector2( 180, 240 )
+[node name="Asteroid" type="KinematicBody2D" groups=[
+"asteroid",
+]]
+position = Vector2( -30, -30 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 9
 script = ExtResource( 1 )
@@ -20,10 +22,6 @@ region_rect = Rect2( 0, 0, 64, 64 )
 [node name="asteroid_coll" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="asteroid_vis" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 0.611692, -0.407804 )
-scale = Vector2( 2.69243, 2.63125 )
-
 [node name="puff_particle" type="CPUParticles2D" parent="."]
 visible = false
 position = Vector2( 0, 30 )
@@ -31,11 +29,4 @@ emitting = false
 amount = 32
 lifetime = 0.4
 one_shot = true
-emission_shape = 1
-emission_sphere_radius = 3.0
-spread = 180.0
-gravity = Vector2( 0, 0 )
-initial_velocity = 20.0
-color = Color( 0.933333, 0.933333, 0.933333, 1 )
 
-[connection signal="viewport_exited" from="asteroid_vis" to="." method="_on_asteroid_vis_viewport_exited"]
