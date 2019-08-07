@@ -2,7 +2,7 @@ extends Area2D
 
 export var rot_speed = 2
 export var thrust = 300
-export var max_vel = 200
+#export var max_vel = 200
 export var friction = 0.65
 
 onready var laser = preload("res://Scenes/Laser.tscn")
