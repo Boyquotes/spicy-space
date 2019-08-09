@@ -4,7 +4,6 @@ const MAX_SPEED = 65
 const MAX_FORCE = 1
 
 var target
-var angle = 0
 var direction = Vector2()
 var velocity = Vector2()
 var following_obj
@@ -17,7 +16,6 @@ func _physics_process(delta):
 		pass
 	else:
 		_move(delta)
-		_fov_movement(delta)
 
 func _move(delta):
 		velocity = steer(target)
@@ -30,8 +28,3 @@ func steer(target):
 	var steer = desired_velocity - velocity
 	var target_velocity = velocity + (steer * MAX_FORCE)
 	return(target_velocity)
-
-func _fov_movement(delta):
-	var pos = self.position
-	direction = (pos - following_obj.global_position).normalized()
-	angle = 180 + rad2deg(direction.angle())
