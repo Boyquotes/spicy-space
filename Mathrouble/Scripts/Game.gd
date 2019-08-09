@@ -5,6 +5,14 @@ export (PackedScene) var asteroid
 onready var asteroid_spawn_loc = $Asteroid/Asteroid_Path/PathFollow2D
 onready var asteroid_timer = $Asteroid/Asteroid_Timer
 onready var asteroid_con = $Asteroid/Asteroid_Container
+onready var spaceship = $SpaceShip
+onready var prog_follow = $ProgressFollow
+
+func _ready():
+	prog_follow.following_obj = spaceship.followpoint
+	prog_follow.target = spaceship.followpoint.global_position
+func _process(delta):
+	prog_follow.following_obj = spaceship.followpoint
 
 func _on_StartGame_Timer_timeout():
 	asteroid_timer.start()
@@ -15,6 +23,6 @@ func _on_Asteroid_Timer_timeout():
     # Create a asteroid instance and add it to the scene.
 	var ast = asteroid.instance()
 	asteroid_con.add_child(ast)
-#   # Set the asteroid's position to a random location.
+    # Set the asteroid's position to a random location.
 	ast.position = asteroid_spawn_loc.global_position
 

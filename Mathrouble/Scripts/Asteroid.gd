@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 export (int) var number_of_ast = 5
-export (float) var min_scale = 0.4
-export (float) var max_scale = 0.7
+export (float) var min_scale = 0.8
+export (float) var max_scale = 1.4
 
 onready var ast_sprite = $asteroid_sprite
 onready var ast_coll = $asteroid_coll
@@ -55,7 +55,7 @@ func _choose_asteroid(number_of_ast):
 	
 	for counter in range(number_of_ast):
 		rand_frames.append(frame)
-		frame += 64
+		frame += 32
 		
 	#choose random asteroid texture
 	randomize()

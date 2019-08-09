@@ -21,14 +21,13 @@ tracks/0/keys = {
 }
 
 [node name="Engine" type="Node2D"]
-scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 1 )
 
 [node name="engine_sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 3
 region_enabled = true
-region_rect = Rect2( 0, 0, 64, 192 )
+region_rect = Rect2( 0, 0, 32, 96 )
 
 [node name="engine_anim" type="AnimationPlayer" parent="engine_sprite"]
 anims/engine = SubResource( 1 )

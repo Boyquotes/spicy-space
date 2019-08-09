@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Textures/health_bar_empty.png" type="Texture" id=1]
+[ext_resource path="res://Textures/health_bar_fill.png" type="Texture" id=2]
+
+[node name="HealthProgress" type="TextureProgress"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_scale = Vector2( 0.5, 0.5 )
+value = 76.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+fill_mode = 8
+

@@ -9,6 +9,7 @@ onready var laser = preload("res://Scenes/Laser.tscn")
 onready var laser_container = $laser_container
 onready var laser_muzzle = $laser_muzzle
 onready var shoot_timer = $shoot_timer
+onready var followpoint = $FollowPoint
 
 var screen_size = Vector2()
 var rot = 0
@@ -23,6 +24,7 @@ func _ready():
 	pos = screen_size / 2
 	self.position = pos
 	set_process(true)
+#	prog_follow.following_obj = self
 	
 func _process(delta):
 	if Input.is_action_pressed("spaceship_shoot"):
