@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 const MAX_SPEED = 65
 const MAX_FORCE = 1

@@ -1,5 +1,7 @@
 extends Area2D
 
+signal ss_damage
+
 export var rot_speed = 2
 export var thrust = 300
 #export var max_vel = 200
@@ -16,6 +18,7 @@ var rot = 0
 var pos = Vector2()
 var vel = Vector2()
 var acc = Vector2()
+var explode_control = false
 
 func _ready():
 	randomize()
@@ -25,18 +28,24 @@ func _ready():
 	self.position = pos
 	set_process(true)
 #	prog_follow.following_obj = self
+	explode_control = false
 	
 func _process(delta):
-	if Input.is_action_pressed("spaceship_shoot"):
-		if shoot_timer.get_time_left() == 0:
+	if explode_control == false: # if ss exploded
+		_ss_move(delta)
+	_stay_on_screen(delta) 
+
+func _ss_move(delta):
+	if Input.is_action_pressed("ui_down"):
+		if shoot_timer.get_time_left() == 0 and explode_control == false:
 			shoot()
 
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
 #		print("ship move")
-	elif Input.is_action_pressed("ui_down"):
-		acc = Vector2(thrust, 0).rotated(rot)
-#		print("ship move")
+#	elif Input.is_action_pressed("ui_down"):
+#		acc = Vector2(thrust, 0).rotated(rot)
+##		print("ship move")
 	else:
 		acc = Vector2(0, 0)
 #		print("ship stopped")
@@ -47,7 +56,8 @@ func _process(delta):
 	if Input.is_action_pressed("ui_left"):
 		rot -= rot_speed * delta
 #		print("ship move")
-	
+
+func _stay_on_screen(delta):
 	acc += vel * -friction
 	vel += acc * delta
 	pos += vel * delta
@@ -69,6 +79,10 @@ func shoot():
 	laser_container.add_child(laser_ins)
 	laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
 
+func _on_SpaceShip_body_entered(body): #when any collide happen
+	emit_signal("ss_damage")
 
-
-
+func ss_explode():
+	explode_control = true
+	self.visible = false
+	self.call_deferred("set_monitoring", false)

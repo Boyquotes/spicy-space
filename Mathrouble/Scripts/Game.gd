@@ -7,13 +7,16 @@ onready var asteroid_timer = $Asteroid/Asteroid_Timer
 onready var asteroid_con = $Asteroid/Asteroid_Container
 onready var spaceship = $SpaceShip
 onready var prog_follow = $ProgressFollow
+onready var health_robot = $ProgressFollow/HealthRobot
 
 func _ready():
+	#set location to folllow spaceship
 	prog_follow.following_obj = spaceship.followpoint
 	prog_follow.target = spaceship.followpoint.global_position
-
-func _process(delta):
-	prog_follow.following_obj = spaceship.followpoint
+	#spaceship damage 
+	spaceship.connect("ss_damage", health_robot, "damage_happened")
+	#spaceship explode 
+	health_robot.connect("ss_explode", spaceship, "ss_explode")
 
 func _on_StartGame_Timer_timeout():
 	asteroid_timer.start()
