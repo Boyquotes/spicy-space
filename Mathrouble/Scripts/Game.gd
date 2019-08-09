@@ -11,6 +11,7 @@ onready var prog_follow = $ProgressFollow
 func _ready():
 	prog_follow.following_obj = spaceship.followpoint
 	prog_follow.target = spaceship.followpoint.global_position
+
 func _process(delta):
 	prog_follow.following_obj = spaceship.followpoint
 
