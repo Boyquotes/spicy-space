@@ -1,6 +1,7 @@
 extends Area2D
 
 signal ss_damage
+signal game_over
 
 export var rot_speed = 2
 export var thrust = 300
@@ -86,3 +87,4 @@ func ss_explode():
 	explode_control = true
 	self.visible = false
 	self.call_deferred("set_monitoring", false)
+	emit_signal("game_over")
