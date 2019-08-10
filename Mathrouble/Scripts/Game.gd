@@ -1,6 +1,7 @@
 extends Node2D
 
 export (PackedScene) var asteroid
+export (bool) var reset_highscore = false
 
 onready var spaceship = $SpaceShip
 #Asteroid
@@ -14,6 +15,9 @@ onready var health_robot = $ProgressFollow/HealthRobot
 onready var hud = $HUD
 
 func _ready():
+	#reset highscore
+	if reset_highscore == true:
+		Global.reset_highscore()
 	#set location to folllow spaceship
 	prog_follow.following_obj = spaceship.followpoint
 	prog_follow.target = spaceship.followpoint.global_position
