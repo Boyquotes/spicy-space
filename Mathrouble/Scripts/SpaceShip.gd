@@ -82,6 +82,8 @@ func shoot():
 
 func _on_SpaceShip_body_entered(body): #when any collide happen
 	emit_signal("ss_damage")
+	if body.is_in_group("asteroid"): # when asteroid hit spaceship
+		body.explode()
 
 func ss_explode():
 	explode_control = true

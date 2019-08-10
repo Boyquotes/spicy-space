@@ -3,9 +3,6 @@ extends Node
 #GAME VALUES
 var score = 0
 
-func _ready():
-	print(load_highscore())
-
 #HIGHSCORE
 const SAVE_FILE_PATH = "user://highscore.save"
 
