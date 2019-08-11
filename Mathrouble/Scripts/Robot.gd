@@ -10,7 +10,6 @@ func damage_happened():
 		self.value -= 10
 	if self.value <= 0:
 		emit_signal("ss_explode")
-		_explode_robot() # health robot explode too
 
-func _explode_robot():
+func explode_robot():
 	self.visible = false

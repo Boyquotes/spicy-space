@@ -49,6 +49,10 @@ func _robots_activate():
 	ar_follow_ai.following_obj = spaceship.ar_followpoint
 	ar_follow_ai.target = spaceship.ar_followpoint.global_position
 	
+	# add robots to the spaceship
+	spaceship.robots.append(ins_hr)
+	spaceship.robots.append(ins_ar)
+	
 	signal_connect("hr")
 
 func signal_connect(which_obj):

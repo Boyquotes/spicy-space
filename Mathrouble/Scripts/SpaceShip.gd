@@ -21,6 +21,7 @@ var pos = Vector2()
 var vel = Vector2()
 var acc = Vector2()
 var explode_control = false
+var robots = [] # spaceship's robots
 
 func _ready():
 	randomize()
@@ -91,3 +92,8 @@ func ss_explode():
 	self.visible = false
 	self.call_deferred("set_monitoring", false)
 	emit_signal("game_over")
+	for r in robots: # explode all robots too
+		r.explode_robot()
+
+
+
