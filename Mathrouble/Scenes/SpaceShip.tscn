@@ -28,7 +28,10 @@ position = Vector2( 0, 14 )
 scale = Vector2( 0.5, 0.8 )
 z_as_relative = false
 
-[node name="FollowPoint" type="Position2D" parent="."]
-position = Vector2( 0, 35 )
+[node name="HR_FollowPoint" type="Position2D" parent="."]
+position = Vector2( -15, 35 )
+
+[node name="AR_FollowPoint" type="Position2D" parent="."]
+position = Vector2( 15, 35 )
 
 [connection signal="body_entered" from="." to="." method="_on_SpaceShip_body_entered"]

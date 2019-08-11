@@ -12,7 +12,8 @@ onready var laser = preload("res://Scenes/Laser.tscn")
 onready var laser_container = $laser_container
 onready var laser_muzzle = $laser_muzzle
 onready var shoot_timer = $shoot_timer
-onready var followpoint = $FollowPoint
+onready var hr_followpoint = $HR_FollowPoint # Health robot follow point
+onready var ar_followpoint = $AR_FollowPoint # Ammo robot follow point
 
 var screen_size = Vector2()
 var rot = 0

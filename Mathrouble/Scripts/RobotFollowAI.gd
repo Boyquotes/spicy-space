@@ -12,9 +12,6 @@ func _ready():
 	set_physics_process(true)
 
 func _physics_process(delta):
-#	if self.global_position == target: # did't work
-#		pass
-#	else:
 	_move(delta)
 
 func _move(delta):
