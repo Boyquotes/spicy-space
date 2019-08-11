@@ -59,6 +59,8 @@ func _ss_move(delta):
 	if Input.is_action_pressed("ui_left"):
 		rot -= rot_speed * delta
 #		print("ship move")
+	
+	_robots_mode("rotate") #rotate robots according to spaceship
 
 func _stay_on_screen(delta):
 	acc += vel * -friction
@@ -92,8 +94,14 @@ func ss_explode():
 	self.visible = false
 	self.call_deferred("set_monitoring", false)
 	emit_signal("game_over")
-	for r in robots: # explode all robots too
-		r.explode_robot()
+	_robots_mode("explode") # explode all robots too
+
+func _robots_mode(mode):
+	for r in robots: 
+		if mode == "explode":
+			r.explode_robot()
+		if mode == "rotate":
+			r.rot_deg = self.rotation_degrees
 
 
 
