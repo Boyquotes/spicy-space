@@ -3,11 +3,11 @@
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 65
 font_data = ExtResource( 2 )
 
@@ -24,7 +24,7 @@ script = ExtResource( 1 )
 margin_left = 140.0
 margin_right = 220.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Score: 0"
 align = 1
 valign = 1
@@ -37,7 +37,7 @@ margin_left = 60.0
 margin_top = 160.0
 margin_right = 300.0
 margin_bottom = 240.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "GAME OVER"
 align = 1
 valign = 1

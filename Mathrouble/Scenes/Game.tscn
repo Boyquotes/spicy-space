@@ -23,7 +23,6 @@ one_shot = true
 autostart = true
 
 [node name="Asteroid" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Asteroid_Path" type="Path2D" parent="Asteroid"]
 curve = SubResource( 1 )
@@ -35,7 +34,7 @@ rotation = -3.13144
 [node name="Asteroid_Container" type="Node" parent="Asteroid"]
 
 [node name="Asteroid_Timer" type="Timer" parent="Asteroid"]
-wait_time = 2.0
+wait_time = 1.5
 
 [node name="ProgressFollow" parent="." instance=ExtResource( 4 )]
 position = Vector2( 180, 285 )
