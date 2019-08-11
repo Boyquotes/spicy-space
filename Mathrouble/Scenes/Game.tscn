@@ -22,7 +22,6 @@ one_shot = true
 autostart = true
 
 [node name="Asteroid" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Asteroid_Path" type="Path2D" parent="Asteroid"]
 curve = SubResource( 1 )
