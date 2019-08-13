@@ -24,7 +24,7 @@ func _ready():
 	if reset_highscore == true:
 		Global.reset_highscore()
 	_robots_activate()
-	signal_connect("ss")
+	_signal_connect("ss")
 
 func _robots_activate():
 	#create follow ai for robots
@@ -53,17 +53,23 @@ func _robots_activate():
 	spaceship.robots.append(ins_hr)
 	spaceship.robots.append(ins_ar)
 	
-	signal_connect("hr")
+	_signal_connect("hr")
+	_signal_connect("ar")
 
-func signal_connect(which_obj):
-	if which_obj == "ss":
+func _signal_connect(which_obj):
+	if which_obj == "ss": #space ship
 		# game over signal connect
 		spaceship.connect("game_over", self, "game_over")
-	if which_obj == "hr":
+	if which_obj == "hr": #health robot
 		##spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
 		##spaceship explode signal connect
 		ins_hr.connect("ss_explode", spaceship, "ss_explode")
+	if which_obj == "ar": #ammo robot
+		#reduce ammo when laser shooted signal connect
+		spaceship.connect("shoot", ins_ar, "laser_shooted")
+		#check out ammo fignal connect
+		ins_ar.connect("out_of_ammo", spaceship, "out_of_ammo_control")
 
 func _on_StartGame_Timer_timeout():
 	asteroid_timer.start()

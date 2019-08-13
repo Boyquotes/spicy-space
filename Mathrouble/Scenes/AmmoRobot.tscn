@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Textures/ammo_robot_empty.png" type="Texture" id=1]
 [ext_resource path="res://Textures/ammo_robot_fill.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Robot.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AmmoRobot.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Engine.tscn" type="PackedScene" id=4]
 
 [node name="AmmoRobot" type="TextureProgress" groups=[
@@ -13,6 +13,7 @@ margin_top = -8.0
 margin_right = 24.0
 margin_bottom = 24.0
 rect_scale = Vector2( 0.5, 0.5 )
+max_value = 50.0
 value = 25.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 2 )

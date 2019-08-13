@@ -2,6 +2,7 @@ extends Area2D
 
 signal ss_damage
 signal game_over
+signal shoot
 
 export var rot_speed = 2
 export var thrust = 300
@@ -22,6 +23,7 @@ var vel = Vector2()
 var acc = Vector2()
 var explode_control = false
 var robots = [] # spaceship's robots
+var out_of_ammo_control = false
 
 func _ready():
 	randomize()
@@ -79,10 +81,17 @@ func _stay_on_screen(delta):
 	self.rotation = rot - PI/2
 
 func shoot():
-	shoot_timer.start()
-	var laser_ins = laser.instance()
-	laser_container.add_child(laser_ins)
-	laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
+	if out_of_ammo_control == false:
+		shoot_timer.start()
+		var laser_ins = laser.instance()
+		laser_container.add_child(laser_ins)
+		laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
+		emit_signal("shoot")
+	else:
+		print("out_of_ammo")
+
+func out_of_ammo_control(condition):
+	out_of_ammo_control = condition
 
 func _on_SpaceShip_body_entered(body): #when any collide happen
 	emit_signal("ss_damage")

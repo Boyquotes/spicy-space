@@ -33,7 +33,7 @@ rotation = -3.13144
 [node name="Asteroid_Container" type="Node" parent="Asteroid"]
 
 [node name="Asteroid_Timer" type="Timer" parent="Asteroid"]
-wait_time = 5.0
+wait_time = 1.5
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 layer = 5
