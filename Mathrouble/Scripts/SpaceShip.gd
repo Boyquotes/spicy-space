@@ -43,7 +43,7 @@ func _process(delta):
 func _ss_move(delta):
 	if Input.is_action_pressed("ui_down"):
 		if shoot_timer.get_time_left() == 0 and explode_control == false:
-			shoot()
+			_shoot()
 
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
@@ -80,7 +80,7 @@ func _stay_on_screen(delta):
 		
 	self.rotation = rot - PI/2
 
-func shoot():
+func _shoot():
 	if out_of_ammo_control == false:
 		shoot_timer.start()
 		var laser_ins = laser.instance()
@@ -94,9 +94,9 @@ func out_of_ammo_control(condition):
 	out_of_ammo_control = condition
 
 func _on_SpaceShip_body_entered(body): #when any collide happen
-	emit_signal("ss_damage")
-	if body.is_in_group("asteroid"): # when asteroid hit spaceship
-		body.explode()
+	if body.is_in_group("asteroid"): #when asteroid hit spaceship
+		body.explode() #explode asteroid
+		emit_signal("ss_damage") #spaceship got damage
 
 func ss_explode():
 	explode_control = true
