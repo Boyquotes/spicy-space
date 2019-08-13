@@ -8,16 +8,20 @@ onready var spaceship = $SpaceShip
 onready var asteroid_spawn_loc = $Asteroid/Asteroid_Path/PathFollow2D
 onready var asteroid_timer = $Asteroid/Asteroid_Timer
 onready var asteroid_con = $Asteroid/Asteroid_Container
+#HUD
+onready var hud = $HUD
 #Robots Follow AI
 onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
 #Robots
 onready var health_robot = ResourceLoader.load("res://Scenes/HealthRobot.tscn")
 onready var ammo_robot = ResourceLoader.load("res://Scenes/AmmoRobot.tscn")
-#HUD
-onready var hud = $HUD
+#Crate
+onready var crate_con = $Crate_Container
+onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
 
 var ins_hr # health robot instance
 var ins_ar # ammo robot instance
+var ins_ast # asteroid instance
 
 func _ready():
 	#reset highscore
@@ -70,6 +74,9 @@ func _signal_connect(which_obj):
 		spaceship.connect("shoot", ins_ar, "laser_shooted")
 		#check out ammo fignal connect
 		ins_ar.connect("out_of_ammo", spaceship, "out_of_ammo_control")
+	if which_obj == "ast":
+		#signal to crate control after asteroid exploded
+		ins_ast.connect("ast_exploded", self, "crate_control")
 
 func _on_StartGame_Timer_timeout():
 	asteroid_timer.start()
@@ -78,10 +85,22 @@ func _on_Asteroid_Timer_timeout():
     # Choose a random location on Path2D.
 	asteroid_spawn_loc.set_offset(randi())
     # Create a asteroid instance and add it to the scene.
-	var ast = asteroid.instance()
-	asteroid_con.add_child(ast)
+	ins_ast = asteroid.instance()
+	asteroid_con.add_child(ins_ast)
     # Set the asteroid's position to a random location.
-	ast.position = asteroid_spawn_loc.global_position
+	ins_ast.position = asteroid_spawn_loc.global_position
+
+	_signal_connect("ast")
+
+func crate_control(pos):
+	var crate_chance = rand_range(0, 100)
+	if crate_chance < 10:
+		var ins_crate = crate.instance()
+		crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
+		ins_crate.position = pos
+	#	print(pos)
+	else:
+		pass
 
 func game_over():
 	hud.game_over()

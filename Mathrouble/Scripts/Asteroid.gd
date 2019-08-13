@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal ast_exploded(pos)
+
 export (int) var number_of_ast = 5
 export (float) var min_scale = 0.8
 export (float) var max_scale = 1.4
@@ -68,4 +70,5 @@ func _choose_asteroid(number_of_ast):
 	ast_coll.shape = shape
 
 func explode():
+	emit_signal("ast_exploded", self.position)
 	call_deferred("free")

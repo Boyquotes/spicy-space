@@ -22,6 +22,7 @@ one_shot = true
 autostart = true
 
 [node name="Asteroid" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Asteroid_Path" type="Path2D" parent="Asteroid"]
 curve = SubResource( 1 )
@@ -37,6 +38,8 @@ wait_time = 1.5
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 layer = 5
+
+[node name="Crate_Container" type="Node" parent="."]
 
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
 [connection signal="timeout" from="Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]
