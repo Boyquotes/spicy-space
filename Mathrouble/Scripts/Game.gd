@@ -64,6 +64,9 @@ func _signal_connect(which_obj):
 	if which_obj == "ss": #space ship
 		# game over signal connect
 		spaceship.connect("game_over", self, "game_over")
+		#when spaceship grabbed crate signal connect
+		spaceship.connect("crate_grabbed", ins_hr, "robot_charge")
+		spaceship.connect("crate_grabbed", ins_ar, "robot_charge")
 	if which_obj == "hr": #health robot
 		##spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
@@ -94,7 +97,7 @@ func _on_Asteroid_Timer_timeout():
 
 func crate_control(pos):
 	var crate_chance = rand_range(0, 100)
-	if crate_chance < 10:
+	if crate_chance < 25:
 		var ins_crate = crate.instance()
 		crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
 		ins_crate.position = pos

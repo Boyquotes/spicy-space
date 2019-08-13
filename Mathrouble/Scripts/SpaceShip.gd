@@ -3,6 +3,7 @@ extends Area2D
 signal ss_damage
 signal game_over
 signal shoot
+signal crate_grabbed(which_crate)
 
 export var rot_speed = 2
 export var thrust = 300
@@ -93,10 +94,18 @@ func _shoot():
 func out_of_ammo_control(condition):
 	out_of_ammo_control = condition
 
-func _on_SpaceShip_body_entered(body): #when any collide happen
+func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic or rigidbody
 	if body.is_in_group("asteroid"): #when asteroid hit spaceship
 		body.explode() #explode asteroid
 		emit_signal("ss_damage") #spaceship got damage
+
+func _on_SpaceShip_area_entered(area): #when any collide happen with area
+	if area.is_in_group("health_crate"):
+		emit_signal("crate_grabbed", "health_crate")
+		area.remove_crate()
+	if area.is_in_group("ammo_crate"):
+		emit_signal("crate_grabbed", "ammo_crate")
+		area.remove_crate()
 
 func ss_explode():
 	explode_control = true
@@ -111,6 +120,4 @@ func _robots_mode(mode):
 			r.explode_robot()
 		if mode == "rotate":
 			r.rot_deg = self.rotation_degrees
-
-
 

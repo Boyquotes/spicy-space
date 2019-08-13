@@ -34,4 +34,5 @@ position = Vector2( -15, 30 )
 [node name="AR_FollowPoint" type="Position2D" parent="."]
 position = Vector2( 15, 30 )
 
+[connection signal="area_entered" from="." to="." method="_on_SpaceShip_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_SpaceShip_body_entered"]
