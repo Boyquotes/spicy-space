@@ -1,21 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Crate.gd" type="Script" id=1]
 [ext_resource path="res://Textures/health_crate.png" type="Texture" id=2]
 [ext_resource path="res://Textures/ammo_crate.png" type="Texture" id=3]
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/health_crate.png-c44866e251b9266540dfe20684302f46.stex"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.0764, 13.2642 )
 
 [node name="Crate" type="Area2D"]
 position = Vector2( 180, 240 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 1 )
 health_crate_sprite = ExtResource( 2 )
 ammo_crate_sprite = ExtResource( 3 )
 
 [node name="crate_sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = SubResource( 2 )
 
 [node name="crate_coll" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
