@@ -26,3 +26,7 @@ func assign_highscore(score):
 func game_over():
 	gameover_hud.visible = true
 	assign_highscore(Global.score)
+
+func _on_Restart_btn_pressed():
+	gameover_hud.visible = false
+	Global.change_scene("Game")

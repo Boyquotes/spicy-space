@@ -27,6 +27,9 @@ func _ready():
 	#reset highscore
 	if reset_highscore == true:
 		Global.reset_highscore()
+	#reset score after every new start
+	Global.score = 0
+
 	_robots_activate()
 	_signal_connect("ss")
 
