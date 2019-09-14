@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/WaveSystem.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -22,7 +23,6 @@ one_shot = true
 autostart = true
 
 [node name="Asteroid" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Asteroid_Path" type="Path2D" parent="Asteroid"]
 curve = SubResource( 1 )
@@ -40,6 +40,8 @@ wait_time = 1.5
 layer = 5
 
 [node name="Crate_Container" type="Node" parent="."]
+
+[node name="Wave_System" parent="." instance=ExtResource( 5 )]
 
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
 [connection signal="timeout" from="Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]

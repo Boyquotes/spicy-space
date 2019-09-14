@@ -18,10 +18,16 @@ onready var ammo_robot = ResourceLoader.load("res://Scenes/AmmoRobot.tscn")
 #Crate
 onready var crate_con = $Crate_Container
 onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
+#Wave
+onready var wave_sys = $Wave_System
 
 var ins_hr # health robot instance
 var ins_ar # ammo robot instance
 var ins_ast # asteroid instance
+
+var border_of_ast = 10 #border for asteroid instance
+var ast_counter = 0 #asteroid counter
+var wave_control = false
 
 func _ready():
 	#reset highscore
@@ -33,6 +39,9 @@ func _ready():
 	_robots_activate()
 	_signal_connect("ss")
 
+func _process(delta):
+	_wave("checkout")
+
 func _robots_activate():
 	#create follow ai for robots
 	var hr_follow_ai = follow_ai.instance()
@@ -41,7 +50,7 @@ func _robots_activate():
 	add_child(ar_follow_ai)
 	hr_follow_ai.global_position = Vector2(spaceship.global_position.x - 15, spaceship.global_position.y - 35)
 	ar_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
-		
+
 	#create health robot
 	ins_hr = health_robot.instance()
 	hr_follow_ai.add_child(ins_hr)
@@ -78,25 +87,51 @@ func _signal_connect(which_obj):
 	if which_obj == "ar": #ammo robot
 		#reduce ammo when laser shooted signal connect
 		spaceship.connect("shoot", ins_ar, "laser_shooted")
-		#check out ammo fignal connect
+		#check out ammo signal connect
 		ins_ar.connect("out_of_ammo", spaceship, "out_of_ammo_control")
 	if which_obj == "ast":
 		#signal to crate control after asteroid exploded
 		ins_ast.connect("ast_exploded", self, "crate_control")
 
 func _on_StartGame_Timer_timeout():
-	asteroid_timer.start()
+	_asteroids("start_timer")
 
 func _on_Asteroid_Timer_timeout():
-    # Choose a random location on Path2D.
-	asteroid_spawn_loc.set_offset(randi())
-    # Create a asteroid instance and add it to the scene.
-	ins_ast = asteroid.instance()
-	asteroid_con.add_child(ins_ast)
-    # Set the asteroid's position to a random location.
-	ins_ast.position = asteroid_spawn_loc.global_position
+	if ast_counter < border_of_ast:
+		_asteroids("instance") #instance asteroid
+		wave_control = true
+	else:
+		ast_counter = 0 # reset asteroid counter
+		_asteroids("stop_timer")
+#		wave_control = false
+	print(ast_counter)
 
-	_signal_connect("ast")
+func _asteroids(condition):
+	if condition == "start_timer":
+		asteroid_timer.start()
+		wave_sys.inc_wave()
+	if condition == "stop_timer":
+		asteroid_timer.stop()
+	if condition == "instance":
+		# Choose a random location on Path2D.
+		asteroid_spawn_loc.set_offset(randi())
+	    # Create a asteroid instance and add it to the scene.
+		ins_ast = asteroid.instance()
+		asteroid_con.add_child(ins_ast)
+		ast_counter += 1 #increase asteroid counter
+	    # Set the asteroid's position to a random location.
+		ins_ast.position = asteroid_spawn_loc.global_position
+		_signal_connect("ast")
+
+func _wave(con):
+	if con == "checkout":
+		if wave_control && asteroid_con.get_child_count() == 0:
+			hud.wave_completed()
+			wave_control = false
+			yield(get_tree().create_timer(5), "timeout")
+			asteroid_timer.start()
+			wave_sys.inc_wave()
+			_asteroids("instance")
 
 func crate_control(pos):
 	var crate_chance = rand_range(0, 100)
