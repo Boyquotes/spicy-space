@@ -25,9 +25,10 @@ var ins_hr # health robot instance
 var ins_ar # ammo robot instance
 var ins_ast # asteroid instance
 
-var border_of_ast = 10 #border for asteroid instance
+var border_of_ast = 5 #border for asteroid instance
 var ast_counter = 0 #asteroid counter
-var wave_control = false
+var wave_control = false #check out to waves
+var border_control = false #check out to asteroid border
 
 func _ready():
 	#reset highscore
@@ -40,7 +41,8 @@ func _ready():
 	_signal_connect("ss")
 
 func _process(delta):
-	_wave("checkout")
+	if wave_control:
+		_wave("checkout")
 
 func _robots_activate():
 	#create follow ai for robots
@@ -101,9 +103,9 @@ func _on_Asteroid_Timer_timeout():
 		_asteroids("instance") #instance asteroid
 		wave_control = true
 	else:
+		border_control = true
 		ast_counter = 0 # reset asteroid counter
 		_asteroids("stop_timer")
-#		wave_control = false
 	print(ast_counter)
 
 func _asteroids(condition):
@@ -125,12 +127,14 @@ func _asteroids(condition):
 
 func _wave(con):
 	if con == "checkout":
-		if wave_control && asteroid_con.get_child_count() == 0:
+		if wave_control && border_control && asteroid_con.get_child_count() == 0:
 			hud.wave_completed()
 			wave_control = false
+			border_control = false
 			yield(get_tree().create_timer(5), "timeout")
-			asteroid_timer.start()
-			wave_sys.inc_wave()
+            #new wave
+			border_of_ast += 5
+			_asteroids("start_timer")
 			_asteroids("instance")
 
 func crate_control(pos):
