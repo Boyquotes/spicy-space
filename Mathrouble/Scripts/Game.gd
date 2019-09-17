@@ -36,6 +36,8 @@ func _ready():
 		Global.reset_highscore()
 	#reset score after every new start
 	Global.score = 0
+	#reset wave after every new start
+	Global.wave = 0
 
 	_robots_activate()
 	_signal_connect("ss")
