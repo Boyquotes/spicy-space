@@ -81,6 +81,8 @@ func _signal_connect(which_obj):
 		#when spaceship grabbed crate signal connect
 		spaceship.connect("crate_grabbed", ins_hr, "robot_charge")
 		spaceship.connect("crate_grabbed", ins_ar, "robot_charge")
+		#warning signal
+		spaceship.connect("warning", hud, "warning")
 	if which_obj == "hr": #health robot
 		##spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")

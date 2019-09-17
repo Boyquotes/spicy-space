@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
@@ -33,6 +33,10 @@ region_rect = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
 font_data = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
@@ -112,6 +116,20 @@ margin_right = 280.0
 margin_bottom = 260.0
 custom_fonts/font = SubResource( 8 )
 text = "Wave Completed"
+align = 1
+valign = 1
+
+[node name="Warning_HUD" type="Node2D" parent="."]
+
+[node name="Out_of_Ammo_lbl" type="Label" parent="Warning_HUD"]
+visible = false
+margin_left = 100.0
+margin_top = 420.0
+margin_right = 260.0
+margin_bottom = 460.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.807843, 0.25098, 0.25098, 1 )
+text = "Out of Ammo"
 align = 1
 valign = 1
 

@@ -4,6 +4,7 @@ signal ss_damage
 signal game_over
 signal shoot
 signal crate_grabbed(which_crate)
+signal warning(type)
 
 export var rot_speed = 2
 export var thrust = 300
@@ -89,7 +90,8 @@ func _shoot():
 		laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
 		emit_signal("shoot")
 	else:
-		print("out_of_ammo")
+#		print("out_of_ammo")
+		emit_signal("warning", "out_of_ammo")
 
 func out_of_ammo_control(condition):
 	out_of_ammo_control = condition
