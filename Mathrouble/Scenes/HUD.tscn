@@ -92,9 +92,20 @@ custom_styles/focus = SubResource( 6 )
 custom_styles/normal = SubResource( 7 )
 
 [node name="Wave_HUD" type="Node2D" parent="."]
+
+[node name="Wave_Start_lbl" type="Label" parent="Wave_HUD"]
 visible = false
+margin_left = 80.0
+margin_top = 220.0
+margin_right = 280.0
+margin_bottom = 260.0
+custom_fonts/font = SubResource( 8 )
+text = "Wave"
+align = 1
+valign = 1
 
 [node name="Wave_Completed_lbl" type="Label" parent="Wave_HUD"]
+visible = false
 margin_left = 80.0
 margin_top = 220.0
 margin_right = 280.0

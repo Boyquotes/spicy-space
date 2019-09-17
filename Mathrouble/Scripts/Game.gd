@@ -96,6 +96,9 @@ func _signal_connect(which_obj):
 		ins_ast.connect("ast_exploded", self, "crate_control")
 
 func _on_StartGame_Timer_timeout():
+	yield(get_tree().create_timer(1), "timeout")
+	hud.wave("started")
+	yield(get_tree().create_timer(5), "timeout")
 	_asteroids("start_timer")
 
 func _on_Asteroid_Timer_timeout():
@@ -128,12 +131,14 @@ func _asteroids(condition):
 func _wave(con):
 	if con == "checkout":
 		if wave_control && border_control && asteroid_con.get_child_count() == 0:
-			hud.wave_completed()
+			hud.wave("completed")
 			wave_control = false
 			border_control = false
 			yield(get_tree().create_timer(5), "timeout")
             #new wave
+			hud.wave("started")
 			border_of_ast += 5
+			yield(get_tree().create_timer(5), "timeout")
 			_asteroids("start_timer")
 			_asteroids("instance")
 
