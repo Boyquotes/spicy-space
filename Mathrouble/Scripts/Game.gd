@@ -3,6 +3,9 @@ extends Node2D
 export (PackedScene) var asteroid
 export (bool) var reset_highscore = false
 
+#Game
+onready var screen_shake = $Camera2D/ScreenShake
+#Spaceship
 onready var spaceship = $SpaceShip
 #Asteroid
 onready var asteroid_spawn_loc = $Asteroid/Asteroid_Path/PathFollow2D
@@ -85,10 +88,12 @@ func _signal_connect(which_obj):
 		spaceship.connect("crate_grabbed", ins_ar, "robot_charge")
 		#warning signal
 		spaceship.connect("warning", hud, "warning")
+		#screen shake signal connect
+		spaceship.connect("ss_damage", self, "screen_shake")
 	if which_obj == "hr": #health robot
-		##spaceship damage signal connect
+		#spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
-		##spaceship explode signal connect
+		#spaceship explode signal connect
 		ins_hr.connect("ss_explode", spaceship, "ss_explode")
 	if which_obj == "ar": #ammo robot
 		#reduce ammo when laser shooted signal connect
@@ -155,6 +160,9 @@ func crate_control(pos):
 	#	print(pos)
 	else:
 		pass
+
+func screen_shake():
+	screen_shake.start(0.2, 15, 16, 1)
 
 func game_over():
 	hud.game_over()
