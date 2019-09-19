@@ -4,18 +4,14 @@ onready var score_lbl = $Game_HUD/Score_lbl
 onready var wave_lbl = $Game_HUD/Wave_lbl
 onready var gameover_hud = $GameOver_HUD
 onready var highscore_lbl = $GameOver_HUD/HighScore_lbl
+onready var bestwave_lbl = $GameOver_HUD/BestWave_lbl
 onready var wave_hud = $Wave_HUD
 onready var wave_start_lbl = $Wave_HUD/Wave_Start_lbl
 onready var wave_completed_lbl = $Wave_HUD/Wave_Completed_lbl
 onready var out_of_ammo_lbl = $Warning_HUD/Out_of_Ammo_lbl
 
 var highscore = 0
-#var screen_center = Vector2()
-
-func _ready():
-#	screen_center = get_viewport().size / 2
-#	gameover_lbl.rect_position = screen_center
-	pass
+var bestwave = 0
 
 func _process(delta):
 	update_values()
@@ -24,10 +20,15 @@ func update_values():
 	score_lbl.text = "Score: " + str(Global.score)
 	wave_lbl.text = "Wave: " + str(Global.wave)
 
-func assign_highscore(score):
-	Global.save_highscore(score)
-	highscore = str(Global.load_highscore()) # update high score
-	highscore_lbl.text = "Highscore: " + highscore # assign high score to text
+func assign_playerdata(whichdata, value):
+	if whichdata == "highscore":
+		Global.save_highscore(value)
+		highscore = str(Global.load_highscore()) # update high score
+		highscore_lbl.text = "Highscore: " + highscore # assign high score to text
+	if whichdata == "bestwave":
+		Global.save_bestwave(value)
+		bestwave = str(Global.load_bestwave())
+		bestwave_lbl.text = "Best Wave: " + bestwave
 
 func wave(con):
 	if con == "started":
@@ -49,7 +50,8 @@ func warning(type):
 
 func game_over():
 	gameover_hud.visible = true
-	assign_highscore(Global.score)
+	assign_playerdata("highscore", Global.score)
+	assign_playerdata("bestwave", Global.wave)
 
 func _on_Restart_btn_pressed():
 	gameover_hud.visible = false

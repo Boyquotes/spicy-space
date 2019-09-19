@@ -1,7 +1,7 @@
 extends Node2D
 
 export (PackedScene) var asteroid
-export (bool) var reset_highscore = false
+export (bool) var reset_userdata = false
 
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
@@ -35,8 +35,9 @@ var border_control = false #check out to asteroid border
 
 func _ready():
 	#reset highscore
-	if reset_highscore == true:
+	if reset_userdata == true:
 		Global.reset_highscore()
+		Global.reset_bestwave()
 	#reset score after every new start
 	Global.score = 0
 	#reset wave after every new start
