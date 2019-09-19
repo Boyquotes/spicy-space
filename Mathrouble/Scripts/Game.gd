@@ -2,6 +2,8 @@ extends Node2D
 
 export (PackedScene) var asteroid
 export (bool) var reset_userdata = false
+export (int) var min_border_of_ast = 7
+export (int) var max_border_of_ast = 13
 
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
@@ -28,7 +30,7 @@ var ins_hr # health robot instance
 var ins_ar # ammo robot instance
 var ins_ast # asteroid instance
 
-var border_of_ast = 5 #border for asteroid instance
+var border_of_ast = 10 #border for asteroid instance
 var ast_counter = 0 #asteroid counter
 var wave_control = false #check out to waves
 var border_control = false #check out to asteroid border
@@ -42,7 +44,11 @@ func _ready():
 	Global.score = 0
 	#reset wave after every new start
 	Global.wave = 0
-
+	#assign a border of asteroid for first wave
+	randomize()
+	border_of_ast = rand_range(min_border_of_ast, max_border_of_ast)
+	print(border_of_ast)
+	
 	_robots_activate()
 	_signal_connect("ss")
 
@@ -147,7 +153,9 @@ func _wave(con):
 			yield(get_tree().create_timer(5), "timeout")
             #new wave
 			hud.wave("started")
-			border_of_ast += 5
+			randomize()
+			border_of_ast += rand_range(min_border_of_ast, max_border_of_ast) #increase number of ast after every new wave
+			print(border_of_ast)
 			yield(get_tree().create_timer(5), "timeout")
 			_asteroids("start_timer")
 			_asteroids("instance")
