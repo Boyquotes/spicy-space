@@ -9,10 +9,13 @@ export (int) var max_border_of_ast = 13
 onready var screen_shake = $Camera2D/ScreenShake
 #Spaceship
 onready var spaceship = $SpaceShip
+#Pitfalls
+onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Asteroid
-onready var asteroid_spawn_loc = $Asteroid/Asteroid_Path/PathFollow2D
-onready var asteroid_timer = $Asteroid/Asteroid_Timer
-onready var asteroid_con = $Asteroid/Asteroid_Container
+onready var asteroid_timer = $Pitfalls/Asteroid/Asteroid_Timer
+onready var asteroid_con = $Pitfalls/Asteroid/Asteroid_Container
+#Enemy
+onready var enemy_con = $Pitfalls/Enemy/Enemy_Container
 #HUD
 onready var hud = $HUD
 #Robots Follow AI
@@ -75,7 +78,7 @@ func _robots_activate():
 	#create ammo robot
 	ins_ar = ammo_robot.instance()
 	ar_follow_ai.add_child(ins_ar)
-	#set location for hr to folllow spaceship
+	#set location for ar to folllow spaceship
 	ar_follow_ai.following_obj = spaceship.ar_followpoint
 	ar_follow_ai.target = spaceship.ar_followpoint.global_position
 	
@@ -107,7 +110,7 @@ func _signal_connect(which_obj):
 		spaceship.connect("shoot", ins_ar, "laser_shooted")
 		#check out ammo signal connect
 		ins_ar.connect("out_of_ammo", spaceship, "out_of_ammo_control")
-	if which_obj == "ast":
+	if which_obj == "ast": #asteroid
 		#signal to crate control after asteroid exploded
 		ins_ast.connect("ast_exploded", self, "crate_control")
 
@@ -135,13 +138,13 @@ func _asteroids(condition):
 		asteroid_timer.stop()
 	if condition == "instance":
 		# Choose a random location on Path2D.
-		asteroid_spawn_loc.set_offset(randi())
+		pitfalls_spawn_loc.set_offset(randi())
 	    # Create a asteroid instance and add it to the scene.
 		ins_ast = asteroid.instance()
 		asteroid_con.add_child(ins_ast)
 		ast_counter += 1 #increase asteroid counter
 	    # Set the asteroid's position to a random location.
-		ins_ast.position = asteroid_spawn_loc.global_position
+		ins_ast.position = pitfalls_spawn_loc.global_position
 		_signal_connect("ast")
 
 func _wave(con):

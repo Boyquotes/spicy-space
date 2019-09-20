@@ -29,19 +29,25 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="Asteroid" type="Node" parent="."]
+[node name="Pitfalls" type="Node" parent="."]
 
-[node name="Asteroid_Path" type="Path2D" parent="Asteroid"]
+[node name="Pitfalls_Path" type="Path2D" parent="Pitfalls"]
 curve = SubResource( 1 )
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Asteroid/Asteroid_Path"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Pitfalls/Pitfalls_Path"]
 position = Vector2( 371.339, -20.1584 )
 rotation = -3.13144
 
-[node name="Asteroid_Container" type="Node" parent="Asteroid"]
+[node name="Asteroid" type="Node" parent="Pitfalls"]
 
-[node name="Asteroid_Timer" type="Timer" parent="Asteroid"]
+[node name="Asteroid_Container" type="Node" parent="Pitfalls/Asteroid"]
+
+[node name="Asteroid_Timer" type="Timer" parent="Pitfalls/Asteroid"]
 wait_time = 1.5
+
+[node name="Enemy" type="Node" parent="Pitfalls"]
+
+[node name="Enemy_Container" type="Node" parent="Pitfalls/Enemy"]
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 layer = 5
@@ -51,4 +57,4 @@ layer = 5
 [node name="Wave_System" parent="." instance=ExtResource( 6 )]
 
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
-[connection signal="timeout" from="Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]
+[connection signal="timeout" from="Pitfalls/Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]

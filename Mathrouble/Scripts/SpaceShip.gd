@@ -15,6 +15,7 @@ onready var laser = preload("res://Scenes/Laser.tscn")
 onready var laser_container = $laser_container
 onready var laser_muzzle = $laser_muzzle
 onready var shoot_timer = $shoot_timer
+onready var ss_pos = $Spaceship_Pos
 onready var hr_followpoint = $HR_FollowPoint # Health robot follow point
 onready var ar_followpoint = $AR_FollowPoint # Ammo robot follow point
 
@@ -40,6 +41,7 @@ func _ready():
 func _process(delta):
 	if explode_control == false: # if ss exploded
 		_ss_move(delta)
+
 	_stay_on_screen(delta) 
 
 func _ss_move(delta):

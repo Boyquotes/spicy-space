@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Enemyship.gd" type="Script" id=1]
+[ext_resource path="res://Textures/enemyship1.png" type="Texture" id=2]
+
+[node name="CylonRaider" type="Area2D"]
+position = Vector2( 180, 240 )
+script = ExtResource( 1 )
+
+[node name="enemyship_sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="enemyship_coll" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 3.32242, -14.9262, 6.02792, -14.6556, 8.86871, -12.8971, 14.415, -6.94494, 14.9561, 0.224655, 10.492, 8.747, 2.78132, 15.2402, -2.49442, 15.2402, -10.3404, 9.55865, -14.8045, -0.316444, -14.8045, -6.26856, -9.52874, -12.2207, -6.55268, -14.3851, -3.05093, -15.2307, -3.14067, -13.0768, -9.12291, -2.2103, -7.2675, -0.117647, -5.06465, 1.03631, 3.72824, 0.765759, 6.38848, 0.56185, 9.00398, -1.39865, 3.18715, -13.1676 )
+
+[node name="laser_muzzle1" type="Position2D" parent="."]
+position = Vector2( -4.23257, -16.3782 )
+
+[node name="laser_muzzle2" type="Position2D" parent="."]
+position = Vector2( 4.60063, -16.4146 )
+
+[node name="laser_container" type="Node" parent="."]
+
+[node name="direction_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="idle_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="shoot_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="direction_timer" to="." method="_on_direction_timer_timeout"]
+[connection signal="timeout" from="idle_timer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
