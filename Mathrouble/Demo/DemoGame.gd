@@ -8,5 +8,5 @@ func _ready():
 
 func _physics_process(delta):
 	for e in enemies.get_children().size():
-		enemies.get_child(e).target_obj = spaceship.ss_pos
-		enemies.get_child(e).target = spaceship.ss_pos.global_position
+		enemies.get_child(e).target_obj = spaceship
+#		enemies.get_child(e).target = spaceship.global_position

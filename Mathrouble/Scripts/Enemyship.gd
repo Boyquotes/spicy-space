@@ -27,10 +27,14 @@ func _ready():
 
 func _physics_process(delta):
 	_move_or_idle(delta)
+
 	#target
-#	target = get_local_mouse_position()
-#	target = target_obj.global.position
-	self.rotation += target.angle() * 0.1
+	if target_obj == null:
+		look_at(get_local_mouse_position())
+	else:
+		target = target_obj.global_position
+		look_at(target)
+
 
 	# wrap around screen edges
 	var pos = self.position
@@ -53,7 +57,7 @@ func _move_or_idle(delta):
 	else:
 		vel.y = 0
 
-	position += ((vel * delta).normalized() * speed).rotated(dir)
+	position += ((vel * delta).normalized() * speed)
 
 func _shoot():
 	var laser_ins = laser.instance()
