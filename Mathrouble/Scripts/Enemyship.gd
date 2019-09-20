@@ -34,6 +34,9 @@ func _physics_process(delta):
 	else:
 		target = target_obj.global_position
 		look_at(target)
+	
+	#for 90 degrees skew problem
+	self.rotation_degrees += 90
 
 
 	# wrap around screen edges
