@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Demo/DemoGame.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/CylonRaider.tscn" type="PackedScene" id=3]
+
+[node name="DemoGame" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="SpaceShip" parent="." instance=ExtResource( 2 )]
+
+[node name="enemies" type="Node" parent="."]
+
+[node name="CylonRaider" parent="enemies" instance=ExtResource( 3 )]
+position = Vector2( 59.7141, 427.589 )
+
+[node name="CylonRaider2" parent="enemies" instance=ExtResource( 3 )]
+position = Vector2( 311.742, 56.7071 )
+
