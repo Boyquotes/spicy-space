@@ -38,8 +38,10 @@ var ins_enemy # enemy instance
 var border_of_ast = 10 #border for asteroid instance
 var ast_counter = 0 #asteroid counter
 var wave_control = false #check out to waves
-var border_control = false #check out to asteroid border
+var ast_border_control = false #check out to asteroid border
 var df_control = false #check out dog fight happened or not
+var border_of_enemy = 1
+var enemy_counter = 0
 
 func _ready():
 	#reset highscore
@@ -130,7 +132,7 @@ func _on_Asteroid_Timer_timeout():
 		_asteroids("instance") #instance asteroid
 		wave_control = true
 	else:
-		border_control = true
+		ast_border_control = true
 		ast_counter = 0 # reset asteroid counter
 		_asteroids("stop_timer")
 #	print(ast_counter)
@@ -160,6 +162,7 @@ func _enemies(con):
 	    # Create a enemy instance and add it to the scene.
 		ins_enemy = enemy.instance()
 		enemy_con.add_child(ins_enemy)
+		enemy_counter += 1
 	    # Set the asteroid's position to a random location.
 		ins_enemy.position = pitfalls_spawn_loc.global_position
 		#assign spaceship as target
@@ -167,13 +170,14 @@ func _enemies(con):
 
 func _wave(con):
 	if con == "checkout":
-		if wave_control && border_control && asteroid_con.get_child_count() == 0:
+		if wave_control && ast_border_control && asteroid_con.get_child_count() == 0:
 			hud.presentation("wave", "completed")
 			wave_control = false
-			border_control = false
+			ast_border_control = false
 			yield(get_tree().create_timer(5), "timeout")
             #dog fight or new wave
 			_dog_fight("possibility")
+
 	if con == "new_wave":
 		hud.presentation("wave", "started")
 		randomize()
@@ -190,14 +194,32 @@ func _dog_fight(con):
 #		print(df_possibility)
 		if df_possibility < 90:
 			hud.presentation("dog_fight", "started")
-			_enemies("instance")
+			while (enemy_counter < border_of_enemy):
+				_enemies("instance")
 			df_control = true #dog fight happen
 		else:
 			df_control = false #dog fight doesn't happen
 			_wave("new_wave")
+
 	if con == "checkout":
 		if df_control && enemy_con.get_child_count() == 0:
-			df_control = false
+			df_control = false #dog fight over
+			enemy_counter = 0 #reset enemy counter
+			
+			randomize()
+			var nof_possibility = rand_range(0, 90) #number of enemy possibility
+			print(nof_possibility)
+			if nof_possibility <= 40:
+				border_of_enemy += 1 #increase enemy number for present dog fight
+			elif nof_possibility > 40 && nof_possibility < 70:
+				border_of_enemy += 0 #don't change enemy number for present dog fight
+			elif nof_possibility >= 70:
+				if border_of_enemy > 3: #when number of enemy at least 4
+					border_of_enemy -= 1 #reduce change enemy number for present dog fight
+				else:
+					border_of_enemy -= 0 #don't change enemy number for present dog fight
+			print(border_of_enemy)
+
 			hud.presentation("dog_fight", "completed")
 			yield(get_tree().create_timer(5), "timeout")
 			_wave("new_wave")
@@ -212,7 +234,7 @@ func crate_control(pos):
 	else:
 		pass
 
-func screen_shake():
+func screen_shake(which_pitfall):
 	screen_shake.start(0.2, 15, 16, 1)
 
 func game_over():

@@ -1,6 +1,6 @@
 extends Area2D
 
-signal ss_damage
+signal ss_damage(which_pitfall)
 signal game_over
 signal shoot
 signal crate_grabbed(which_crate)
@@ -100,7 +100,7 @@ func out_of_ammo_control(condition):
 func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic or rigidbody
 	if body.is_in_group("asteroid"): #when asteroid hit spaceship
 		body.explode() #explode asteroid
-		emit_signal("ss_damage") #spaceship got damage
+		emit_signal("ss_damage", "asteroid") #spaceship got damage from asteroid
 
 func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("health_crate"):
@@ -109,8 +109,8 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("ammo_crate"):
 		emit_signal("crate_grabbed", "ammo_crate")
 		area.remove_crate()
-	if area.is_in_group("laser"):
-		emit_signal("ss_damage") #spaceship got damage
+	if area.is_in_group("enemy_laser"):
+		emit_signal("ss_damage", "laser") #spaceship got damage from enemy
 
 func ss_explode():
 	explode_control = true

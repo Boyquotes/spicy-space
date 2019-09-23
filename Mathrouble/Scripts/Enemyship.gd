@@ -5,7 +5,7 @@ export (float) var speed = 2.1
 onready var es_sprite = $enemyship_sprite
 onready var laser_muzzle1 = $laser_muzzle1
 onready var laser_muzzle2 = $laser_muzzle2
-onready var laser = preload("res://Scenes/Laser.tscn")
+onready var laser = preload("res://Scenes/EnemyLaser.tscn")
 onready var laser_con = $laser_container
 onready var dir_timer = $direction_timer
 onready var health_bar = $HealthBar
@@ -17,6 +17,7 @@ var extents
 var target
 var target_obj
 var idle_control = false
+var damage_value = 0
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -88,11 +89,18 @@ func _on_shoot_timer_timeout():
 
 func _on_CylonRaider_area_entered(area):
 	if area.is_in_group("laser"):
-		if health_bar.value > 0:
-			health_bar.value -= health_bar.max_value/2 #get damage
-		elif health_bar.value <= 0:
-			_explode()
-		area.queue_free()
+		damage_value = health_bar.max_value/2
+		_get_damage(area, damage_value)
+	elif area.is_in_group("enemy_laser"): #friendly fire
+		damage_value = health_bar.max_value/4
+		_get_damage(area, damage_value)
+
+func _get_damage(area, damage_value):
+	if health_bar.value > 0:
+		health_bar.value -= damage_value #get damage
+	elif health_bar.value <= 0:
+		_explode()
+	area.queue_free()
 
 func _explode():
 	call_deferred("free")

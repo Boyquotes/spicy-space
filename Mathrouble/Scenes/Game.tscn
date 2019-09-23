@@ -17,8 +17,6 @@ _data = {
 script = ExtResource( 1 )
 asteroid = ExtResource( 2 )
 enemy = ExtResource( 3 )
-min_border_of_ast = 3
-max_border_of_ast = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
