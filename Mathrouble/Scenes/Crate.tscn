@@ -4,11 +4,11 @@
 [ext_resource path="res://Textures/health_crate.png" type="Texture" id=2]
 [ext_resource path="res://Textures/ammo_crate.png" type="Texture" id=3]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/health_crate.png-c44866e251b9266540dfe20684302f46.stex"
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 13.0764, 13.2642 )
 
 [node name="Crate" type="Area2D"]
@@ -19,8 +19,8 @@ health_crate_sprite = ExtResource( 2 )
 ammo_crate_sprite = ExtResource( 3 )
 
 [node name="crate_sprite" type="Sprite" parent="."]
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 
 [node name="crate_coll" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 

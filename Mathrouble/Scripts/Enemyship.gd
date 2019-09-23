@@ -5,9 +5,10 @@ export (float) var speed = 2.1
 onready var es_sprite = $enemyship_sprite
 onready var laser_muzzle1 = $laser_muzzle1
 onready var laser_muzzle2 = $laser_muzzle2
+onready var laser = preload("res://Scenes/Laser.tscn")
 onready var laser_con = $laser_container
 onready var dir_timer = $direction_timer
-onready var laser = preload("res://Scenes/Laser.tscn")
+onready var health_bar = $HealthBar
 
 var vel = Vector2()
 var dir
@@ -24,6 +25,8 @@ func _ready():
 	set_physics_process(true)
 	#direction
 	dir = rand_range(-25, 25)
+	#health bar
+	health_bar.value = health_bar.max_value
 
 func _physics_process(delta):
 	_move_or_idle(delta)
@@ -51,7 +54,7 @@ func _physics_process(delta):
 	self.position = pos
 
 func _change_dir():
-		dir = rand_range(-25, 25)
+	dir = rand_range(-25, 25)
 
 func _move_or_idle(delta):
 	if idle_control == false:
@@ -82,3 +85,14 @@ func _on_idle_timer_timeout():
 
 func _on_shoot_timer_timeout():
 	_shoot()
+
+func _on_CylonRaider_area_entered(area):
+	if area.is_in_group("laser"):
+		if health_bar.value > 0:
+			health_bar.value -= health_bar.max_value/5 #get damage
+		elif health_bar.value <= 0:
+			_explode()
+		area.queue_free()
+
+func _explode():
+	call_deferred("free")

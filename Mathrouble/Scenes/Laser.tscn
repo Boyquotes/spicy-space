@@ -7,7 +7,9 @@
 radius = 3.01363
 height = 13.357
 
-[node name="Laser" type="Area2D"]
+[node name="Laser" type="Area2D" groups=[
+"laser",
+]]
 position = Vector2( 180, 240 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 9
