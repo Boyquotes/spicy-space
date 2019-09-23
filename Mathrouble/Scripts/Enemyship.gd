@@ -89,7 +89,7 @@ func _on_shoot_timer_timeout():
 func _on_CylonRaider_area_entered(area):
 	if area.is_in_group("laser"):
 		if health_bar.value > 0:
-			health_bar.value -= health_bar.max_value/5 #get damage
+			health_bar.value -= health_bar.max_value/2 #get damage
 		elif health_bar.value <= 0:
 			_explode()
 		area.queue_free()

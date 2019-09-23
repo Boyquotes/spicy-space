@@ -39,6 +39,7 @@ var border_of_ast = 10 #border for asteroid instance
 var ast_counter = 0 #asteroid counter
 var wave_control = false #check out to waves
 var border_control = false #check out to asteroid border
+var df_control = false #check out dog fight happened or not
 
 func _ready():
 	#reset highscore
@@ -60,6 +61,8 @@ func _ready():
 func _process(delta):
 	if wave_control:
 		_wave("checkout")
+	if df_control:
+		_dog_fight("checkout")
 
 func _robots_activate():
 	#create follow ai for robots
@@ -130,7 +133,7 @@ func _on_Asteroid_Timer_timeout():
 		border_control = true
 		ast_counter = 0 # reset asteroid counter
 		_asteroids("stop_timer")
-	print(ast_counter)
+#	print(ast_counter)
 
 func _asteroids(con):
 	if con == "start_timer":
@@ -170,9 +173,8 @@ func _wave(con):
 			border_control = false
 			yield(get_tree().create_timer(5), "timeout")
             #dog fight or new wave
-			_dog_fight()
+			_dog_fight("possibility")
 	if con == "new_wave":
-		#new wave
 		hud.presentation("wave", "started")
 		randomize()
 		border_of_ast += rand_range(min_border_of_ast, max_border_of_ast) #increase number of ast after every new wave
@@ -181,15 +183,24 @@ func _wave(con):
 		_asteroids("start_timer")
 		_asteroids("instance")
 
-func _dog_fight():
-	randomize()
-	var df_possibility = rand_range(0, 100)
-	print(df_possibility)
-	if df_possibility < 90:
-		hud.presentation("dog_fight", "started")
-		_enemies("instance")
-	else:
-		_wave("new_wave")
+func _dog_fight(con):
+	if con == "possibility":
+		randomize()
+		var df_possibility = rand_range(0, 100) #dog fight's gonna happen or not ?
+#		print(df_possibility)
+		if df_possibility < 90:
+			hud.presentation("dog_fight", "started")
+			_enemies("instance")
+			df_control = true #dog fight happen
+		else:
+			df_control = false #dog fight doesn't happen
+			_wave("new_wave")
+	if con == "checkout":
+		if df_control && enemy_con.get_child_count() == 0:
+			df_control = false
+			hud.presentation("dog_fight", "completed")
+			yield(get_tree().create_timer(5), "timeout")
+			_wave("new_wave")
 
 func crate_control(pos):
 	var crate_chance = rand_range(0, 100)
