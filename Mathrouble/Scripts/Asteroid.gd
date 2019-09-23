@@ -72,3 +72,4 @@ func _choose_asteroid(number_of_ast):
 func explode():
 	emit_signal("ast_exploded", self.position)
 	call_deferred("free")
+	Global.score += 10 #increase score

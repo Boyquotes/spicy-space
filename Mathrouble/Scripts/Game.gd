@@ -215,7 +215,7 @@ func _dog_fight(con):
 				border_of_enemy += 0 #don't change enemy number for present dog fight
 			elif nof_possibility >= 70:
 				if border_of_enemy > 3: #when number of enemy at least 4
-					border_of_enemy -= 1 #reduce change enemy number for present dog fight
+					border_of_enemy -= 1 #reduce enemy number for present dog fight
 				else:
 					border_of_enemy -= 0 #don't change enemy number for present dog fight
 			print(border_of_enemy)

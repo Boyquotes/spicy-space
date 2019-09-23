@@ -104,3 +104,4 @@ func _get_damage(area, damage_value):
 
 func _explode():
 	call_deferred("free")
+	Global.score += 25 #increase score

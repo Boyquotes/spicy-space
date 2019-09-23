@@ -22,4 +22,3 @@ func _on_Laser_body_entered(body):
 	if body.is_in_group("asteroid"): # when asteroid shooted
 		queue_free()
 		body.explode()
-		Global.score += 10 #increase score
