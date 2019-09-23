@@ -8,6 +8,8 @@ onready var bestwave_lbl = $GameOver_HUD/BestWave_lbl
 onready var wave_hud = $Wave_HUD
 onready var wave_start_lbl = $Wave_HUD/Wave_Start_lbl
 onready var wave_completed_lbl = $Wave_HUD/Wave_Completed_lbl
+onready var df_start_lbl = $DogFight_HUD/DF_Start_lbl
+onready var df_over_lbl = $DogFight_HUD/DF_Over_lbl
 onready var out_of_ammo_lbl = $Warning_HUD/Out_of_Ammo_lbl
 
 var highscore = 0
@@ -30,17 +32,27 @@ func assign_playerdata(whichdata, value):
 		bestwave = str(Global.load_bestwave())
 		bestwave_lbl.text = "Best Wave: " + bestwave
 
-func wave(con):
+func presentation(action, con):
 	if con == "started":
-		wave_start_lbl.text = "Wave " + str(Global.wave + 1) + " Coming"
-		wave_start_lbl.visible = true
-		yield(get_tree().create_timer(3), "timeout")
-		wave_start_lbl.visible = false
+		if action == "wave":
+			wave_start_lbl.text = "Wave " + str(Global.wave + 1) + " Coming"
+			wave_start_lbl.visible = true
+			yield(get_tree().create_timer(3), "timeout")
+			wave_start_lbl.visible = false
+		if action == "dog_fight":
+			df_start_lbl.visible = true
+			yield(get_tree().create_timer(3), "timeout")
+			df_start_lbl.visible = false
 	if con == "completed":
-		wave_completed_lbl.text = "Wave " + str(Global.wave) + " Completed"
-		wave_completed_lbl.visible = true
-		yield(get_tree().create_timer(3), "timeout")
-		wave_completed_lbl.visible = false
+		if action == "wave":
+			wave_completed_lbl.text = "Wave " + str(Global.wave) + " Completed"
+			wave_completed_lbl.visible = true
+			yield(get_tree().create_timer(3), "timeout")
+			wave_completed_lbl.visible = false
+		if action == "dog_fight":
+			df_over_lbl.visible = true
+			yield(get_tree().create_timer(3), "timeout")
+			df_over_lbl.visible = false
 
 func warning(type):
 	if type == "out_of_ammo":

@@ -38,7 +38,6 @@ func _physics_process(delta):
 	#for 90 degrees skew problem
 	self.rotation_degrees += 90
 
-
 	# wrap around screen edges
 	var pos = self.position
 	if pos.x > screen_size.x + extents.x:

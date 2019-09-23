@@ -129,6 +129,30 @@ text = "Wave Completed"
 align = 1
 valign = 1
 
+[node name="DogFight_HUD" type="Node2D" parent="."]
+
+[node name="DF_Start_lbl" type="Label" parent="DogFight_HUD"]
+visible = false
+margin_left = 80.0
+margin_top = 220.0
+margin_right = 280.0
+margin_bottom = 260.0
+custom_fonts/font = SubResource( 8 )
+text = "Dog Fight"
+align = 1
+valign = 1
+
+[node name="DF_Over_lbl" type="Label" parent="DogFight_HUD"]
+visible = false
+margin_left = 80.0
+margin_top = 220.0
+margin_right = 280.0
+margin_bottom = 260.0
+custom_fonts/font = SubResource( 8 )
+text = "Dog Fight Over"
+align = 1
+valign = 1
+
 [node name="Warning_HUD" type="Node2D" parent="."]
 
 [node name="Out_of_Ammo_lbl" type="Label" parent="Warning_HUD"]

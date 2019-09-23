@@ -1,6 +1,7 @@
 extends Node2D
 
 export (PackedScene) var asteroid
+export (PackedScene) var enemy
 export (bool) var reset_userdata = false
 export (int) var min_border_of_ast = 7
 export (int) var max_border_of_ast = 13
@@ -32,6 +33,7 @@ onready var wave_sys = $Wave_System
 var ins_hr # health robot instance
 var ins_ar # ammo robot instance
 var ins_ast # asteroid instance
+var ins_enemy # enemy instance
 
 var border_of_ast = 10 #border for asteroid instance
 var ast_counter = 0 #asteroid counter
@@ -116,7 +118,7 @@ func _signal_connect(which_obj):
 
 func _on_StartGame_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
-	hud.wave("started")
+	hud.presentation("wave", "started")
 	yield(get_tree().create_timer(5), "timeout")
 	_asteroids("start_timer")
 
@@ -130,13 +132,13 @@ func _on_Asteroid_Timer_timeout():
 		_asteroids("stop_timer")
 	print(ast_counter)
 
-func _asteroids(condition):
-	if condition == "start_timer":
+func _asteroids(con):
+	if con == "start_timer":
 		asteroid_timer.start()
 		wave_sys.inc_wave()
-	if condition == "stop_timer":
+	if con == "stop_timer":
 		asteroid_timer.stop()
-	if condition == "instance":
+	if con == "instance":
 		# Choose a random location on Path2D.
 		pitfalls_spawn_loc.set_offset(randi())
 	    # Create a asteroid instance and add it to the scene.
@@ -145,23 +147,49 @@ func _asteroids(condition):
 		ast_counter += 1 #increase asteroid counter
 	    # Set the asteroid's position to a random location.
 		ins_ast.position = pitfalls_spawn_loc.global_position
+		#signal connect
 		_signal_connect("ast")
+
+func _enemies(con):
+	if con == "instance":
+		# Choose a random location on Path2D.
+		pitfalls_spawn_loc.set_offset(randi())
+	    # Create a enemy instance and add it to the scene.
+		ins_enemy = enemy.instance()
+		enemy_con.add_child(ins_enemy)
+	    # Set the asteroid's position to a random location.
+		ins_enemy.position = pitfalls_spawn_loc.global_position
+		#assign spaceship as target
+		ins_enemy.target_obj = spaceship
 
 func _wave(con):
 	if con == "checkout":
 		if wave_control && border_control && asteroid_con.get_child_count() == 0:
-			hud.wave("completed")
+			hud.presentation("wave", "completed")
 			wave_control = false
 			border_control = false
 			yield(get_tree().create_timer(5), "timeout")
-            #new wave
-			hud.wave("started")
-			randomize()
-			border_of_ast += rand_range(min_border_of_ast, max_border_of_ast) #increase number of ast after every new wave
-			print(border_of_ast)
-			yield(get_tree().create_timer(5), "timeout")
-			_asteroids("start_timer")
-			_asteroids("instance")
+            #dog fight or new wave
+			_dog_fight()
+	if con == "new_wave":
+		#new wave
+		hud.presentation("wave", "started")
+		randomize()
+		border_of_ast += rand_range(min_border_of_ast, max_border_of_ast) #increase number of ast after every new wave
+		print(border_of_ast)
+		yield(get_tree().create_timer(5), "timeout")
+		_asteroids("start_timer")
+		_asteroids("instance")
+
+func _dog_fight():
+	randomize()
+	var df_possibility = rand_range(0, 100)
+	print(df_possibility)
+	if df_possibility < 90:
+		hud.presentation("dog_fight", "started")
+		_enemies("instance")
+	else:
+		_wave("new_wave")
 
 func crate_control(pos):
 	var crate_chance = rand_range(0, 100)
