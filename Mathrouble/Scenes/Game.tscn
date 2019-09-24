@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemies/CylonRaider.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Enemies/Speedy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Enemies/MissilePower.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/WaveSystem.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Enemies/SpaceBee.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/WaveSystem.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -18,15 +19,15 @@ _data = {
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 asteroid = ExtResource( 2 )
-enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
 
-[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 7 )]
 
-[node name="SpaceShip" parent="." instance=ExtResource( 7 )]
+[node name="SpaceShip" parent="." instance=ExtResource( 8 )]
 
 [node name="StartGame_Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -53,12 +54,12 @@ wait_time = 1.5
 
 [node name="Enemy_Container" type="Node" parent="Pitfalls/Enemy"]
 
-[node name="HUD" parent="." instance=ExtResource( 8 )]
+[node name="HUD" parent="." instance=ExtResource( 9 )]
 layer = 5
 
 [node name="Crate_Container" type="Node" parent="."]
 
-[node name="Wave_System" parent="." instance=ExtResource( 9 )]
+[node name="Wave_System" parent="." instance=ExtResource( 10 )]
 
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
 [connection signal="timeout" from="Pitfalls/Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]

@@ -20,6 +20,9 @@ corner_radius_bottom_left = 5
 [node name="Speedy" type="Area2D"]
 script = ExtResource( 1 )
 speed = 3.0
+health = 80.0
+received_damage = 40.0
+shoot_time = 1.5
 
 [node name="enemyship_sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -27,13 +30,15 @@ texture = ExtResource( 2 )
 [node name="enemyship_coll" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -0.361965, -14.236, 2.79362, -12.077, 4.95271, -6.26402, 9.60305, -5.93186, 14.2534, 8.51743, 4.28838, 4.36533, 6.1153, 12.8356, 0.136284, 10.6765, -5.84273, 13.0017, -4.18189, 4.36533, -13.4826, 8.18526, -9.66265, -6.09794, -5.17839, -6.26402, -3.18539, -12.077 )
 
-[node name="laser_muzzle1" type="Position2D" parent="."]
+[node name="laser_container" type="Node" parent="."]
+
+[node name="laser_muzzles" type="Node2D" parent="."]
+
+[node name="laser_muzzle1" type="Position2D" parent="laser_muzzles"]
 position = Vector2( -8.92113, -7.14067 )
 
-[node name="laser_muzzle2" type="Position2D" parent="."]
+[node name="laser_muzzle2" type="Position2D" parent="laser_muzzles"]
 position = Vector2( 9.08488, -7.18525 )
-
-[node name="laser_container" type="Node" parent="."]
 
 [node name="direction_timer" type="Timer" parent="."]
 wait_time = 5.0
