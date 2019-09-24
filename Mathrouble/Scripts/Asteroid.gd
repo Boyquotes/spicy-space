@@ -3,6 +3,8 @@ extends KinematicBody2D
 signal ast_exploded(pos)
 
 export (int) var number_of_ast = 5
+export (int) var min_speed = 30
+export (int) var max_speed = 180
 export (float) var min_scale = 0.8
 export (float) var max_scale = 1.4
 
@@ -24,7 +26,7 @@ func _ready():
 	scale = rand_vector
 	
 	set_physics_process(true)
-	vel = Vector2(rand_range(30, 100), 0).rotated(rand_range(0, 2 * PI))
+	vel = Vector2(rand_range(min_speed, max_speed), 0).rotated(rand_range(0, 2 * PI))
 	rot_speed = rand_range(-1.5, 1.5)
 	screen_size = get_viewport_rect().size
 	extents = ast_sprite.get_texture().get_size() / 2
