@@ -1,13 +1,16 @@
 extends Area2D
 
 export (float) var speed = 2.1
+export (float) var health = 100
+export (float) var received_damage = 50
+export (float) var shoot_time = 3
 
 onready var es_sprite = $enemyship_sprite
-onready var laser_muzzle1 = $laser_muzzle1
-onready var laser_muzzle2 = $laser_muzzle2
+onready var laser_muzzles = $laser_muzzles
 onready var laser = preload("res://Scenes/Projectiles/EnemyLaser.tscn")
 onready var laser_con = $laser_container
 onready var dir_timer = $direction_timer
+onready var shoot_timer = $shoot_timer
 onready var health_bar = $HealthBar
 
 var vel = Vector2()
@@ -27,7 +30,10 @@ func _ready():
 	#direction
 	dir = rand_range(-25, 25)
 	#health bar
+	health_bar.max_value = health
 	health_bar.value = health_bar.max_value
+	#shoot time
+	shoot_timer.wait_time = shoot_time
 
 func _physics_process(delta):
 	_move_or_idle(delta)
@@ -66,12 +72,10 @@ func _move_or_idle(delta):
 	position += ((vel * delta).normalized() * speed).rotated(dir)
 
 func _shoot():
-	var laser_ins = laser.instance()
-	var laser_ins2 = laser.instance()
-	laser_con.add_child(laser_ins)
-	laser_con.add_child(laser_ins2)
-	laser_ins.start_at(self.rotation, laser_muzzle1.global_position, vel)
-	laser_ins2.start_at(self.rotation, laser_muzzle2.global_position, vel)
+	for lm in laser_muzzles.get_children():
+		var laser_ins = laser.instance()
+		laser_con.add_child(laser_ins)
+		laser_ins.start_at(self.rotation, lm.global_position, vel)
 
 func _on_direction_timer_timeout():
 	_change_dir()
@@ -89,10 +93,10 @@ func _on_shoot_timer_timeout():
 
 func _on_CylonRaider_area_entered(area):
 	if area.is_in_group("laser"):
-		damage_value = health_bar.max_value/2
+		damage_value = received_damage
 		_get_damage(area, damage_value)
 	elif area.is_in_group("enemy_laser"): #friendly fire
-		damage_value = health_bar.max_value/4
+		damage_value = received_damage/2
 		_get_damage(area, damage_value)
 
 func _get_damage(area, damage_value):
