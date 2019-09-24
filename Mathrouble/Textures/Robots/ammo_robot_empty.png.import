@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/restart_button2.png-b4a625dd361322a2458c40f66643c9cc.stex"
+path="res://.import/ammo_robot_empty.png-16ffbdc11ce02d8d88211e88bed84f26.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/restart_button2.png"
-dest_files=[ "res://.import/restart_button2.png-b4a625dd361322a2458c40f66643c9cc.stex" ]
+source_file="res://Textures/Robots/ammo_robot_empty.png"
+dest_files=[ "res://.import/ammo_robot_empty.png-16ffbdc11ce02d8d88211e88bed84f26.stex" ]
 
 [params]
 

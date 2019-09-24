@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ammo_crate.png-e238aaa71604bdfdf2ab1c682bd851fa.stex"
+path="res://.import/health_robot_empty.png-5f5dd471c048461197417181ad8b9235.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/ammo_crate.png"
-dest_files=[ "res://.import/ammo_crate.png-e238aaa71604bdfdf2ab1c682bd851fa.stex" ]
+source_file="res://Textures/Robots/health_robot_empty.png"
+dest_files=[ "res://.import/health_robot_empty.png-5f5dd471c048461197417181ad8b9235.stex" ]
 
 [params]
 

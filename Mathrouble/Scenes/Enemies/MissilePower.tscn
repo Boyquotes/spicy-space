@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Enemyship.gd" type="Script" id=1]
-[ext_resource path="res://Textures/enemyship1.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Enemies/missilepower.png" type="Texture" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.866667, 0.866667, 0.866667, 1 )
@@ -17,20 +17,21 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="CylonRaider" type="Area2D"]
+[node name="MissilePower" type="Area2D"]
 script = ExtResource( 1 )
+speed = 1.6
 
 [node name="enemyship_sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="enemyship_coll" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 3.32242, -14.9262, 6.02792, -14.6556, 8.86871, -12.8971, 14.415, -6.94494, 14.9561, 0.224655, 10.492, 8.747, 2.78132, 15.2402, -2.49442, 15.2402, -10.3404, 9.55865, -14.8045, -0.316444, -14.8045, -6.26856, -9.52874, -12.2207, -6.55268, -14.3851, -3.05093, -15.2307, -3.14067, -13.0768, -9.12291, -2.2103, -7.2675, -0.117647, -5.06465, 1.03631, 3.72824, 0.765759, 6.38848, 0.56185, 9.00398, -1.39865, 3.18715, -13.1676 )
+polygon = PoolVector2Array( -0.154942, -11.7765, 5.5409, -6.65028, 6.68007, -0.384857, 11.5215, -0.242462, 12.0911, -3.09038, 13.6575, -4.37195, 15.651, -2.94798, 15.5086, 6.02296, 12.3759, 5.88057, 11.9487, 1.89348, 9.38559, 2.17827, 10.8095, 5.02619, 6.82246, 12.146, 4.25933, 8.58609, 2.97777, 13.0004, -3.00286, 13.0004, -3.85724, 8.44369, -6.56276, 12.0036, -10.5499, 5.73817, -8.41391, 2.46306, -11.4042, 2.17827, -12.2586, 6.16536, -15.3913, 5.88057, -15.9609, -2.94798, -14.2521, -4.22955, -12.401, -2.80559, -11.689, -0.527254, -6.70516, -0.527254, -6.13557, -6.0807 )
 
 [node name="laser_muzzle1" type="Position2D" parent="."]
-position = Vector2( -4.27079, -15.9431 )
+position = Vector2( -14.1898, -5.14713 )
 
 [node name="laser_muzzle2" type="Position2D" parent="."]
-position = Vector2( 4.60062, -15.8216 )
+position = Vector2( 14.0687, -5.04931 )
 
 [node name="laser_container" type="Node" parent="."]
 

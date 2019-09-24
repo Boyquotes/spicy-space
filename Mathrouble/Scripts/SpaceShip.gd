@@ -11,7 +11,7 @@ export var thrust = 300
 #export var max_vel = 200
 export var friction = 0.65
 
-onready var laser = preload("res://Scenes/Laser.tscn")
+onready var laser = preload("res://Scenes/Projectiles/Laser.tscn")
 onready var laser_container = $laser_container
 onready var laser_muzzle = $laser_muzzle
 onready var shoot_timer = $shoot_timer

@@ -1,7 +1,7 @@
 extends Node2D
 
 export (PackedScene) var asteroid
-export (PackedScene) var enemy
+export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
 export (int) var min_border_of_ast = 7
 export (int) var max_border_of_ast = 13
@@ -22,8 +22,8 @@ onready var hud = $HUD
 #Robots Follow AI
 onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
 #Robots
-onready var health_robot = ResourceLoader.load("res://Scenes/HealthRobot.tscn")
-onready var ammo_robot = ResourceLoader.load("res://Scenes/AmmoRobot.tscn")
+onready var health_robot = ResourceLoader.load("res://Scenes/Robots/HealthRobot.tscn")
+onready var ammo_robot = ResourceLoader.load("res://Scenes/Robots/AmmoRobot.tscn")
 #Crate
 onready var crate_con = $Crate_Container
 onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
@@ -160,7 +160,7 @@ func _enemies(con):
 		# Choose a random location on Path2D.
 		pitfalls_spawn_loc.set_offset(randi())
 	    # Create a enemy instance and add it to the scene.
-		ins_enemy = enemy.instance()
+		ins_enemy = enemies[randi() % enemies.size()].instance() #choose an enemy and instance it
 		enemy_con.add_child(ins_enemy)
 		enemy_counter += 1
 	    # Set the asteroid's position to a random location.

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/health_robot_empty.png-d067023e442022897be413539d65af09.stex"
+path="res://.import/stuca.png-2c5aac08cd9b7d668d79a005980723e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/health_robot_empty.png"
-dest_files=[ "res://.import/health_robot_empty.png-d067023e442022897be413539d65af09.stex" ]
+source_file="res://Textures/Enemies/stuca.png"
+dest_files=[ "res://.import/stuca.png-2c5aac08cd9b7d668d79a005980723e8.stex" ]
 
 [params]
 

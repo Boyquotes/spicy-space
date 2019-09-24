@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/health_crate.png-c44866e251b9266540dfe20684302f46.stex"
+path="res://.import/speedy.png-a4df5a324f98290858e18e180af0d581.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/health_crate.png"
-dest_files=[ "res://.import/health_crate.png-c44866e251b9266540dfe20684302f46.stex" ]
+source_file="res://Textures/Enemies/speedy.png"
+dest_files=[ "res://.import/speedy.png-a4df5a324f98290858e18e180af0d581.stex" ]
 
 [params]
 

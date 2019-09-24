@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemyship1.png-16e967281c60dc2195268ea9fe0c76b6.stex"
+path="res://.import/ammo_robot_fill.png-97926b9ddbae379b500d70bdfb0da97d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/enemyship1.png"
-dest_files=[ "res://.import/enemyship1.png-16e967281c60dc2195268ea9fe0c76b6.stex" ]
+source_file="res://Textures/Robots/ammo_robot_fill.png"
+dest_files=[ "res://.import/ammo_robot_fill.png-97926b9ddbae379b500d70bdfb0da97d.stex" ]
 
 [params]
 
