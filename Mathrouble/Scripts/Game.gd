@@ -23,7 +23,8 @@ onready var hud = $HUD
 onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
 #Robots
 onready var health_robot = ResourceLoader.load("res://Scenes/Robots/HealthRobot.tscn")
-onready var ammo_robot = ResourceLoader.load("res://Scenes/Robots/AmmoRobot.tscn")
+#onready var ammo_robot = ResourceLoader.load("res://Scenes/Robots/AmmoRobot.tscn")
+onready var shield_robot = ResourceLoader.load("res://Scenes/Robots/ShieldRobot.tscn")
 #Crate
 onready var crate_con = $Crate_Container
 onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
@@ -32,6 +33,7 @@ onready var wave_sys = $Wave_System
 
 var ins_hr # health robot instance
 var ins_ar # ammo robot instance
+var ins_sr # shield robot instance
 var ins_ast # asteroid instance
 var ins_enemy # enemy instance
 
@@ -69,11 +71,14 @@ func _process(delta):
 func _robots_activate():
 	#create follow ai for robots
 	var hr_follow_ai = follow_ai.instance()
-	var ar_follow_ai = follow_ai.instance()
+#	var ar_follow_ai = follow_ai.instance()
+	var sr_follow_ai = follow_ai.instance()
 	add_child(hr_follow_ai)
-	add_child(ar_follow_ai)
+#	add_child(ar_follow_ai)
+	add_child(sr_follow_ai)
 	hr_follow_ai.global_position = Vector2(spaceship.global_position.x - 15, spaceship.global_position.y - 35)
-	ar_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
+#	ar_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
+	sr_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
 
 	#create health robot
 	ins_hr = health_robot.instance()
@@ -83,18 +88,27 @@ func _robots_activate():
 	hr_follow_ai.target = spaceship.hr_followpoint.global_position
 
 	#create ammo robot
-	ins_ar = ammo_robot.instance()
-	ar_follow_ai.add_child(ins_ar)
-	#set location for ar to folllow spaceship
-	ar_follow_ai.following_obj = spaceship.ar_followpoint
-	ar_follow_ai.target = spaceship.ar_followpoint.global_position
+#	ins_ar = ammo_robot.instance()
+#	ar_follow_ai.add_child(ins_ar)
+#	#set location for ar to folllow spaceship
+#	ar_follow_ai.following_obj = spaceship.ar_followpoint
+#	ar_follow_ai.target = spaceship.ar_followpoint.global_position
+	
+	#create shield robot
+	ins_sr = shield_robot.instance()
+	sr_follow_ai.add_child(ins_sr)
+	#set location for ar to follow spaceship
+	sr_follow_ai.following_obj = spaceship.ar_followpoint
+	sr_follow_ai.target = spaceship.ar_followpoint.global_position
 	
 	# add robots to the spaceship
 	spaceship.robots.append(ins_hr)
-	spaceship.robots.append(ins_ar)
+#	spaceship.robots.append(ins_ar)
+	spaceship.robots.append(ins_sr)
 	
 	_signal_connect("hr")
-	_signal_connect("ar")
+#	_signal_connect("ar")
+	_signal_connect("sr")
 
 func _signal_connect(which_obj):
 	if which_obj == "ss": #space ship
@@ -112,11 +126,13 @@ func _signal_connect(which_obj):
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
 		#spaceship explode signal connect
 		ins_hr.connect("ss_explode", spaceship, "ss_explode")
-	if which_obj == "ar": #ammo robot
-		#reduce ammo when laser shooted signal connect
-		spaceship.connect("shoot", ins_ar, "laser_shooted")
-		#check out ammo signal connect
-		ins_ar.connect("out_of_ammo", spaceship, "out_of_ammo_control")
+#	if which_obj == "ar": #ammo robot
+#		#reduce ammo when laser shooted signal connect
+#		spaceship.connect("shoot", ins_ar, "laser_shooted")
+#		#check out ammo signal connect
+#		ins_ar.connect("out_of_ammo", spaceship, "out_of_ammo_control")
+	if which_obj == "sr": #shield robot
+		pass
 	if which_obj == "ast": #asteroid
 		#signal to crate control after asteroid exploded
 		ins_ast.connect("ast_exploded", self, "crate_control")
