@@ -5,6 +5,7 @@ signal game_over
 signal shoot
 signal crate_grabbed(which_crate)
 signal warning(type)
+signal hr_situation(situation)
 
 export var rot_speed = 2
 export var thrust = 300
@@ -89,11 +90,6 @@ func _shoot():
 		laser_container.add_child(laser_ins)
 		laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
 		emit_signal("shoot")
-#	else:
-#		emit_signal("warning", "out_of_ammo")
-
-#func out_of_ammo_control(condition):
-#	out_of_ammo_control = condition
 
 func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic or rigidbody
 	if body.is_in_group("asteroid"): #when asteroid hit spaceship
@@ -106,6 +102,7 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 		area.remove_crate()
 	if area.is_in_group("shield_crate"):
 		emit_signal("crate_grabbed", "shield_crate")
+		emit_signal("hr_situation", false) #deactivate health robot if it was active
 		area.remove_crate()
 	if area.is_in_group("enemy_laser"):
 		emit_signal("ss_damage", "laser") #spaceship got damage from enemy

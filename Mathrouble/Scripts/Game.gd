@@ -112,6 +112,8 @@ func _signal_connect(which_obj):
 		spaceship.connect("warning", hud, "warning")
 		#screen shake signal connect
 		spaceship.connect("ss_damage", self, "screen_shake")
+		#health robot situation signal control
+		spaceship.connect("hr_situation", ins_hr, "hr_situation")
 	if which_obj == "hr": #health robot
 		#spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
