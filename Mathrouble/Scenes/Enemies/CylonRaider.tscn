@@ -21,7 +21,7 @@ corner_radius_bottom_left = 5
 script = ExtResource( 1 )
 health = 130.0
 received_damage = 35.0
-shoot_time = 2.0
+shoot_time = 2.5
 
 [node name="enemyship_sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
