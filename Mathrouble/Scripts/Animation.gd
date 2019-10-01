@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var sprite = $sprite
 onready var anim = $sprite/anim
 
 func _ready():
