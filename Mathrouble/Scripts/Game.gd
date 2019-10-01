@@ -98,8 +98,8 @@ func _robots_activate():
 	ins_sr = shield_robot.instance()
 	sr_follow_ai.add_child(ins_sr)
 	#set location for ar to follow spaceship
-	sr_follow_ai.following_obj = spaceship.ar_followpoint
-	sr_follow_ai.target = spaceship.ar_followpoint.global_position
+	sr_follow_ai.following_obj = spaceship.sr_followpoint
+	sr_follow_ai.target = spaceship.sr_followpoint.global_position
 	
 	# add robots to the spaceship
 	spaceship.robots.append(ins_hr)

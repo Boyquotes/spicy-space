@@ -19,7 +19,5 @@ func robot_charge(which_crate):
 	if which_crate == "health_crate" && self.is_in_group("health_robot"):
 		self.value += 10
 #		print("health robot charged: " + str(self.value))
-	if which_crate == "ammo_crate" && self.is_in_group("ammo_robot"):
+	if which_crate == "shield_crate" && self.is_in_group("shield_robot"):
 		self.value += 5
-		emit_signal("out_of_ammo", false) # cancel out of ammo condition
-#		print("ammo robot charged: " + str(self.value))

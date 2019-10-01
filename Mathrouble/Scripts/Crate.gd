@@ -1,11 +1,11 @@
 extends Area2D
 
 export (Texture) var health_crate_sprite
-export (Texture) var ammo_crate_sprite
+export (Texture) var shield_crate_sprite
 
 onready var crate_sprite = $crate_sprite
 
-const CRATES = ["health", "ammo"]
+const CRATES = ["health", "shield"]
 
 var choosen_crate = "health"
 var rot_dir = 1
@@ -14,6 +14,7 @@ func _ready():
 	set_physics_process(true)
 	_choose_crate()
 	_rot_dir() # choose rotate direction
+	
 
 func _physics_process(delta):
 	_rotate(delta)
@@ -33,8 +34,8 @@ func _choose_crate():
 	match choosen_crate:
 		"health":
 			_prepare_crate(health_crate_sprite, "health_crate")
-		"ammo":
-			_prepare_crate(ammo_crate_sprite, "ammo_crate")
+		"shield":
+			_prepare_crate(shield_crate_sprite, "shield_crate")
 
 func _prepare_crate(sprite, group_name):
 	crate_sprite.texture = sprite

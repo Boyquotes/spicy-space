@@ -16,7 +16,7 @@ onready var laser_container = $laser_container
 onready var laser_muzzle = $laser_muzzle
 onready var shoot_timer = $shoot_timer
 onready var hr_followpoint = $HR_FollowPoint # Health robot follow point
-onready var ar_followpoint = $AR_FollowPoint # Ammo robot follow point
+onready var sr_followpoint = $SR_FollowPoint # Shield robot follow point
 
 var screen_size = Vector2()
 var rot = 0
@@ -34,7 +34,6 @@ func _ready():
 	pos = screen_size / 2
 	self.position = pos
 	set_process(true)
-#	prog_follow.following_obj = self
 	explode_control = false
 	
 func _process(delta):
@@ -84,18 +83,17 @@ func _stay_on_screen(delta):
 	self.rotation = rot - PI/2
 
 func _shoot():
-	if out_of_ammo_control == false:
+#	if out_of_ammo_control == false:
 		shoot_timer.start()
 		var laser_ins = laser.instance()
 		laser_container.add_child(laser_ins)
 		laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
 		emit_signal("shoot")
-	else:
-#		print("out_of_ammo")
-		emit_signal("warning", "out_of_ammo")
+#	else:
+#		emit_signal("warning", "out_of_ammo")
 
-func out_of_ammo_control(condition):
-	out_of_ammo_control = condition
+#func out_of_ammo_control(condition):
+#	out_of_ammo_control = condition
 
 func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic or rigidbody
 	if body.is_in_group("asteroid"): #when asteroid hit spaceship
@@ -105,9 +103,6 @@ func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic o
 func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("health_crate"):
 		emit_signal("crate_grabbed", "health_crate")
-		area.remove_crate()
-	if area.is_in_group("ammo_crate"):
-		emit_signal("crate_grabbed", "ammo_crate")
 		area.remove_crate()
 	if area.is_in_group("enemy_laser"):
 		emit_signal("ss_damage", "laser") #spaceship got damage from enemy
