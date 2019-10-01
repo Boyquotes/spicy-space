@@ -21,3 +21,10 @@ func robot_charge(which_crate):
 #		print("health robot charged: " + str(self.value))
 	if which_crate == "shield_crate" && self.is_in_group("shield_robot"):
 		self.value += 5
+		robot_color("white") #if it was red make it white because it charged again
+
+func robot_color(which_color):
+	if which_color == "red":
+		self.modulate = Color(1, 0, 0) #change robots color as red
+	if which_color == "white":
+		self.modulate = Color(1, 1, 1) #change robots color as white

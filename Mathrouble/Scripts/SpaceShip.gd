@@ -104,6 +104,9 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("health_crate"):
 		emit_signal("crate_grabbed", "health_crate")
 		area.remove_crate()
+	if area.is_in_group("shield_crate"):
+		emit_signal("crate_grabbed", "shield_crate")
+		area.remove_crate()
 	if area.is_in_group("enemy_laser"):
 		emit_signal("ss_damage", "laser") #spaceship got damage from enemy
 

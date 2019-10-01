@@ -87,13 +87,6 @@ func _robots_activate():
 	hr_follow_ai.following_obj = spaceship.hr_followpoint
 	hr_follow_ai.target = spaceship.hr_followpoint.global_position
 
-	#create ammo robot
-#	ins_ar = ammo_robot.instance()
-#	ar_follow_ai.add_child(ins_ar)
-#	#set location for ar to folllow spaceship
-#	ar_follow_ai.following_obj = spaceship.ar_followpoint
-#	ar_follow_ai.target = spaceship.ar_followpoint.global_position
-	
 	#create shield robot
 	ins_sr = shield_robot.instance()
 	sr_follow_ai.add_child(ins_sr)
@@ -103,11 +96,9 @@ func _robots_activate():
 	
 	# add robots to the spaceship
 	spaceship.robots.append(ins_hr)
-#	spaceship.robots.append(ins_ar)
 	spaceship.robots.append(ins_sr)
 	
 	_signal_connect("hr")
-#	_signal_connect("ar")
 	_signal_connect("sr")
 
 func _signal_connect(which_obj):
@@ -116,7 +107,7 @@ func _signal_connect(which_obj):
 		spaceship.connect("game_over", self, "game_over")
 		#when spaceship grabbed crate signal connect
 		spaceship.connect("crate_grabbed", ins_hr, "robot_charge")
-		spaceship.connect("crate_grabbed", ins_ar, "robot_charge")
+		spaceship.connect("crate_grabbed", ins_sr, "robot_charge")
 		#warning signal
 		spaceship.connect("warning", hud, "warning")
 		#screen shake signal connect
@@ -126,13 +117,11 @@ func _signal_connect(which_obj):
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
 		#spaceship explode signal connect
 		ins_hr.connect("ss_explode", spaceship, "ss_explode")
-#	if which_obj == "ar": #ammo robot
-#		#reduce ammo when laser shooted signal connect
-#		spaceship.connect("shoot", ins_ar, "laser_shooted")
-#		#check out ammo signal connect
-#		ins_ar.connect("out_of_ammo", spaceship, "out_of_ammo_control")
 	if which_obj == "sr": #shield robot
-		pass
+		#spaceship damage signal connect
+		spaceship.connect("ss_damage", ins_sr, "damage_happened")
+		#shield robot situation signal connect
+		ins_sr.connect("sr_deactivated", ins_hr, "hr_situation")
 	if which_obj == "ast": #asteroid
 		#signal to crate control after asteroid exploded
 		ins_ast.connect("ast_exploded", self, "crate_control")
