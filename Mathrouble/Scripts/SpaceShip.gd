@@ -18,6 +18,7 @@ onready var laser_muzzle = $laser_muzzle
 onready var shoot_timer = $shoot_timer
 onready var hr_followpoint = $HR_FollowPoint # Health robot follow point
 onready var sr_followpoint = $SR_FollowPoint # Shield robot follow point
+onready var shield = $Shield
 
 var screen_size = Vector2()
 var rot = 0
@@ -103,9 +104,16 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("shield_crate"):
 		emit_signal("crate_grabbed", "shield_crate")
 		emit_signal("hr_situation", false) #deactivate health robot if it was active
+		ss_shield_deactivate(false) #activate shield if it was deactive
 		area.remove_crate()
 	if area.is_in_group("enemy_laser"):
 		emit_signal("ss_damage", "laser") #spaceship got damage from enemy
+
+func ss_shield_deactivate(situation): #spaceship shield deactivate or not
+	if situation == false: #don't deactive
+		shield.show()
+	else: #deactive
+		shield.hide()
 
 func ss_explode():
 	explode_control = true

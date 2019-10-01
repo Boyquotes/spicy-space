@@ -122,8 +122,10 @@ func _signal_connect(which_obj):
 	if which_obj == "sr": #shield robot
 		#spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_sr, "damage_happened")
-		#shield robot situation signal connect
+		#change health robot situation according to shield robot situation signal connect
 		ins_sr.connect("sr_deactivated", ins_hr, "hr_situation")
+		#change shield situation according to shield robot situation signal connect
+		ins_sr.connect("sr_deactivated", spaceship, "ss_shield_deactivate")
 	if which_obj == "ast": #asteroid
 		#signal to crate control after asteroid exploded
 		ins_ast.connect("ast_exploded", self, "crate_control")
@@ -189,7 +191,7 @@ func _wave(con):
 		hud.presentation("wave", "started")
 		randomize()
 		border_of_ast += rand_range(min_border_of_ast, max_border_of_ast) #increase number of ast after every new wave
-		print(border_of_ast)
+#		print(border_of_ast)
 		yield(get_tree().create_timer(5), "timeout")
 		_asteroids("start_timer")
 		_asteroids("instance")
@@ -215,7 +217,7 @@ func _dog_fight(con):
 			
 			randomize()
 			var nof_possibility = rand_range(0, 90) #number of enemy possibility
-			print(nof_possibility)
+#			print(nof_possibility)
 			if nof_possibility <= 40:
 				border_of_enemy += 1 #increase enemy number for present dog fight
 			elif nof_possibility > 40 && nof_possibility < 70:
@@ -225,7 +227,7 @@ func _dog_fight(con):
 					border_of_enemy -= 1 #reduce enemy number for present dog fight
 				else:
 					border_of_enemy -= 0 #don't change enemy number for present dog fight
-			print(border_of_enemy)
+#			print(border_of_enemy)
 
 			hud.presentation("dog_fight", "completed")
 			yield(get_tree().create_timer(5), "timeout")

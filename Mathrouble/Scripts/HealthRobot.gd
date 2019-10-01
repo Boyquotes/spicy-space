@@ -9,7 +9,7 @@ func hr_situation(situation):
 	hr_on = situation #health robot on or off according to shield robot
 
 func damage_happened(which_pitfall):
-	print("hr situation: " + str(hr_on))
+#	print("hr situation: " + str(hr_on))
 	if hr_on:
 		if which_pitfall == "asteroid":
 			damage_value = 10

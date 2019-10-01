@@ -1,12 +1,9 @@
 extends "res://Scripts/Robot.gd"
 
-signal sr_deactivated(situation)
+signal sr_deactivated(hr_situation)
 
 var damage_value = 0
 
-#func _ready():
-#	self.modulate = Color(1, 1, 1)
-	
 func damage_happened(which_pitfall):
 	if which_pitfall == "asteroid":
 		damage_value = 10
