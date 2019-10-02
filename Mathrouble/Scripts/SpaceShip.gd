@@ -28,6 +28,7 @@ var acc = Vector2()
 var explode_control = false
 var robots = [] # spaceship's robots
 var out_of_ammo_control = false
+var shoot_control = false
 
 func _ready():
 	randomize()
@@ -40,15 +41,17 @@ func _ready():
 	
 func _process(delta):
 	if explode_control == false: # if ss exploded
-		_ss_move(delta)
+		_ss_move_and_shoot(delta)
 
 	_stay_on_screen(delta) 
 
-func _ss_move(delta):
-	if Input.is_action_pressed("ui_down"):
+func _ss_move_and_shoot(delta):
+	#shoot
+	if shoot_control:
 		if shoot_timer.get_time_left() == 0 and explode_control == false:
 			_shoot()
-
+	
+	#move
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
 #		print("ship move")

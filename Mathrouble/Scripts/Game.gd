@@ -68,6 +68,12 @@ func _process(delta):
 	if df_control:
 		_dog_fight("checkout")
 
+	#automatic shoot system for spaceship
+	if wave_control || df_control:
+		_ss_shoot_system(true)
+	else:
+		_ss_shoot_system(false)
+
 func _robots_activate():
 	#create follow ai for robots
 	var hr_follow_ai = follow_ai.instance()
@@ -242,6 +248,9 @@ func crate_control(pos):
 	#	print(pos)
 	else:
 		pass
+
+func _ss_shoot_system(con): #spaceship shoot system
+	spaceship.shoot_control = con
 
 func screen_shake(which_pitfall):
 	screen_shake.start(0.2, 15, 16, 1)
