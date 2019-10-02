@@ -6,8 +6,8 @@ signal ast_split(ast_size, ast_scale, pos, vel, hit_vel)
 export (int) var number_of_ast = 5
 export (int) var min_speed = 30
 export (int) var max_speed = 180
-export (float) var min_scale = 0.8
-export (float) var max_scale = 1.4
+export (float) var min_scale = 0.6
+export (float) var max_scale = 2
 
 onready var ast_sprite = $asteroid_sprite
 onready var ast_coll = $asteroid_coll
@@ -75,7 +75,8 @@ func _choose_asteroid(number_of_ast):
 	ast_coll.shape = shape
 
 func explode(hit_vel):
+	if self.scale.x * 0.5 > min_scale:
+		emit_signal("ast_split", 'big', self.scale, self.position, vel, hit_vel)
 	emit_signal("ast_exploded", self.position)
-	emit_signal("ast_split", 'big', self.scale, self.position, vel, hit_vel)
 	call_deferred("free")
 	Global.score += 10 #increase score

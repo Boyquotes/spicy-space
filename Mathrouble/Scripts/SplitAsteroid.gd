@@ -36,6 +36,7 @@ func _ready():
 	_choose_asteroid(number_of_ast)
 
 func _physics_process(delta):
+	vel = vel.clamped(300)
 	self.rotation =  self.rotation + rot_speed * delta
 	var collide = move_and_collide(delta * vel)
 	if collide:
@@ -75,7 +76,7 @@ func _choose_asteroid(number_of_ast):
 	ast_coll.shape = shape
 
 func explode(hit_vel):
-	emit_signal("ast_exploded", self.position)
 	emit_signal("ast_split", 'med', self.scale, self.position, vel, hit_vel)
+	emit_signal("ast_exploded", self.position)
 	call_deferred("free")
 	Global.score += 10 #increase score
