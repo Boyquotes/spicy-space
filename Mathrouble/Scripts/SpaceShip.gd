@@ -97,7 +97,7 @@ func _shoot():
 
 func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic or rigidbody
 	if body.is_in_group("asteroid"): #when asteroid hit spaceship
-		body.explode() #explode asteroid
+		body.explode(body.vel) #explode asteroid
 		emit_signal("ss_damage", "asteroid") #spaceship got damage from asteroid
 
 func _on_SpaceShip_area_entered(area): #when any collide happen with area

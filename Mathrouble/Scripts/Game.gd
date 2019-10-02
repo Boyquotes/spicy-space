@@ -1,6 +1,7 @@
 extends Node2D
 
 export (PackedScene) var asteroid
+export (PackedScene) var split_asteroid
 export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
 export (int) var min_border_of_ast = 7
@@ -35,6 +36,7 @@ var ins_hr # health robot instance
 var ins_ar # ammo robot instance
 var ins_sr # shield robot instance
 var ins_ast # asteroid instance
+var ins_split_ast
 var ins_enemy # enemy instance
 
 var border_of_ast = 10 #border for asteroid instance
@@ -44,6 +46,7 @@ var ast_border_control = false #check out to asteroid border
 var df_control = false #check out dog fight happened or not
 var border_of_enemy = 1
 var enemy_counter = 0
+var ast_split_pattern = {'big': 'med', 'med': null}
 
 func _ready():
 	#reset highscore
@@ -77,13 +80,10 @@ func _process(delta):
 func _robots_activate():
 	#create follow ai for robots
 	var hr_follow_ai = follow_ai.instance()
-#	var ar_follow_ai = follow_ai.instance()
 	var sr_follow_ai = follow_ai.instance()
 	add_child(hr_follow_ai)
-#	add_child(ar_follow_ai)
 	add_child(sr_follow_ai)
 	hr_follow_ai.global_position = Vector2(spaceship.global_position.x - 15, spaceship.global_position.y - 35)
-#	ar_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
 	sr_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
 
 	#create health robot
@@ -96,7 +96,7 @@ func _robots_activate():
 	#create shield robot
 	ins_sr = shield_robot.instance()
 	sr_follow_ai.add_child(ins_sr)
-	#set location for ar to follow spaceship
+	#set location for sr to follow spaceship
 	sr_follow_ai.following_obj = spaceship.sr_followpoint
 	sr_follow_ai.target = spaceship.sr_followpoint.global_position
 	
@@ -135,6 +135,13 @@ func _signal_connect(which_obj):
 	if which_obj == "ast": #asteroid
 		#signal to crate control after asteroid exploded
 		ins_ast.connect("ast_exploded", self, "crate_control")
+		#signal to split asteroid signal control
+		ins_ast.connect("ast_split", self, "ast_split")
+	if which_obj == "split_ast":
+		#signal to crate control after asteroid exploded
+		ins_split_ast.connect("ast_exploded", self, "crate_control")
+		#signal to split asteroid signal control
+		ins_split_ast.connect("ast_split", self, "ast_split")
 
 func _on_StartGame_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
@@ -169,6 +176,20 @@ func _asteroids(con):
 		ins_ast.position = pitfalls_spawn_loc.global_position
 		#signal connect
 		_signal_connect("ast")
+
+func ast_split(ast_size, ast_scale, pos, vel, hit_vel):
+	var newsize = ast_split_pattern[ast_size]
+	if newsize:
+		for offset in [-1, 1]:
+			var newpos = pos + hit_vel.tangent().clamped(25) * offset
+			var newvel = vel + hit_vel.tangent() * offset
+			spawn_split_ast(newsize, ast_scale, newpos, newvel)
+
+func spawn_split_ast(ast_size, ast_scale, pos, vel):
+	ins_split_ast = split_asteroid.instance()
+	asteroid_con.call_deferred("add_child", ins_split_ast)
+	ins_split_ast.init(ast_size, ast_scale, pos, vel)
+	_signal_connect("split_ast")
 
 func _enemies(con):
 	if con == "instance":
@@ -207,7 +228,7 @@ func _dog_fight(con):
 		randomize()
 		var df_possibility = rand_range(0, 100) #dog fight's gonna happen or not ?
 #		print(df_possibility)
-		if df_possibility < 90:
+		if df_possibility < 50:
 			hud.presentation("dog_fight", "started")
 			while (enemy_counter < border_of_enemy):
 				_enemies("instance")

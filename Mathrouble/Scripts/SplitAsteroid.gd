@@ -1,27 +1,33 @@
 extends KinematicBody2D
 
 signal ast_exploded(pos)
-signal ast_split(ast_size, ast_scale, pos, vel, hit_vel)
+signal ast_split(ast_size, pos, vel, hit_vel)
 
 export (int) var number_of_ast = 5
 export (int) var min_speed = 30
 export (int) var max_speed = 180
-export (float) var min_scale = 0.8
-export (float) var max_scale = 1.4
 
 onready var ast_sprite = $asteroid_sprite
 onready var ast_coll = $asteroid_coll
-onready var puff_effect = $puff_particle
 
 var vel = Vector2()
-var rand_scale
 var rot_speed
 var screen_size
 var extents
 
+func init(init_size, init_scale, init_pos, init_vel):
+	#scale
+	if init_size == 'med':
+		scale = init_scale / 2
+	#velocity
+	if init_vel.length() > 0:
+		self.vel = init_vel
+	else:
+		vel = Vector2(rand_range(30, 100), 0).rotated(rand_range(0, 2*PI))
+	#position
+	self.position = init_pos
+
 func _ready():
-	randomize()
-	_rand_scale()
 	set_physics_process(true)
 	vel = Vector2(rand_range(min_speed, max_speed), 0).rotated(rand_range(0, 2 * PI))
 	rot_speed = rand_range(-1.5, 1.5)
@@ -50,12 +56,6 @@ func _physics_process(delta):
 		pos.y = screen_size.y + extents.y
 	self.position = pos
 
-func _rand_scale():
-	#random scale
-	rand_scale = rand_range(min_scale, max_scale)
-	var rand_vector = Vector2(rand_scale, rand_scale)
-	scale = rand_vector
-
 func _choose_asteroid(number_of_ast):
 	var frame = 0
 	var rand_frames = []
@@ -76,6 +76,6 @@ func _choose_asteroid(number_of_ast):
 
 func explode(hit_vel):
 	emit_signal("ast_exploded", self.position)
-	emit_signal("ast_split", 'big', self.scale, self.position, vel, hit_vel)
+	emit_signal("ast_split", 'med', self.scale, self.position, vel, hit_vel)
 	call_deferred("free")
 	Global.score += 10 #increase score
