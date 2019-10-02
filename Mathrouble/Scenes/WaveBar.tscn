@@ -14,7 +14,7 @@ texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 20
+size = 25
 font_data = ExtResource( 4 )
 
 [node name="WaveBar" type="ProgressBar"]
@@ -27,15 +27,14 @@ custom_styles/bg = SubResource( 2 )
 value = 35.0
 percent_visible = false
 
-[node name="Wave_Lvl_1" type="Node2D" parent="."]
-editor/display_folded = true
+[node name="Current_Wave_Lvl" type="Node2D" parent="."]
 position = Vector2( -8, 7 )
 scale = Vector2( 0.7, 0.7 )
 
-[node name="wave_lvl_sprite" type="Sprite" parent="Wave_Lvl_1"]
+[node name="wave_lvl_sprite" type="Sprite" parent="Current_Wave_Lvl"]
 texture = ExtResource( 3 )
 
-[node name="wave_lvl_text" type="Label" parent="Wave_Lvl_1/wave_lvl_sprite"]
+[node name="wave_lvl_text" type="Label" parent="Current_Wave_Lvl/wave_lvl_sprite"]
 margin_left = -14.7722
 margin_top = -15.5372
 margin_right = 15.2278
@@ -45,15 +44,14 @@ text = "1"
 align = 1
 valign = 1
 
-[node name="Wave_Lvl_2" type="Node2D" parent="."]
-editor/display_folded = true
+[node name="Next_Wave_Lvl" type="Node2D" parent="."]
 position = Vector2( 88, 7 )
 scale = Vector2( 0.7, 0.7 )
 
-[node name="wave_lvl_sprite" type="Sprite" parent="Wave_Lvl_2"]
+[node name="wave_lvl_sprite" type="Sprite" parent="Next_Wave_Lvl"]
 texture = ExtResource( 3 )
 
-[node name="wave_lvl_text" type="Label" parent="Wave_Lvl_2/wave_lvl_sprite"]
+[node name="wave_lvl_text" type="Label" parent="Next_Wave_Lvl/wave_lvl_sprite"]
 margin_left = -14.7722
 margin_top = -15.5372
 margin_right = 15.2278

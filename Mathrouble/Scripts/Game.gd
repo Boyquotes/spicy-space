@@ -61,6 +61,9 @@ func _ready():
 	randomize()
 	border_of_ast = rand_range(min_border_of_ast, max_border_of_ast)
 	print(border_of_ast)
+	#assign the border of asteroid to wave bar's max value
+	hud.wave_bar_max_value = int(border_of_ast)
+	hud.wave_bar("wave_up")
 	
 	_robots_activate()
 	_signal_connect("ss")
@@ -163,6 +166,7 @@ func _asteroids(con):
 	if con == "start_timer":
 		asteroid_timer.start()
 		wave_sys.inc_wave()
+		hud.wave_bar("wave_up")
 	if con == "stop_timer":
 		asteroid_timer.stop()
 	if con == "instance":
@@ -172,6 +176,8 @@ func _asteroids(con):
 		ins_ast = asteroid.instance()
 		asteroid_con.add_child(ins_ast)
 		ast_counter += 1 #increase asteroid counter
+		#fill wave bar after every asteroid instance
+		hud.wave_bar("fill_bar")
 	    # Set the asteroid's position to a random location.
 		ins_ast.position = pitfalls_spawn_loc.global_position
 		#signal connect
@@ -219,6 +225,9 @@ func _wave(con):
 		randomize()
 		border_of_ast += rand_range(min_border_of_ast, max_border_of_ast) #increase number of ast after every new wave
 #		print(border_of_ast)
+		#assign the border of asteroid to wave bar's max value
+		hud.wave_bar_max_value = int(border_of_ast)
+		hud.wave_bar("wave_up")
 		yield(get_tree().create_timer(5), "timeout")
 		_asteroids("start_timer")
 		_asteroids("instance")

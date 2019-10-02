@@ -25,6 +25,6 @@ func robot_charge(which_crate):
 
 func robot_color(which_color):
 	if which_color == "red":
-		self.modulate = Color(1, 0, 0) #change robots color as red
+		self.modulate = Color(0.8, 0.3, 0.3) #change robots color as red
 	if which_color == "white":
 		self.modulate = Color(1, 1, 1) #change robots color as white
