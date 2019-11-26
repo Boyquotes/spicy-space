@@ -18,10 +18,13 @@ size = 25
 font_data = ExtResource( 4 )
 
 [node name="WaveBar" type="ProgressBar"]
-margin_left = 20.0
-margin_top = 5.0
-margin_right = 100.0
-margin_bottom = 19.0
+margin_left = 29.0
+margin_top = 7.0
+margin_right = 99.0
+margin_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 1.5, 1.5 )
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 35.0
@@ -45,7 +48,7 @@ align = 1
 valign = 1
 
 [node name="Next_Wave_Lvl" type="Node2D" parent="."]
-position = Vector2( 88, 7 )
+position = Vector2( 78, 7 )
 scale = Vector2( 0.7, 0.7 )
 
 [node name="wave_lvl_sprite" type="Sprite" parent="Next_Wave_Lvl"]

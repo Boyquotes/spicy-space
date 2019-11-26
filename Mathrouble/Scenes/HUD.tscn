@@ -7,7 +7,7 @@
 [ext_resource path="res://Textures/HUD/restart_button2.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-size = 25
+size = 35
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -47,7 +47,7 @@ script = ExtResource( 1 )
 editor/display_folded = true
 
 [node name="Score_lbl" type="Label" parent="Game_HUD"]
-margin_left = 120.0
+margin_left = 60.0
 margin_right = 220.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 1 )
@@ -56,14 +56,14 @@ align = 1
 valign = 1
 
 [node name="WaveBar" parent="Game_HUD" instance=ExtResource( 3 )]
-margin_left = 280.0
+margin_left = 270.0
 margin_top = 12.0
-margin_right = 360.0
+margin_right = 340.0
 margin_bottom = 26.0
 
 [node name="Wave_lbl" type="Label" parent="Game_HUD"]
 margin_left = 420.0
-margin_right = 520.0
+margin_right = 580.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 1 )
 text = "Wave: 0"
