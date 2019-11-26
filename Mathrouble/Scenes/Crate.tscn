@@ -24,3 +24,8 @@ texture = SubResource( 1 )
 [node name="crate_coll" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
+[node name="self_destroy_timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[connection signal="timeout" from="self_destroy_timer" to="." method="_on_self_destroy_timer_timeout"]

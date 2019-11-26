@@ -18,6 +18,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="CylonRaider" type="Area2D"]
+modulate = Color( 1, 0.133333, 0.498039, 1 )
 script = ExtResource( 1 )
 health = 130.0
 received_damage = 35.0

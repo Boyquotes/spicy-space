@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Shield.tscn" type="PackedScene" id=4]
 
 [node name="SpaceShip" type="Area2D"]
+modulate = Color( 0, 1, 0.729412, 1 )
 z_index = 10
 script = ExtResource( 1 )
 

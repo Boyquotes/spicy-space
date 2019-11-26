@@ -43,3 +43,6 @@ func _prepare_crate(sprite, group_name):
 
 func remove_crate():
 	call_deferred("free")
+
+func _on_self_destroy_timer_timeout():
+	remove_crate()
