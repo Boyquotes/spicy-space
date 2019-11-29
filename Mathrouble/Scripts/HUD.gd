@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 #Game HUD
+onready var game_hud = $Game_HUD
 onready var score_lbl = $Game_HUD/Score_lbl
 onready var wave_lbl = $Game_HUD/Wave_lbl
-onready var mine_lbl = $Game_HUD/Mine_lbl
 onready var wave_bar = $Game_HUD/WaveBar
 onready var current_wave_text = $Game_HUD/WaveBar/Current_Wave_Lvl/wave_lvl_sprite/wave_lvl_text
 onready var next_wave_text = $Game_HUD/WaveBar/Next_Wave_Lvl/wave_lvl_sprite/wave_lvl_text
@@ -20,6 +20,12 @@ onready var df_start_lbl = $DogFight_HUD/DF_Start_lbl
 onready var df_over_lbl = $DogFight_HUD/DF_Over_lbl
 #Warning HUD
 onready var out_of_ammo_lbl = $Warning_HUD/Out_of_Ammo_lbl
+#Paused HUD
+onready var paused_hud = $Paused_HUD
+#Upgrade HUD
+onready var upgrade_hud = $Upgrade_HUD
+#Info HUD
+onready var mine_lbl = $Info_HUD/Mine_info/Mine_lbl
 
 var highscore = 0
 var bestwave = 0
@@ -102,3 +108,18 @@ func game_over():
 func _on_Restart_btn_pressed():
 	gameover_hud.visible = false
 	Global.change_scene("Game")
+
+func _on_Pause_btn_pressed():
+	paused_hud.visible = true
+	game_hud.visible = false
+	get_tree().paused = true
+
+func _on_Continue_btn_pressed():
+	paused_hud.visible = false
+	game_hud.visible = true
+	get_tree().paused = false
+	upgrade_hud.visible = false
+
+func _on_UpgradeShip_btn_pressed():
+	paused_hud.visible = false
+	upgrade_hud.visible = true
