@@ -49,5 +49,10 @@ func _prepare_crate(sprite, group_name):
 func remove_crate():
 	call_deferred("free")
 
-func _on_self_destroy_timer_timeout():
-	remove_crate()
+func _on_Crate_area_entered(area):
+	if area.is_in_group("enemyship"):
+		remove_crate()
+
+func _on_Crate_body_entered(body):
+	if body.is_in_group("asteroid"):
+		remove_crate()
