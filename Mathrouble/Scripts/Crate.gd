@@ -40,6 +40,11 @@ func _choose_crate():
 func _prepare_crate(sprite, group_name):
 	crate_sprite.texture = sprite
 	self.add_to_group(group_name)
+	#crate color
+	if group_name == "health_crate":
+		self.modulate = Color(0.5, 0.9, 0.35) #green
+	elif group_name == "shield_crate":
+		self.modulate = Color(0.35, 0.9, 0.85) #blue
 
 func remove_crate():
 	call_deferred("free")

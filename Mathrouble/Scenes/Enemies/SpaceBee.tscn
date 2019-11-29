@@ -17,7 +17,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SpaceBee" type="Area2D"]
+[node name="SpaceBee" type="Area2D" groups=[
+"enemyship",
+]]
 modulate = Color( 1, 0.133333, 0.498039, 1 )
 script = ExtResource( 1 )
 speed = 1.2

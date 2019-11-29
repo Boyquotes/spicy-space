@@ -31,6 +31,9 @@ onready var crate_con = $Crate_Container
 onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
 #Wave
 onready var wave_sys = $Wave_System
+#Mine
+onready var mine_con = $Mine_Container
+onready var mine = ResourceLoader.load("res://Scenes/Mine.tscn")
 
 var ins_hr # health robot instance
 var ins_ar # ammo robot instance
@@ -123,6 +126,8 @@ func _signal_connect(which_obj):
 		spaceship.connect("ss_damage", self, "screen_shake")
 		#health robot situation signal control
 		spaceship.connect("hr_situation", ins_hr, "hr_situation")
+		#when spaceship grabbed mine signal connect
+		spaceship.connect("mine_grabbed", hud, "mine_collect")
 	if which_obj == "hr": #health robot
 		#spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
@@ -137,12 +142,12 @@ func _signal_connect(which_obj):
 		ins_sr.connect("sr_deactivated", spaceship, "ss_shield_deactivate")
 	if which_obj == "ast": #asteroid
 		#signal to crate control after asteroid exploded
-		ins_ast.connect("ast_exploded", self, "crate_control")
+		ins_ast.connect("ast_exploded", self, "ast_content_control")
 		#signal to split asteroid signal control
 		ins_ast.connect("ast_split", self, "ast_split")
 	if which_obj == "split_ast":
 		#signal to crate control after asteroid exploded
-		ins_split_ast.connect("ast_exploded", self, "crate_control")
+		ins_split_ast.connect("ast_exploded", self, "ast_content_control")
 		#signal to split asteroid signal control
 		ins_split_ast.connect("ast_split", self, "ast_split")
 
@@ -269,14 +274,20 @@ func _dog_fight(con):
 			yield(get_tree().create_timer(5), "timeout")
 			_wave("new_wave")
 
-func crate_control(pos):
-	var crate_chance = rand_range(0, 100)
-	if crate_chance < 25:
+func ast_content_control(pos):
+	var content_possibility = rand_range(0, 100)
+	#crate
+	if content_possibility < 20: 
 		var ins_crate = crate.instance()
 		crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
 		ins_crate.position = pos
-	#	print(pos)
-	else:
+	#mine
+	elif content_possibility > 20 && content_possibility < 50: 
+		var ins_mine = mine.instance()
+		mine_con.call_deferred("add_child", ins_mine) # !flushed_queries error fixed with this line
+		ins_mine.position = pos
+	#nothing
+	else: 
 		pass
 
 func _ss_shoot_system(con): #spaceship shoot system

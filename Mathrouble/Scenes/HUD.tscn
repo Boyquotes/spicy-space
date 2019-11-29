@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes/WaveBar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Textures/HUD/restart_button1.png" type="Texture" id=4]
-[ext_resource path="res://Textures/HUD/restart_button2.png" type="Texture" id=5]
+[ext_resource path="res://Textures/mine.png" type="Texture" id=4]
+[ext_resource path="res://Textures/HUD/restart_button1.png" type="Texture" id=5]
+[ext_resource path="res://Textures/HUD/restart_button2.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
@@ -19,17 +20,17 @@ size = 35
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="StyleBoxTexture" id=6]
 
 [sub_resource type="StyleBoxTexture" id=7]
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="DynamicFont" id=8]
@@ -44,7 +45,6 @@ font_data = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Game_HUD" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Score_lbl" type="Label" parent="Game_HUD"]
 margin_left = 60.0
@@ -67,6 +67,20 @@ margin_right = 580.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 1 )
 text = "Wave: 0"
+align = 1
+valign = 1
+
+[node name="mine_sprite" type="Sprite" parent="Game_HUD"]
+position = Vector2( 280, 60 )
+texture = ExtResource( 4 )
+
+[node name="Mine_lbl" type="Label" parent="Game_HUD"]
+margin_left = 300.0
+margin_top = 40.0
+margin_right = 380.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 1 )
+text = "x 0"
 align = 1
 valign = 1
 

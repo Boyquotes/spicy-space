@@ -6,6 +6,7 @@ signal shoot
 signal crate_grabbed(which_crate)
 signal warning(type)
 signal hr_situation(situation)
+signal mine_grabbed
 
 export var rot_speed = 2
 export var thrust = 300
@@ -111,6 +112,9 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 		area.remove_crate()
 	if area.is_in_group("enemy_laser"):
 		emit_signal("ss_damage", "laser") #spaceship got damage from enemy
+	if area.is_in_group("mine"):
+		emit_signal("mine_grabbed")
+		area.remove_mine()
 
 func ss_shield_deactivate(situation): #spaceship shield deactivate or not
 	if situation == false: #don't deactive

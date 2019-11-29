@@ -3,6 +3,7 @@ extends CanvasLayer
 #Game HUD
 onready var score_lbl = $Game_HUD/Score_lbl
 onready var wave_lbl = $Game_HUD/Wave_lbl
+onready var mine_lbl = $Game_HUD/Mine_lbl
 onready var wave_bar = $Game_HUD/WaveBar
 onready var current_wave_text = $Game_HUD/WaveBar/Current_Wave_Lvl/wave_lvl_sprite/wave_lvl_text
 onready var next_wave_text = $Game_HUD/WaveBar/Next_Wave_Lvl/wave_lvl_sprite/wave_lvl_text
@@ -22,6 +23,7 @@ onready var out_of_ammo_lbl = $Warning_HUD/Out_of_Ammo_lbl
 
 var highscore = 0
 var bestwave = 0
+var mine_counter = 0
 var wave_bar_max_value = 100
 
 func _ready():
@@ -81,6 +83,10 @@ func wave_bar(con):
 			current_wave_text.text = str(Global.wave)
 			next_wave_text.text = str(Global.wave + 1)
 			wave_bar.value = 0
+
+func mine_collect():
+	mine_counter += 1
+	mine_lbl.text = "x " + str(mine_counter)
 
 func warning(type):
 	if type == "out_of_ammo":

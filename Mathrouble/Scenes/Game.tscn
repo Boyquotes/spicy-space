@@ -66,6 +66,8 @@ layer = 5
 
 [node name="Crate_Container" type="Node" parent="."]
 
+[node name="Mine_Container" type="Node" parent="."]
+
 [node name="Wave_System" parent="." instance=ExtResource( 11 )]
 
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
