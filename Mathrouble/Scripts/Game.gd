@@ -54,8 +54,8 @@ var ast_split_pattern = {'big': 'med', 'med': null}
 func _ready():
 	#reset highscore
 	if reset_userdata == true:
-		UserDataManager.reset_highscore()
-		UserDataManager.reset_bestwave()
+		UserDataManager.reset_userdata()
+#		UserDataManager.reset_bestwave()
 	#reset score after every new start
 	Global.score = 0
 	#reset wave after every new start

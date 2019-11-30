@@ -44,12 +44,12 @@ func update_values():
 
 func assign_playerdata(whichdata, value):
 	if whichdata == "highscore":
-		UserDataManager.save_highscore(value)
-		highscore = str(UserDataManager.load_highscore()) # update high score
+		UserDataManager.save_userdata(whichdata, value)
+		highscore = str(UserDataManager.load_userdata(whichdata)) # update high score
 		highscore_lbl.text = "Highscore: " + highscore # assign high score to text
 	if whichdata == "bestwave":
-		UserDataManager.save_bestwave(value)
-		bestwave = str(UserDataManager.load_bestwave())
+		UserDataManager.save_userdata(whichdata, value)
+		bestwave = str(UserDataManager.load_userdata(whichdata))
 		bestwave_lbl.text = "Best Wave: " + bestwave
 
 func presentation(action, con):
