@@ -9,10 +9,9 @@ var data ={
 }
 
 func _ready():
-	data["highscore"] = load_userdata("highscore")
-	data["bestwave"] = load_userdata("bestwave")
-	print(load_userdata("highscore"))
-	print(load_userdata("bestwave"))
+	for i in range(data.size()):
+		var key = data.keys()[i]
+		data[key] = load_userdata(key)
 
 func save_userdata(key, value):
 	if key == "highscore" || key == "bestwave":
