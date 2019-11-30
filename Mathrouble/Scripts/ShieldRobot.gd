@@ -6,10 +6,10 @@ var damage_value = 0
 
 func damage_happened(which_pitfall):
 	if which_pitfall == "asteroid":
-		damage_value = 10
+		damage_value = 25
 		_get_damage(damage_value)
 	elif which_pitfall == "laser":
-		damage_value = 5
+		damage_value = 20
 		_get_damage(damage_value)
 
 func _get_damage(damage_value):

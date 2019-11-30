@@ -25,6 +25,8 @@ config/icon="res://Textures/spaceship.png"
 [autoload]
 
 Global="*res://Globals/Global.gd"
+SceneManager="*res://Globals/SceneManager.gd"
+UserDataManager="*res://Globals/UserDataManager.gd"
 
 [display]
 

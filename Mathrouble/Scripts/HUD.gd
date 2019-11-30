@@ -44,12 +44,12 @@ func update_values():
 
 func assign_playerdata(whichdata, value):
 	if whichdata == "highscore":
-		Global.save_highscore(value)
-		highscore = str(Global.load_highscore()) # update high score
+		UserDataManager.save_highscore(value)
+		highscore = str(UserDataManager.load_highscore()) # update high score
 		highscore_lbl.text = "Highscore: " + highscore # assign high score to text
 	if whichdata == "bestwave":
-		Global.save_bestwave(value)
-		bestwave = str(Global.load_bestwave())
+		UserDataManager.save_bestwave(value)
+		bestwave = str(UserDataManager.load_bestwave())
 		bestwave_lbl.text = "Best Wave: " + bestwave
 
 func presentation(action, con):
@@ -107,7 +107,7 @@ func game_over():
 
 func _on_Restart_btn_pressed():
 	gameover_hud.visible = false
-	Global.change_scene("Game")
+	SceneManager.change_scene("Game")
 
 func _on_Pause_btn_pressed():
 	paused_hud.visible = true

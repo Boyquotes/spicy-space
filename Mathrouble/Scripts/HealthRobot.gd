@@ -12,10 +12,10 @@ func damage_happened(which_pitfall):
 #	print("hr situation: " + str(hr_on))
 	if hr_on:
 		if which_pitfall == "asteroid":
-			damage_value = 10
+			damage_value = 50
 			_get_damage(damage_value)
 		elif which_pitfall == "laser":
-			damage_value = 5
+			damage_value = 40
 			_get_damage(damage_value)
 
 func _get_damage(damage_value):
