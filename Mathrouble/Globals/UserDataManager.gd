@@ -4,7 +4,8 @@ const SAVE_FILE_PATH = "user://userdata.save"
 
 var data ={
 	highscore = 0,
-	bestwave = 0
+	bestwave = 0,
+	mine = 0
 }
 
 func _ready():
@@ -14,8 +15,9 @@ func _ready():
 	print(load_userdata("bestwave"))
 
 func save_userdata(key, value):
-	if load_userdata(key) > value:
-		return
+	if key == "highscore" || key == "bestwave":
+		if load_userdata(key) > value:
+			return
 
 	var save_file = File.new()
 	save_file.open(SAVE_FILE_PATH, File.WRITE)

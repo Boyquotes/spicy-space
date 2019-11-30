@@ -34,6 +34,8 @@ var wave_bar_max_value = 100
 
 func _ready():
 	wave_bar("start")
+	mine_counter = UserDataManager.load_userdata("mine")
+	mine_lbl.text = "x " + str(mine_counter)
 
 func _process(delta):
 	update_values()
@@ -104,6 +106,7 @@ func game_over():
 	gameover_hud.visible = true
 	assign_playerdata("highscore", Global.score)
 	assign_playerdata("bestwave", Global.wave)
+	UserDataManager.save_userdata("mine", mine_counter)
 
 func _on_Restart_btn_pressed():
 	gameover_hud.visible = false
