@@ -22,7 +22,7 @@ position = Vector2( 0, -15 )
 [node name="laser_container" type="Node" parent="."]
 
 [node name="shoot_timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.5
 one_shot = true
 
 [node name="Engine" parent="." instance=ExtResource( 3 )]

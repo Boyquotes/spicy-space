@@ -3,9 +3,18 @@ extends Node
 const SAVE_FILE_PATH = "user://userdata.save"
 
 var data ={
+	#game datas
 	highscore = 0,
 	bestwave = 0,
-	mine = 0
+	mine = 101,
+	#ship datas
+	ship_dur = 100,
+	shield = 50,
+	shoot_rate = 1,
+	#upgrade datas
+	mine_for_dur_upg = 10,
+	mine_for_shield_upg = 12,
+	mine_for_shoot_rate_upg = 16
 }
 
 func _ready():
@@ -27,7 +36,7 @@ func save_userdata(key, value):
 func load_userdata(key):
 	var save_file = File.new()
 	if !save_file.file_exists(SAVE_FILE_PATH):
-		return 0
+		return data[key]
 
 	save_file.open(SAVE_FILE_PATH, File.READ)
 	var data  = parse_json(save_file.get_line())

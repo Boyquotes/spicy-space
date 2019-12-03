@@ -93,7 +93,7 @@ func wave_bar(con):
 			wave_bar.value = 0
 
 func mine_collect():
-	mine_counter += 1
+	mine_counter += randi()%16+1
 	mine_lbl.text = "x " + str(mine_counter)
 
 func warning(type):
