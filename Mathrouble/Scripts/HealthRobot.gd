@@ -6,8 +6,7 @@ var damage_value = 0
 var hr_on = false #health robot off
 
 func _ready():
-	self.max_value = UserDataManager.load_userdata("ship_dur")
-	self.value = self.max_value
+	reload_robot("ship_dur")
 
 func hr_situation(situation):
 	hr_on = situation #health robot on or off according to shield robot

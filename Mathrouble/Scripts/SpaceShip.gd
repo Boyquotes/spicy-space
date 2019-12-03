@@ -32,7 +32,7 @@ var out_of_ammo_control = false
 var shoot_control = false
 
 func _ready():
-	shoot_timer.wait_time = UserDataManager.load_userdata("shoot_rate")
+	reload_spaceship()
 	randomize()
 	rot = rand_range(0, 90) #random rotation degree
 	screen_size = get_viewport_rect().size
@@ -40,12 +40,15 @@ func _ready():
 	self.position = pos
 	set_process(true)
 	explode_control = false
-	
+
 func _process(delta):
 	if explode_control == false: # if ss exploded
 		_ss_move_and_shoot(delta)
 
 	_stay_on_screen(delta) 
+
+func reload_spaceship():
+	shoot_timer.wait_time = UserDataManager.load_userdata("shoot_rate")
 
 func _ss_move_and_shoot(delta):
 	#shoot

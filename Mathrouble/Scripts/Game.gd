@@ -309,13 +309,11 @@ func mine_system(con):
 
 func upgrade_system(part):
 	if part == "ship_dur":
-		ins_hr.max_value = UserDataManager.load_userdata(part)
-		ins_hr.value = ins_hr.max_value
+		ins_hr.reload_robot(part)
 	if part == "shield":
-		ins_sr.max_value = UserDataManager.load_userdata(part)
-		ins_sr.value = ins_sr.max_value
+		ins_sr.reload_robot(part)
 	if part == "shoot_rate":
-		spaceship.shoot_timer.wait_time = UserDataManager.load_userdata(part)
+		spaceship.reload_spaceship()
 
 func _ss_shoot_system(con): #spaceship shoot system
 	spaceship.shoot_control = con

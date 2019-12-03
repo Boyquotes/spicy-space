@@ -9,6 +9,10 @@ func _ready():
 func _physics_process(delta):
 	rotate_robot()
 
+func reload_robot(upgraded_part):
+	self.max_value = UserDataManager.load_userdata(upgraded_part)
+	self.value = self.max_value
+
 func rotate_robot():
 	self.rect_rotation = rot_deg
 
