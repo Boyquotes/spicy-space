@@ -375,7 +375,6 @@ text = "Continue Game"
 [node name="Info_HUD" type="Node2D" parent="."]
 
 [node name="Mine_info" type="Node2D" parent="Info_HUD"]
-editor/display_folded = true
 position = Vector2( 340, 60 )
 
 [node name="mine_sprite" type="Sprite" parent="Info_HUD/Mine_info"]
@@ -395,6 +394,7 @@ valign = 1
 [connection signal="pressed" from="GameOver_HUD/Restart_btn" to="." method="_on_Restart_btn_pressed"]
 [connection signal="pressed" from="Paused_HUD/Continue_btn" to="." method="_on_Continue_btn_pressed"]
 [connection signal="pressed" from="Paused_HUD/UpgradeShip_btn" to="." method="_on_UpgradeShip_btn_pressed"]
+[connection signal="visibility_changed" from="Upgrade_HUD" to="Upgrade_HUD" method="_on_Upgrade_HUD_visibility_changed"]
 [connection signal="pressed" from="Upgrade_HUD/Durability/Durability_btn" to="Upgrade_HUD" method="_on_Durability_btn_pressed"]
 [connection signal="pressed" from="Upgrade_HUD/Shield/Shield_btn" to="Upgrade_HUD" method="_on_Shield_btn_pressed"]
 [connection signal="pressed" from="Upgrade_HUD/Shoot/Shoot_btn" to="Upgrade_HUD" method="_on_Shoot_btn_pressed"]

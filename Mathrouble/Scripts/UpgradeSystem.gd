@@ -1,5 +1,7 @@
 extends Node2D
 
+signal mine_spend(event)
+
 onready var dur_lbl = $Durability/Durability_lbl
 onready var dur_btn = $Durability/Durability_btn
 onready var shield_lbl = $Shield/Shield_lbl
@@ -28,13 +30,13 @@ func _prepare_upg_btns(data_key):
 	return "x " + _get_data(data_key) + " for Upgrade"
 
 func _check_upg_btns(data_key):
-	var upg_btn = find_btn(data_key)
-	if UserDataManager.load_userdata(data_key) > UserDataManager.load_userdata("mine"):
+	var upg_btn = _find_btn(data_key)
+	if UserDataManager.load_userdata(data_key) > Global.mine_counter:
 		upg_btn.disabled = true
 	else:
 		upg_btn.disabled = false
 
-func find_btn(data_key):
+func _find_btn(data_key):
 	var btn
 	if data_key == "mine_for_dur_upg":
 		btn = dur_btn
@@ -49,42 +51,31 @@ func _on_Durability_btn_pressed():
 	var new_ship_dur = ship_dur + 25
 	UserDataManager.save_userdata("ship_dur", new_ship_dur)
 	
-	var mine_value = UserDataManager.load_userdata("mine")
-	var upg_mine_value = UserDataManager.load_userdata("mine_for_dur_upg")
-	var new_mine_value = mine_value - upg_mine_value
-	UserDataManager.save_userdata("mine", int(new_mine_value))
-	
-	var new_upg_mine_value = upg_mine_value + (upg_mine_value * 0.5)
-	UserDataManager.save_userdata("mine_for_dur_upg", int(new_upg_mine_value))
-	
-	_prepare_upg_scene()
+	_mine_after_upgrade("mine_for_dur_upg")
 
 func _on_Shield_btn_pressed():
 	var shield = UserDataManager.load_userdata("shield")
 	var new_shield = shield + 10
 	UserDataManager.save_userdata("shield", new_shield)
 	
-	var mine_value = UserDataManager.load_userdata("mine")
-	var upg_mine_value = UserDataManager.load_userdata("mine_for_shield_upg")
-	var new_mine_value = mine_value - upg_mine_value
-	UserDataManager.save_userdata("mine", int(new_mine_value))
-	
-	var new_upg_mine_value = upg_mine_value + (upg_mine_value * 0.5)
-	UserDataManager.save_userdata("mine_for_shield_upg", int(new_upg_mine_value))
-	
-	_prepare_upg_scene()
+	_mine_after_upgrade("mine_for_shield_upg")
 
 func _on_Shoot_btn_pressed():
 	var shoot_rate = UserDataManager.load_userdata("shoot_rate")
 	var new_shoot_rate = shoot_rate - 0.1
 	UserDataManager.save_userdata("shoot_rate", new_shoot_rate)
 	
-	var mine_value = UserDataManager.load_userdata("mine")
-	var upg_mine_value = UserDataManager.load_userdata("mine_for_shoot_rate_upg")
-	var new_mine_value = mine_value - upg_mine_value
-	UserDataManager.save_userdata("mine", int(new_mine_value))
-	
+	_mine_after_upgrade("mine_for_shoot_rate_upg")
+
+func _mine_after_upgrade(data_key):
+	var upg_mine_value = UserDataManager.load_userdata(data_key)
+	Global.mine_counter = Global.mine_counter - upg_mine_value
+	emit_signal("mine_spend", "spend")
+
 	var new_upg_mine_value = upg_mine_value + (upg_mine_value * 0.5)
-	UserDataManager.save_userdata("mine_for_shoot_rate_upg", int(new_upg_mine_value))
+	UserDataManager.save_userdata(data_key, int(new_upg_mine_value))
 	
+	_prepare_upg_scene()
+
+func _on_Upgrade_HUD_visibility_changed():
 	_prepare_upg_scene()

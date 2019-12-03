@@ -20,6 +20,8 @@ onready var asteroid_con = $Pitfalls/Asteroid/Asteroid_Container
 onready var enemy_con = $Pitfalls/Enemy/Enemy_Container
 #HUD
 onready var hud = $HUD
+#Uograde HUD
+onready var upg_hud = $HUD/Upgrade_HUD
 #Robots Follow AI
 onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
 #Robots
@@ -70,6 +72,7 @@ func _ready():
 	
 	_robots_activate()
 	_signal_connect("ss")
+	_signal_connect("upg_sys")
 
 func _process(delta):
 	if wave_control:
@@ -127,7 +130,7 @@ func _signal_connect(which_obj):
 		#health robot situation signal control
 		spaceship.connect("hr_situation", ins_hr, "hr_situation")
 		#when spaceship grabbed mine signal connect
-		spaceship.connect("mine_grabbed", hud, "mine_collect")
+		spaceship.connect("mine_grabbed", self, "mine_system")
 	if which_obj == "hr": #health robot
 		#spaceship damage signal connect
 		spaceship.connect("ss_damage", ins_hr, "damage_happened")
@@ -150,6 +153,9 @@ func _signal_connect(which_obj):
 		ins_split_ast.connect("ast_exploded", self, "ast_content_control")
 		#signal to split asteroid signal control
 		ins_split_ast.connect("ast_split", self, "ast_split")
+	if which_obj == "upg_sys":
+		#signal to update mine after spend or collect it
+		upg_hud.connect("mine_spend", self, "mine_system")
 
 func _on_StartGame_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
@@ -289,6 +295,15 @@ func ast_content_control(pos):
 	#nothing
 	else: 
 		pass
+
+func mine_system(con):
+	if con == "collect":
+		Global.mine_counter += randi()%16+1
+	if con == "spend":
+		pass
+	#save and show mine value
+	UserDataManager.save_userdata("mine", Global.mine_counter)
+	hud.show_mine_value()
 
 func _ss_shoot_system(con): #spaceship shoot system
 	spaceship.shoot_control = con

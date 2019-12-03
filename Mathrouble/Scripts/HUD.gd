@@ -29,13 +29,11 @@ onready var mine_lbl = $Info_HUD/Mine_info/Mine_lbl
 
 var highscore = 0
 var bestwave = 0
-var mine_counter = 0
 var wave_bar_max_value = 100
 
 func _ready():
 	wave_bar("start")
-	mine_counter = UserDataManager.load_userdata("mine")
-	mine_lbl.text = "x " + str(mine_counter)
+	show_mine_value()
 
 func _process(delta):
 	update_values()
@@ -92,9 +90,8 @@ func wave_bar(con):
 			next_wave_text.text = str(Global.wave + 1)
 			wave_bar.value = 0
 
-func mine_collect():
-	mine_counter += randi()%16+1
-	mine_lbl.text = "x " + str(mine_counter)
+func show_mine_value():
+	mine_lbl.text = "x " + str(UserDataManager.load_userdata("mine"))
 
 func warning(type):
 	if type == "out_of_ammo":
@@ -106,7 +103,6 @@ func game_over():
 	gameover_hud.visible = true
 	assign_playerdata("highscore", Global.score)
 	assign_playerdata("bestwave", Global.wave)
-	UserDataManager.save_userdata("mine", mine_counter)
 
 func _on_Restart_btn_pressed():
 	gameover_hud.visible = false
