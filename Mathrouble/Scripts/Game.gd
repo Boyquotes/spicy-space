@@ -156,6 +156,8 @@ func _signal_connect(which_obj):
 	if which_obj == "upg_sys":
 		#signal to update mine after spend or collect it
 		upg_hud.connect("mine_spend", self, "mine_system")
+		#signal to upgrade ship part
+		upg_hud.connect("upgraded", self, "upgrade_system")
 
 func _on_StartGame_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
@@ -304,6 +306,16 @@ func mine_system(con):
 	#save and show mine value
 	UserDataManager.save_userdata("mine", Global.mine_counter)
 	hud.show_mine_value()
+
+func upgrade_system(part):
+	if part == "ship_dur":
+		ins_hr.max_value = UserDataManager.load_userdata(part)
+		ins_hr.value = ins_hr.max_value
+	if part == "shield":
+		ins_sr.max_value = UserDataManager.load_userdata(part)
+		ins_sr.value = ins_sr.max_value
+	if part == "shoot_rate":
+		spaceship.shoot_timer.wait_time = UserDataManager.load_userdata(part)
 
 func _ss_shoot_system(con): #spaceship shoot system
 	spaceship.shoot_control = con

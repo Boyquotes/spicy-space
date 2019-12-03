@@ -4,6 +4,10 @@ signal sr_deactivated(hr_situation)
 
 var damage_value = 0
 
+func _ready():
+	self.max_value = UserDataManager.load_userdata("shield")
+	self.value = self.max_value
+
 func damage_happened(which_pitfall):
 	if which_pitfall == "asteroid":
 		damage_value = 25

@@ -6,7 +6,7 @@ var data ={
 	#game datas
 	highscore = 0,
 	bestwave = 0,
-	mine = 101,
+	mine = 0,
 	#ship datas
 	ship_dur = 100,
 	shield = 50,

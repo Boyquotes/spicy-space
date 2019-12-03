@@ -32,6 +32,7 @@ var out_of_ammo_control = false
 var shoot_control = false
 
 func _ready():
+	shoot_timer.wait_time = UserDataManager.load_userdata("shoot_rate")
 	randomize()
 	rot = rand_range(0, 90) #random rotation degree
 	screen_size = get_viewport_rect().size

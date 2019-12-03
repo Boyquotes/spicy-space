@@ -1,6 +1,7 @@
 extends Node2D
 
 signal mine_spend(event)
+signal upgraded(part)
 
 onready var dur_lbl = $Durability/Durability_lbl
 onready var dur_btn = $Durability/Durability_btn
@@ -52,6 +53,7 @@ func _on_Durability_btn_pressed():
 	UserDataManager.save_userdata("ship_dur", new_ship_dur)
 	
 	_mine_after_upgrade("mine_for_dur_upg")
+	emit_signal("upgraded", "ship_dur")
 
 func _on_Shield_btn_pressed():
 	var shield = UserDataManager.load_userdata("shield")
@@ -59,6 +61,7 @@ func _on_Shield_btn_pressed():
 	UserDataManager.save_userdata("shield", new_shield)
 	
 	_mine_after_upgrade("mine_for_shield_upg")
+	emit_signal("upgraded", "shield")
 
 func _on_Shoot_btn_pressed():
 	var shoot_rate = UserDataManager.load_userdata("shoot_rate")
@@ -66,6 +69,7 @@ func _on_Shoot_btn_pressed():
 	UserDataManager.save_userdata("shoot_rate", new_shoot_rate)
 	
 	_mine_after_upgrade("mine_for_shoot_rate_upg")
+	emit_signal("upgraded", "shoot_rate")
 
 func _mine_after_upgrade(data_key):
 	var upg_mine_value = UserDataManager.load_userdata(data_key)
