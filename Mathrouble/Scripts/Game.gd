@@ -65,7 +65,7 @@ func _ready():
 	#assign a border of asteroid for first wave
 	randomize()
 	border_of_ast = rand_range(min_border_of_ast, max_border_of_ast)
-	print(border_of_ast)
+#	print(border_of_ast)
 	#assign the border of asteroid to wave bar's max value
 	hud.wave_bar_max_value = int(border_of_ast)
 	hud.wave_bar("wave_up")
@@ -300,7 +300,9 @@ func ast_content_control(pos):
 
 func mine_system(con):
 	if con == "collect":
-		Global.mine_counter += randi()%16+1
+		var collected_mine = randi()%(Global.wave * 10) + Global.wave
+#		print(collected_mine)
+		Global.mine_counter += collected_mine
 	if con == "spend":
 		pass
 	#save and show mine value

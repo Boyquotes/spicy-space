@@ -8,7 +8,6 @@
 [node name="ShieldRobot" type="TextureProgress" groups=[
 "shield_robot",
 ]]
-modulate = Color( 0.35, 0.9, 0.85, 1 )
 self_modulate = Color( 0.34902, 0.898039, 0.85098, 1 )
 margin_left = -8.0
 margin_top = -8.0

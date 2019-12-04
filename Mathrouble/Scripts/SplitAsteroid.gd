@@ -14,6 +14,7 @@ var vel = Vector2()
 var rot_speed
 var screen_size
 var extents
+var ast_dur = 1
 
 func init(init_size, init_scale, init_pos, init_vel):
 	#scale
@@ -29,8 +30,10 @@ func init(init_size, init_scale, init_pos, init_vel):
 
 func _ready():
 	set_physics_process(true)
+	randomize()
 	vel = Vector2(rand_range(min_speed, max_speed), 0).rotated(rand_range(0, 2 * PI))
 	rot_speed = rand_range(-1.5, 1.5)
+	ast_dur = randi()%Global.wave + 1
 	screen_size = get_viewport_rect().size
 	extents = ast_sprite.get_texture().get_size() / 2
 	_choose_asteroid(number_of_ast)

@@ -14,12 +14,15 @@ func _ready():
 	_prepare_upg_scene()
 
 func _prepare_upg_scene():
+	#Durability
 	dur_lbl.text = "Durability: " + _get_data("ship_dur")
 	dur_btn.text = _prepare_upg_btns("mine_for_dur_upg")
 	_check_upg_btns("mine_for_dur_upg")
+	#Shield
 	shield_lbl.text = "Shield: " + _get_data("shield")
 	shield_btn.text = _prepare_upg_btns("mine_for_shield_upg")
 	_check_upg_btns("mine_for_shield_upg")
+	#Shoot Rate
 	shoot_rate_lbl.text = "Shoot Rate: " + _get_data("shoot_rate")
 	shoot_rate_btn.text = _prepare_upg_btns("mine_for_shoot_rate_upg")
 	_check_upg_btns("mine_for_shoot_rate_upg")
@@ -65,7 +68,13 @@ func _on_Shield_btn_pressed():
 
 func _on_Shoot_btn_pressed():
 	var shoot_rate = UserDataManager.load_userdata("shoot_rate")
-	var new_shoot_rate = shoot_rate - 0.1
+	var new_shoot_rate
+	if shoot_rate > 0.1:
+		new_shoot_rate = shoot_rate - 0.1
+	elif shoot_rate <= 0.1 && shoot_rate >= 0.06:
+		new_shoot_rate = shoot_rate - 0.01
+		if shoot_rate == 0.06:
+			print("fully upgraded")
 	UserDataManager.save_userdata("shoot_rate", new_shoot_rate)
 	
 	_mine_after_upgrade("mine_for_shoot_rate_upg")
