@@ -65,7 +65,7 @@ func _ready():
 	#assign a border of asteroid for first wave
 	randomize()
 	border_of_ast = rand_range(min_border_of_ast, max_border_of_ast)
-#	print(border_of_ast)
+	print(int(border_of_ast))
 	#assign the border of asteroid to wave bar's max value
 	hud.wave_bar_max_value = int(border_of_ast)
 	hud.wave_bar("wave_up")
@@ -236,8 +236,8 @@ func _wave(con):
 	if con == "new_wave":
 		hud.presentation("wave", "started")
 		randomize()
-		border_of_ast += rand_range(min_border_of_ast, max_border_of_ast) #increase number of ast after every new wave
-#		print(border_of_ast)
+		border_of_ast += randi()%Global.wave+1 #increase number of ast after every new wave
+		print(int(border_of_ast))
 		#assign the border of asteroid to wave bar's max value
 		hud.wave_bar_max_value = int(border_of_ast)
 		hud.wave_bar("wave_up")
