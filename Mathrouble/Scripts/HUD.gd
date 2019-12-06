@@ -55,7 +55,7 @@ func assign_playerdata(whichdata, value):
 func presentation(action, con):
 	if con == "started":
 		if action == "wave":
-			wave_start_lbl.text = "Wave " + str(Global.wave + 1) + " Coming"
+			wave_start_lbl.text = "Wave " + str(Global.wave) + " Coming"
 			wave_start_lbl.visible = true
 			yield(get_tree().create_timer(3), "timeout")
 			wave_start_lbl.visible = false

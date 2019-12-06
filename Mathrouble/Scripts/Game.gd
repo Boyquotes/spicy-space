@@ -4,8 +4,8 @@ export (PackedScene) var asteroid
 export (PackedScene) var split_asteroid
 export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
-export (int) var min_border_of_ast = 7
-export (int) var max_border_of_ast = 13
+export (int) var min_border_of_ast = 5
+export (int) var max_border_of_ast = 10
 
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
@@ -31,8 +31,6 @@ onready var shield_robot = ResourceLoader.load("res://Scenes/Robots/ShieldRobot.
 #Crate
 onready var crate_con = $Crate_Container
 onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
-#Wave
-onready var wave_sys = $Wave_System
 #Mine
 onready var mine_con = $Mine_Container
 onready var mine = ResourceLoader.load("res://Scenes/Mine.tscn")
@@ -61,10 +59,10 @@ func _ready():
 	#reset score after every new start
 	Global.score = 0
 	#reset wave after every new start
-	Global.wave = 0
+#	Global.wave = 0
 	#assign a border of asteroid for first wave
 	randomize()
-	border_of_ast = rand_range(min_border_of_ast, max_border_of_ast)
+	border_of_ast = rand_range(min_border_of_ast + Global.wave, max_border_of_ast + Global.wave)
 	print(int(border_of_ast))
 	#assign the border of asteroid to wave bar's max value
 	hud.wave_bar_max_value = int(border_of_ast)
@@ -178,7 +176,6 @@ func _on_Asteroid_Timer_timeout():
 func _asteroids(con):
 	if con == "start_timer":
 		asteroid_timer.start()
-		wave_sys.inc_wave()
 		hud.wave_bar("wave_up")
 	if con == "stop_timer":
 		asteroid_timer.stop()
@@ -229,6 +226,9 @@ func _wave(con):
 			hud.presentation("wave", "completed")
 			wave_control = false
 			ast_border_control = false
+			#increase wave value and save it
+			Global.wave += 1
+			UserDataManager.save_userdata("current_wave", int(Global.wave))
 			yield(get_tree().create_timer(5), "timeout")
             #dog fight or new wave
 			_dog_fight("possibility")
@@ -236,7 +236,8 @@ func _wave(con):
 	if con == "new_wave":
 		hud.presentation("wave", "started")
 		randomize()
-		border_of_ast += randi()%Global.wave+1 #increase number of ast after every new wave
+#		border_of_ast += randi()%Global.wave+1 #increase number of ast after every new wave
+		border_of_ast = rand_range(min_border_of_ast + Global.wave, max_border_of_ast + Global.wave)
 		print(int(border_of_ast))
 		#assign the border of asteroid to wave bar's max value
 		hud.wave_bar_max_value = int(border_of_ast)
@@ -265,13 +266,13 @@ func _dog_fight(con):
 			enemy_counter = 0 #reset enemy counter
 			
 			randomize()
-			var nof_possibility = rand_range(0, 90) #number of enemy possibility
-#			print(nof_possibility)
-			if nof_possibility <= 40:
+			var noe_possibility = rand_range(0, 90) #number of enemy possibility
+#			print(noe_possibility)
+			if noe_possibility <= 40:
 				border_of_enemy += 1 #increase enemy number for present dog fight
-			elif nof_possibility > 40 && nof_possibility < 70:
+			elif noe_possibility > 40 && noe_possibility < 70:
 				border_of_enemy += 0 #don't change enemy number for present dog fight
-			elif nof_possibility >= 70:
+			elif noe_possibility >= 70:
 				if border_of_enemy > 3: #when number of enemy at least 4
 					border_of_enemy -= 1 #reduce enemy number for present dog fight
 				else:

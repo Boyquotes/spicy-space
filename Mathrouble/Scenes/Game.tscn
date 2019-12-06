@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/WaveSystem.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -67,8 +66,6 @@ layer = 5
 [node name="Crate_Container" type="Node" parent="."]
 
 [node name="Mine_Container" type="Node" parent="."]
-
-[node name="Wave_System" parent="." instance=ExtResource( 11 )]
 
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
 [connection signal="timeout" from="Pitfalls/Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]

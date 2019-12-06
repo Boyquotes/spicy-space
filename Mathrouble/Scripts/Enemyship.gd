@@ -30,7 +30,8 @@ func _ready():
 	#direction
 	dir = rand_range(-25, 25)
 	#health bar
-	health_bar.max_value = health + (Global.wave * int(health / 10))
+	health += (Global.wave * int(health / 10))
+	health_bar.max_value = health
 	health_bar.value = health_bar.max_value
 	#shoot time
 	shoot_timer.wait_time = shoot_time
