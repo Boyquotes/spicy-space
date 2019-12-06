@@ -26,7 +26,7 @@ func _ready():
 	set_physics_process(true)
 	vel = Vector2(rand_range(min_speed, max_speed), 0).rotated(rand_range(0, 2 * PI))
 	rot_speed = rand_range(-1.5, 1.5)
-	ast_dur = randi()%Global.wave + 1 #assign durability
+	ast_dur = int(rand_range(Global.wave, Global.wave/2)) #assign durability
 	print(ast_dur)
 	screen_size = get_viewport_rect().size
 	extents = ast_sprite.get_texture().get_size() / 2
