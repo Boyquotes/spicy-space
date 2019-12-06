@@ -67,6 +67,8 @@ func _ready():
 	#assign the border of asteroid to wave bar's max value
 	hud.wave_bar_max_value = int(border_of_ast)
 	hud.wave_bar("wave_up")
+	#get number of enemy
+	border_of_enemy = UserDataManager.load_userdata("number_of_enemy")
 	
 	_robots_activate()
 	_signal_connect("ss")
@@ -278,6 +280,7 @@ func _dog_fight(con):
 				else:
 					border_of_enemy -= 0 #don't change enemy number for present dog fight
 #			print(border_of_enemy)
+			UserDataManager.save_userdata("number_of_enemy", border_of_enemy)
 
 			hud.presentation("dog_fight", "completed")
 			yield(get_tree().create_timer(5), "timeout")

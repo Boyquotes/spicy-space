@@ -8,6 +8,7 @@ var data ={
 	bestwave = 0,
 	mine = 0,
 	current_wave = 1,
+	number_of_enemy = 1,
 	#ship datas
 	ship_dur = 100,
 	shield = 50,
