@@ -12,7 +12,7 @@ var data ={
 	#ship datas
 	ship_dur = 100,
 	shield = 50,
-	shoot_rate = 1,
+	shoot_rate = 0.5,
 	#upgrade datas
 	mine_for_dur_upg = 10,
 	mine_for_shield_upg = 12,

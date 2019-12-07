@@ -304,7 +304,7 @@ func ast_content_control(pos):
 
 func mine_system(con):
 	if con == "collect":
-		var collected_mine = randi()%(Global.wave * 10) + Global.wave
+		var collected_mine = int(rand_range(Global.wave * 3, Global.wave * 5))
 #		print(collected_mine)
 		Global.mine_counter += collected_mine
 	if con == "spend":

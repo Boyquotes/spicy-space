@@ -69,8 +69,10 @@ func _on_Shield_btn_pressed():
 func _on_Shoot_btn_pressed():
 	var shoot_rate = UserDataManager.load_userdata("shoot_rate")
 	var new_shoot_rate
-	if shoot_rate > 0.1:
-		new_shoot_rate = shoot_rate - 0.1
+	if shoot_rate > 0.3:
+		new_shoot_rate = shoot_rate - 0.05
+	elif shoot_rate > 0.1 && shoot_rate <= 0.3:
+		new_shoot_rate = shoot_rate - 0.03
 	elif shoot_rate <= 0.1 && shoot_rate >= 0.06:
 		new_shoot_rate = shoot_rate - 0.01
 		if shoot_rate == 0.06:
