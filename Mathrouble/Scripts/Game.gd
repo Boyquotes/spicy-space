@@ -4,8 +4,8 @@ export (PackedScene) var asteroid
 export (PackedScene) var split_asteroid
 export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
-export (int) var min_border_of_ast = 5
-export (int) var max_border_of_ast = 10
+export (int) var min_border_of_ast = 8
+export (int) var max_border_of_ast = 11
 
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
@@ -55,15 +55,12 @@ func _ready():
 	#reset highscore
 	if reset_userdata == true:
 		UserDataManager.reset_userdata()
-#		UserDataManager.reset_bestwave()
 	#reset score after every new start
 	Global.score = 0
 	#reset wave after every new start
 #	Global.wave = 0
 	#assign a border of asteroid for first wave
-	randomize()
-	border_of_ast = rand_range(min_border_of_ast + Global.wave, max_border_of_ast + Global.wave)
-	print(int(border_of_ast))
+	_asteroids("number_of_asteroid")
 	#assign the border of asteroid to wave bar's max value
 	hud.wave_bar_max_value = int(border_of_ast)
 	hud.wave_bar("wave_up")
@@ -194,6 +191,10 @@ func _asteroids(con):
 		ins_ast.position = pitfalls_spawn_loc.global_position
 		#signal connect
 		_signal_connect("ast")
+	if con == "number_of_asteroid":
+		randomize()
+		border_of_ast = rand_range(min_border_of_ast + Global.wave, max_border_of_ast + Global.wave)
+		print("number of asteroid: " + str(int(border_of_ast)))
 
 func ast_split(ast_size, ast_scale, pos, vel, hit_vel):
 	var newsize = ast_split_pattern[ast_size]
@@ -239,8 +240,7 @@ func _wave(con):
 		hud.presentation("wave", "started")
 		randomize()
 #		border_of_ast += randi()%Global.wave+1 #increase number of ast after every new wave
-		border_of_ast = rand_range(min_border_of_ast + Global.wave, max_border_of_ast + Global.wave)
-		print(int(border_of_ast))
+		_asteroids("number_of_asteroid")
 		#assign the border of asteroid to wave bar's max value
 		hud.wave_bar_max_value = int(border_of_ast)
 		hud.wave_bar("wave_up")
@@ -253,7 +253,7 @@ func _dog_fight(con):
 		randomize()
 		var df_possibility = rand_range(0, 100) #dog fight's gonna happen or not ?
 #		print(df_possibility)
-		if df_possibility < 50:
+		if df_possibility < 60:
 			hud.presentation("dog_fight", "started")
 			while (enemy_counter < border_of_enemy):
 				_enemies("instance")
@@ -270,11 +270,11 @@ func _dog_fight(con):
 			randomize()
 			var noe_possibility = rand_range(0, 90) #number of enemy possibility
 #			print(noe_possibility)
-			if noe_possibility <= 40:
+			if noe_possibility <= 45:
 				border_of_enemy += 1 #increase enemy number for present dog fight
-			elif noe_possibility > 40 && noe_possibility < 70:
+			elif noe_possibility > 45 && noe_possibility <= 75:
 				border_of_enemy += 0 #don't change enemy number for present dog fight
-			elif noe_possibility >= 70:
+			elif noe_possibility > 75:
 				if border_of_enemy > 3: #when number of enemy at least 4
 					border_of_enemy -= 1 #reduce enemy number for present dog fight
 				else:
@@ -289,12 +289,12 @@ func _dog_fight(con):
 func ast_content_control(pos):
 	var content_possibility = rand_range(0, 100)
 	#crate
-	if content_possibility < 20: 
+	if content_possibility <= 15: 
 		var ins_crate = crate.instance()
 		crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
 		ins_crate.position = pos
 	#mine
-	elif content_possibility > 20 && content_possibility < 50: 
+	elif content_possibility > 15 && content_possibility < 50: 
 		var ins_mine = mine.instance()
 		mine_con.call_deferred("add_child", ins_mine) # !flushed_queries error fixed with this line
 		ins_mine.position = pos
@@ -328,5 +328,6 @@ func screen_shake(which_pitfall):
 	screen_shake.start(0.2, 15, 16, 1)
 
 func game_over():
+	Global.fail_counter += 1
 	hud.game_over()
 

@@ -10,7 +10,8 @@ onready var next_wave_text = $Game_HUD/WaveBar/Next_Wave_Lvl/wave_lvl_sprite/wav
 #Game Over HUD
 onready var gameover_hud = $GameOver_HUD
 onready var highscore_lbl = $GameOver_HUD/HighScore_lbl
-onready var bestwave_lbl = $GameOver_HUD/BestWave_lbl
+#onready var bestwave_lbl = $GameOver_HUD/BestWave_lbl
+onready var fail_lbl = $GameOver_HUD/Fail_lbl
 #Wave HUD
 onready var wave_hud = $Wave_HUD
 onready var wave_start_lbl = $Wave_HUD/Wave_Start_lbl
@@ -27,8 +28,6 @@ onready var upgrade_hud = $Upgrade_HUD
 #Info HUD
 onready var mine_lbl = $Info_HUD/Mine_info/Mine_lbl
 
-var highscore = 0
-var bestwave = 0
 var wave_bar_max_value = 100
 
 func _ready():
@@ -45,12 +44,16 @@ func update_values():
 func assign_playerdata(whichdata, value):
 	if whichdata == "highscore":
 		UserDataManager.save_userdata(whichdata, value)
-		highscore = str(UserDataManager.load_userdata(whichdata)) # update high score
+		var highscore = str(UserDataManager.load_userdata(whichdata)) # update high score
 		highscore_lbl.text = "Highscore: " + highscore # assign high score to text
-	if whichdata == "bestwave":
+#	if whichdata == "bestwave":
+#		UserDataManager.save_userdata(whichdata, value)
+#		var bestwave = str(UserDataManager.load_userdata(whichdata))
+#		bestwave_lbl.text = "Best Wave: " + bestwave
+	if whichdata == "fail":
 		UserDataManager.save_userdata(whichdata, value)
-		bestwave = str(UserDataManager.load_userdata(whichdata))
-		bestwave_lbl.text = "Best Wave: " + bestwave
+		var fail = str(UserDataManager.load_userdata(whichdata))
+		fail_lbl.text = "Fail: " + fail
 
 func presentation(action, con):
 	if con == "started":
@@ -102,7 +105,8 @@ func warning(type):
 func game_over():
 	gameover_hud.visible = true
 	assign_playerdata("highscore", Global.score)
-	assign_playerdata("bestwave", Global.wave)
+#	assign_playerdata("bestwave", Global.wave)
+	assign_playerdata("fail", Global.fail_counter)
 
 func _on_Restart_btn_pressed():
 	gameover_hud.visible = false

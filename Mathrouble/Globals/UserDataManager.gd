@@ -5,7 +5,7 @@ const SAVE_FILE_PATH = "user://userdata.save"
 var data ={
 	#game datas
 	highscore = 0,
-	bestwave = 0,
+#	bestwave = 0,
 	mine = 0,
 	current_wave = 1,
 	number_of_enemy = 1,
@@ -14,9 +14,11 @@ var data ={
 	shield = 50,
 	shoot_rate = 0.5,
 	#upgrade datas
-	mine_for_dur_upg = 10,
-	mine_for_shield_upg = 12,
-	mine_for_shoot_rate_upg = 16
+	mine_for_dur_upg = 15,
+	mine_for_shield_upg = 17,
+	mine_for_shoot_rate_upg = 21,
+	#statistics
+	fail = 0
 }
 
 func _ready():
@@ -25,7 +27,7 @@ func _ready():
 		data[key] = load_userdata(key)
 
 func save_userdata(key, value):
-	if key == "highscore" || key == "bestwave":
+	if key == "highscore":
 		if load_userdata(key) > value:
 			return
 
