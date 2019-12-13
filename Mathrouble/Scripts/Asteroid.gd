@@ -89,4 +89,4 @@ func explode(hit_vel):
 		emit_signal("ast_split", 'big', self.scale, self.position, vel, hit_vel)
 	emit_signal("ast_exploded", self.position)
 	call_deferred("free")
-	Global.score += 10 #increase score
+	Global.score += Global.wave * 2 #increase score

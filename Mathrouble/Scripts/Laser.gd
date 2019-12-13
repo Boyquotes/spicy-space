@@ -21,6 +21,7 @@ func _on_lifetime_timeout():
 func _on_Laser_body_entered(body):
 	if body.is_in_group("asteroid"): # when asteroid shooted
 		queue_free()
+		Global.score += 1
 		body.ast_dur -= 1 #reduce asteroid's durability
 		if body.ast_dur == 0:
 			body.explode(vel.normalized())

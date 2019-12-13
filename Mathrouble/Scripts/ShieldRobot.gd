@@ -9,7 +9,7 @@ func _ready():
 
 func damage_happened(which_pitfall):
 	if which_pitfall == "asteroid":
-		damage_value = 25
+		damage_value = 10
 		_get_damage(damage_value)
 	elif which_pitfall == "laser":
 		damage_value = 20
