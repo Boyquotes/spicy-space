@@ -14,7 +14,7 @@ func hr_situation(situation):
 func damage_happened(value):
 #	print("hr situation: " + str(hr_on))
 	if hr_on:
-		damage_value = int(value * 0.5)
+		damage_value = int(value)
 		_get_damage(damage_value)
 
 func _get_damage(damage_value):

@@ -10,13 +10,13 @@ var data ={
 	current_wave = 1,
 	number_of_enemy = 1,
 	#ship datas
-	ship_dur = 40,
-	shield = 15,
+	ship_dur = 10,
+	shield = 5,
 	shoot_rate = 0.5,
 	laser_damage = 1,
 	#upgrade datas
-	mine_for_dur_upg = 15,
-	mine_for_shield_upg = 17,
+	mine_for_dur_upg = 17,
+	mine_for_shield_upg = 12,
 	mine_for_shoot_rate_upg = 21,
 	mine_for_laser_damage_upg = 20,
 	#statistics

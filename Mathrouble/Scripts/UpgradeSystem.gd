@@ -60,16 +60,16 @@ func _find_btn(data_key):
 
 func _on_Durability_btn_pressed():
 	var ship_dur = UserDataManager.load_userdata("ship_dur")
-	var new_ship_dur = ship_dur + 25
-	UserDataManager.save_userdata("ship_dur", new_ship_dur)
+	ship_dur += Global.wave
+	UserDataManager.save_userdata("ship_dur", ship_dur)
 	
 	_spend_mine("mine_for_dur_upg")
 	emit_signal("upgraded", "ship_dur")
 
 func _on_Shield_btn_pressed():
 	var shield = UserDataManager.load_userdata("shield")
-	var new_shield = shield + 10
-	UserDataManager.save_userdata("shield", new_shield)
+	shield += Global.wave
+	UserDataManager.save_userdata("shield", shield)
 	
 	_spend_mine("mine_for_shield_upg")
 	emit_signal("upgraded", "shield")
@@ -77,11 +77,11 @@ func _on_Shield_btn_pressed():
 func _on_Shoot_btn_pressed():
 	var shoot_rate = UserDataManager.load_userdata("shoot_rate")
 	var new_shoot_rate
-	if shoot_rate > 0.3:
+	if shoot_rate > 0.35:
 		new_shoot_rate = shoot_rate - 0.05
-	elif shoot_rate > 0.1 && shoot_rate <= 0.3:
+	elif shoot_rate > 0.15 && shoot_rate <= 0.35:
 		new_shoot_rate = shoot_rate - 0.03
-	elif shoot_rate <= 0.1 && shoot_rate >= 0.06:
+	elif shoot_rate >= 0.06 && shoot_rate <= 0.15:
 		new_shoot_rate = shoot_rate - 0.01
 		if shoot_rate == 0.06:
 			print("fully upgraded")

@@ -4,8 +4,8 @@ export (PackedScene) var asteroid
 export (PackedScene) var split_asteroid
 export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
-export (int) var min_border_of_ast = 8
-export (int) var max_border_of_ast = 11
+export (int) var min_border_of_ast = 3
+export (int) var max_border_of_ast = 5
 
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
@@ -42,7 +42,8 @@ var ins_ast # asteroid instance
 var ins_split_ast
 var ins_enemy # enemy instance
 
-var border_of_ast = 10 #border for asteroid instance
+var border_of_ast = 4 #border for asteroid instance
+var number_of_ast = 1
 var ast_counter = 0 #asteroid counter
 var wave_control = false #check out to waves
 var ast_border_control = false #check out to asteroid border
@@ -59,10 +60,15 @@ func _ready():
 	Global.score = 0
 	#reset wave after every new start
 #	Global.wave = 0
+	#get number of asteroid
+	if Global.wave < 25:
+		number_of_ast = Global.wave
+	else:
+		number_of_ast = 25
 	#assign a border of asteroid for first wave
 	_asteroids("number_of_asteroid")
 	#assign the border of asteroid to wave bar's max value
-	hud.wave_bar_max_value = int(border_of_ast)
+	hud.wave_bar_max_value = int(border_of_ast * number_of_ast)
 	hud.wave_bar("wave_up")
 	#get number of enemy
 	border_of_enemy = UserDataManager.load_userdata("number_of_enemy")
@@ -179,21 +185,24 @@ func _asteroids(con):
 	if con == "stop_timer":
 		asteroid_timer.stop()
 	if con == "instance":
-		# Choose a random location on Path2D.
-		pitfalls_spawn_loc.set_offset(randi())
-	    # Create a asteroid instance and add it to the scene.
-		ins_ast = asteroid.instance()
-		asteroid_con.add_child(ins_ast)
-		ast_counter += 1 #increase asteroid counter
-		#fill wave bar after every asteroid instance
-		hud.wave_bar("fill_bar")
-	    # Set the asteroid's position to a random location.
-		ins_ast.position = pitfalls_spawn_loc.global_position
-		#signal connect
-		_signal_connect("ast")
+		#instance wave asteroids
+		for i in range(number_of_ast):
+			# Choose a random location on Path2D.
+			pitfalls_spawn_loc.set_offset(randi())
+		    # Create a asteroid instance and add it to the scene.
+			ins_ast = asteroid.instance()
+			asteroid_con.add_child(ins_ast)
+			#fill wave bar after every asteroid instance
+			hud.wave_bar("fill_bar")
+		    # Set the asteroid's position to a random location.
+			ins_ast.position = pitfalls_spawn_loc.global_position
+			#signal connect
+			_signal_connect("ast")
+		#increase asteroid counter
+		ast_counter += 1
 	if con == "number_of_asteroid":
 		randomize()
-		border_of_ast = rand_range(min_border_of_ast + Global.wave, max_border_of_ast + Global.wave)
+		border_of_ast = rand_range(min_border_of_ast, max_border_of_ast)
 #		print("number of asteroid: " + str(int(border_of_ast)))
 
 func ast_split(ast_size, ast_scale, pos, vel, hit_vel):
@@ -242,7 +251,7 @@ func _wave(con):
 #		border_of_ast += randi()%Global.wave+1 #increase number of ast after every new wave
 		_asteroids("number_of_asteroid")
 		#assign the border of asteroid to wave bar's max value
-		hud.wave_bar_max_value = int(border_of_ast)
+		hud.wave_bar_max_value = int(border_of_ast * number_of_ast)
 		hud.wave_bar("wave_up")
 		yield(get_tree().create_timer(5), "timeout")
 		_asteroids("start_timer")
@@ -253,7 +262,7 @@ func _dog_fight(con):
 		randomize()
 		var df_possibility = rand_range(0, 100) #dog fight's gonna happen or not ?
 #		print(df_possibility)
-		if df_possibility < 60:
+		if df_possibility < 70:
 			hud.presentation("dog_fight", "started")
 			while (enemy_counter < border_of_enemy):
 				_enemies("instance")
@@ -304,7 +313,7 @@ func ast_content_control(pos):
 
 func mine_system(con):
 	if con == "collect":
-		var collected_mine = int(rand_range(Global.wave * 3, Global.wave * 5))
+		var collected_mine = int(rand_range(Global.wave * 2, Global.wave * 3))
 #		print(collected_mine)
 		Global.mine_counter += collected_mine
 	if con == "spend":

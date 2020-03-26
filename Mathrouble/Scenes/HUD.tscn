@@ -250,7 +250,6 @@ text = "Upgrade Ship"
 
 [node name="Upgrade_HUD" type="Node2D" parent="."]
 pause_mode = 2
-editor/display_folded = true
 visible = false
 script = ExtResource( 6 )
 

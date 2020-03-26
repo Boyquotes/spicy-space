@@ -10,7 +10,7 @@ func _on_Laser_body_entered(body):
 	if body.is_in_group("asteroid"): # when asteroid shooted
 		queue_free()
 		Global.score += 1
-		print("laser damage: " + str(laser_damage))
+#		print("laser damage: " + str(laser_damage))
 		body.ast_dur -= laser_damage #reduce asteroid's durability
 		if body.ast_dur <= 0:
 			body.explode(vel.normalized())

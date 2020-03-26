@@ -107,7 +107,7 @@ func _shoot():
 func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic or rigidbody
 	if body.is_in_group("asteroid"): #when asteroid hit spaceship
 		body.explode(body.vel) #explode asteroid
-		print("asteroid dur: " + str(body.ast_dur))
+#		print("asteroid dur: " + str(body.ast_dur))
 		emit_signal("ss_damage", body.ast_dur) #spaceship got damage from asteroid
 
 func _on_SpaceShip_area_entered(area): #when any collide happen with area
@@ -120,6 +120,7 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 		ss_shield_deactivate(false) #activate shield if it was deactive
 		area.remove_crate()
 	if area.is_in_group("enemy_laser"):
+		print("enemy laser damage: " + str(area.laser_damage))
 		emit_signal("ss_damage", area.laser_damage) #spaceship got damage from enemy
 	if area.is_in_group("mine"):
 		emit_signal("mine_grabbed", "collect")
