@@ -13,7 +13,7 @@ export var thrust = 300
 #export var max_vel = 200
 export var friction = 0.65
 
-onready var laser = preload("res://Scenes/Projectiles/Laser.tscn")
+onready var laser = preload("res://Scenes/Lasers/PlayerLaser.tscn")
 onready var laser_container = $laser_container
 onready var laser_muzzle = $laser_muzzle
 onready var shoot_timer = $shoot_timer
@@ -33,6 +33,7 @@ var shoot_control = false
 
 func _ready():
 	reload_spaceship()
+#	prepare_laser()
 	randomize()
 	rot = rand_range(0, 90) #random rotation degree
 	screen_size = get_viewport_rect().size
@@ -49,6 +50,9 @@ func _process(delta):
 
 func reload_spaceship():
 	shoot_timer.wait_time = UserDataManager.load_userdata("shoot_rate")
+
+#func prepare_laser():
+#	laser.laser_damage = UserDataManager.load_userdata("laser_damage")
 
 func _ss_move_and_shoot(delta):
 	#shoot
@@ -95,15 +99,16 @@ func _stay_on_screen(delta):
 func _shoot():
 #	if out_of_ammo_control == false:
 		shoot_timer.start()
-		var laser_ins = laser.instance()
-		laser_container.add_child(laser_ins)
-		laser_ins.start_at(self.rotation, laser_muzzle.global_position, vel)
+		var ins_laser = laser.instance()
+		laser_container.add_child(ins_laser)
+		ins_laser.start_at(self.rotation, laser_muzzle.global_position, vel)
 		emit_signal("shoot")
 
 func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic or rigidbody
 	if body.is_in_group("asteroid"): #when asteroid hit spaceship
 		body.explode(body.vel) #explode asteroid
-		emit_signal("ss_damage", "asteroid") #spaceship got damage from asteroid
+		print("asteroid dur: " + str(body.ast_dur))
+		emit_signal("ss_damage", body.ast_dur) #spaceship got damage from asteroid
 
 func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("health_crate"):
@@ -115,7 +120,7 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 		ss_shield_deactivate(false) #activate shield if it was deactive
 		area.remove_crate()
 	if area.is_in_group("enemy_laser"):
-		emit_signal("ss_damage", "laser") #spaceship got damage from enemy
+		emit_signal("ss_damage", area.laser_damage) #spaceship got damage from enemy
 	if area.is_in_group("mine"):
 		emit_signal("mine_grabbed", "collect")
 		area.remove_mine()

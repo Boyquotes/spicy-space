@@ -194,7 +194,7 @@ func _asteroids(con):
 	if con == "number_of_asteroid":
 		randomize()
 		border_of_ast = rand_range(min_border_of_ast + Global.wave, max_border_of_ast + Global.wave)
-		print("number of asteroid: " + str(int(border_of_ast)))
+#		print("number of asteroid: " + str(int(border_of_ast)))
 
 func ast_split(ast_size, ast_scale, pos, vel, hit_vel):
 	var newsize = ast_split_pattern[ast_size]
@@ -309,6 +309,8 @@ func mine_system(con):
 		Global.mine_counter += collected_mine
 	if con == "spend":
 		pass
+	if con == "game_over":
+		Global.mine_counter -= int(Global.mine_counter * 0.3)
 	#save and show mine value
 	UserDataManager.save_userdata("mine", Global.mine_counter)
 	hud.show_mine_value()
@@ -320,6 +322,8 @@ func upgrade_system(part):
 		ins_sr.reload_robot(part)
 	if part == "shoot_rate":
 		spaceship.reload_spaceship()
+#	if part == "laser_damage":
+#		spaceship.prepare_laser()
 
 func _ss_shoot_system(con): #spaceship shoot system
 	spaceship.shoot_control = con
@@ -329,5 +333,6 @@ func screen_shake(which_pitfall):
 
 func game_over():
 	Global.fail_counter += 1
+	mine_system("game_over")
 	hud.game_over()
 

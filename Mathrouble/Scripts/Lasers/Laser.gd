@@ -1,6 +1,7 @@
 extends Area2D
 
 export var speed = 1000
+export var laser_damage = 1
 
 var vel = Vector2()
 
@@ -17,11 +18,3 @@ func _physics_process(delta):
 
 func _on_lifetime_timeout():
 	queue_free()
-
-func _on_Laser_body_entered(body):
-	if body.is_in_group("asteroid"): # when asteroid shooted
-		queue_free()
-		Global.score += 1
-		body.ast_dur -= 1 #reduce asteroid's durability
-		if body.ast_dur == 0:
-			body.explode(vel.normalized())

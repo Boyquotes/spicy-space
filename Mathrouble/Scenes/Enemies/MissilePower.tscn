@@ -23,8 +23,7 @@ corner_radius_bottom_left = 5
 modulate = Color( 1, 0.133333, 0.498039, 1 )
 script = ExtResource( 1 )
 speed = 1.6
-health = 160.0
-received_damage = 40.0
+health = 20.0
 shoot_time = 3.5
 
 [node name="enemyship_sprite" type="Sprite" parent="."]

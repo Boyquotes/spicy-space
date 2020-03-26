@@ -1,4 +1,4 @@
-extends "res://Scripts/Robot.gd"
+extends "res://Scripts/Robots/Robot.gd"
 
 signal ss_explode #spaceship explode
 
@@ -11,15 +11,11 @@ func _ready():
 func hr_situation(situation):
 	hr_on = situation #health robot on or off according to shield robot
 
-func damage_happened(which_pitfall):
+func damage_happened(value):
 #	print("hr situation: " + str(hr_on))
 	if hr_on:
-		if which_pitfall == "asteroid":
-			damage_value = 20
-			_get_damage(damage_value)
-		elif which_pitfall == "laser":
-			damage_value = 40
-			_get_damage(damage_value)
+		damage_value = int(value * 0.5)
+		_get_damage(damage_value)
 
 func _get_damage(damage_value):
 	if self.value > 0:

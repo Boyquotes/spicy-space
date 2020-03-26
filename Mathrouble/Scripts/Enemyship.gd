@@ -2,12 +2,12 @@ extends Area2D
 
 export (float) var speed = 2.1
 export (float) var health = 100
-export (float) var received_damage = 50
+#export (float) var received_damage = 50
 export (float) var shoot_time = 3
 
 onready var es_sprite = $enemyship_sprite
 onready var laser_muzzles = $laser_muzzles
-onready var laser = preload("res://Scenes/Projectiles/EnemyLaser.tscn")
+onready var laser = preload("res://Scenes/Lasers/EnemyLaser.tscn")
 onready var laser_con = $laser_container
 onready var dir_timer = $direction_timer
 onready var shoot_timer = $shoot_timer
@@ -93,12 +93,12 @@ func _on_shoot_timer_timeout():
 	_shoot()
 
 func _on_CylonRaider_area_entered(area):
-	if area.is_in_group("laser"):
-		damage_value = received_damage
+	if area.is_in_group("laser") || area.is_in_group("enemy_laser"):
+		damage_value = area.laser_damage
 		_get_damage(area, damage_value)
-	elif area.is_in_group("enemy_laser"): #friendly fire
-		damage_value = received_damage/2
-		_get_damage(area, damage_value)
+#	elif area.is_in_group("enemy_laser"): #friendly fire
+#		damage_value = area.laser_damage
+#		_get_damage(area, damage_value)
 
 func _get_damage(area, damage_value):
 	if health_bar.value > 0:

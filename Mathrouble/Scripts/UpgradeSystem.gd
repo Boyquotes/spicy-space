@@ -9,6 +9,8 @@ onready var shield_lbl = $Shield/Shield_lbl
 onready var shield_btn = $Shield/Shield_btn
 onready var shoot_rate_lbl = $Shoot/Shoot_lbl
 onready var shoot_rate_btn = $Shoot/Shoot_btn
+onready var laser_lbl = $Laser/Laser_lbl
+onready var laser_btn = $Laser/Laser_btn
 
 func _ready():
 	_prepare_upg_scene()
@@ -26,6 +28,10 @@ func _prepare_upg_scene():
 	shoot_rate_lbl.text = "Shoot Rate: " + _get_data("shoot_rate")
 	shoot_rate_btn.text = _prepare_upg_btns("mine_for_shoot_rate_upg")
 	_check_upg_btns("mine_for_shoot_rate_upg")
+	#Laser Damage
+	laser_lbl.text = "Laser Damage: " + _get_data("laser_damage")
+	laser_btn.text = _prepare_upg_btns("mine_for_laser_damage_upg")
+	_check_upg_btns("mine_for_laser_damage_upg")
 
 func _get_data(data_key):
 	return str(UserDataManager.load_userdata(data_key))
@@ -48,6 +54,8 @@ func _find_btn(data_key):
 		btn = shield_btn
 	elif data_key == "mine_for_shoot_rate_upg":
 		btn = shoot_rate_btn
+	elif data_key == "mine_for_laser_damage_upg":
+		btn = laser_btn
 	return btn
 
 func _on_Durability_btn_pressed():
@@ -55,7 +63,7 @@ func _on_Durability_btn_pressed():
 	var new_ship_dur = ship_dur + 25
 	UserDataManager.save_userdata("ship_dur", new_ship_dur)
 	
-	_mine_after_upgrade("mine_for_dur_upg")
+	_spend_mine("mine_for_dur_upg")
 	emit_signal("upgraded", "ship_dur")
 
 func _on_Shield_btn_pressed():
@@ -63,7 +71,7 @@ func _on_Shield_btn_pressed():
 	var new_shield = shield + 10
 	UserDataManager.save_userdata("shield", new_shield)
 	
-	_mine_after_upgrade("mine_for_shield_upg")
+	_spend_mine("mine_for_shield_upg")
 	emit_signal("upgraded", "shield")
 
 func _on_Shoot_btn_pressed():
@@ -79,10 +87,18 @@ func _on_Shoot_btn_pressed():
 			print("fully upgraded")
 	UserDataManager.save_userdata("shoot_rate", new_shoot_rate)
 	
-	_mine_after_upgrade("mine_for_shoot_rate_upg")
+	_spend_mine("mine_for_shoot_rate_upg")
 	emit_signal("upgraded", "shoot_rate")
 
-func _mine_after_upgrade(data_key):
+func _on_Laser_btn_pressed():
+	var laser_damage = UserDataManager.load_userdata("laser_damage")
+	var new_laser_damage = laser_damage + 1
+	UserDataManager.save_userdata("laser_damage", new_laser_damage)
+	
+	_spend_mine("mine_for_laser_damage_upg")
+#	emit_signal("upgraded", "laser_damage")
+
+func _spend_mine(data_key):
 	var upg_mine_value = UserDataManager.load_userdata(data_key)
 	Global.mine_counter = Global.mine_counter - upg_mine_value
 	emit_signal("mine_spend", "spend")

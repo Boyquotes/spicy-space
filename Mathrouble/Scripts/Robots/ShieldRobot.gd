@@ -1,4 +1,4 @@
-extends "res://Scripts/Robot.gd"
+extends "res://Scripts/Robots/Robot.gd"
 
 signal sr_deactivated(hr_situation)
 
@@ -7,12 +7,8 @@ var damage_value = 0
 func _ready():
 	reload_robot("shield")
 
-func damage_happened(which_pitfall):
-	if which_pitfall == "asteroid":
-		damage_value = 10
-		_get_damage(damage_value)
-	elif which_pitfall == "laser":
-		damage_value = 20
+func damage_happened(value):
+		damage_value = int(value)
 		_get_damage(damage_value)
 
 func _get_damage(damage_value):

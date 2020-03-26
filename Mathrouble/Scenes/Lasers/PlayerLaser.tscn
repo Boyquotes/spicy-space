@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Laser.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Lasers/PlayerLaser.gd" type="Script" id=1]
 [ext_resource path="res://Textures/laser.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.01363
 height = 13.357
 
-[node name="Laser" type="Area2D" groups=[
+[node name="PlayerLaser" type="Area2D" groups=[
 "laser",
 ]]
 position = Vector2( 180, 240 )

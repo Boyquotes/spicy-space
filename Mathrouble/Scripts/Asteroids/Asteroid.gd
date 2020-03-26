@@ -33,7 +33,7 @@ func _ready():
 		ast_dur = int(rand_range(Global.wave/2, Global.wave+1)) #assign durability
 	else:
 		ast_dur = randi()%Global.wave+1
-	print("asteroid durability: " + str(ast_dur))
+#	print("asteroid durability: " + str(ast_dur))
 	#screen border
 	screen_size = get_viewport_rect().size
 	extents = ast_sprite.get_texture().get_size() / 2
