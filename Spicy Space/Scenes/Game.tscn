@@ -23,7 +23,6 @@ split_asteroid = ExtResource( 3 )
 enemies = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-editor/display_folded = true
 anchor_mode = 0
 current = true
 
@@ -37,10 +36,8 @@ one_shot = true
 autostart = true
 
 [node name="Pitfalls" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Pitfalls_Path" type="Path2D" parent="Pitfalls"]
-editor/display_folded = true
 position = Vector2( 2.0407, 6.30305 )
 scale = Vector2( 0.790568, 0.834474 )
 curve = SubResource( 1 )
@@ -66,6 +63,5 @@ layer = 5
 [node name="Crate_Container" type="Node" parent="."]
 
 [node name="Mine_Container" type="Node" parent="."]
-
 [connection signal="timeout" from="StartGame_Timer" to="." method="_on_StartGame_Timer_timeout"]
 [connection signal="timeout" from="Pitfalls/Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]

@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Mathrouble"
+config/name="Spicy Space"
 run/main_scene="res://Scenes/Game.tscn"
 boot_splash/image="res://Textures/nordicebeargames transparent.png"
 boot_splash/fullsize=false

@@ -169,6 +169,7 @@ func _on_StartGame_Timer_timeout():
 	_asteroids("start_timer")
 
 func _on_Asteroid_Timer_timeout():
+	asteroid_timer.wait_time = number_of_ast
 	if ast_counter < border_of_ast:
 		_asteroids("instance") #instance asteroid
 		wave_control = true
@@ -185,16 +186,20 @@ func _asteroids(con):
 	if con == "stop_timer":
 		asteroid_timer.stop()
 	if con == "instance":
+		if Global.wave < 25:
+			number_of_ast = Global.wave
+		else:
+			number_of_ast = 25
 		#instance wave asteroids
 		for i in range(number_of_ast):
 			# Choose a random location on Path2D.
 			pitfalls_spawn_loc.set_offset(randi())
-		    # Create a asteroid instance and add it to the scene.
+			# Create a asteroid instance and add it to the scene.
 			ins_ast = asteroid.instance()
 			asteroid_con.add_child(ins_ast)
 			#fill wave bar after every asteroid instance
 			hud.wave_bar("fill_bar")
-		    # Set the asteroid's position to a random location.
+			# Set the asteroid's position to a random location.
 			ins_ast.position = pitfalls_spawn_loc.global_position
 			#signal connect
 			_signal_connect("ast")
@@ -223,11 +228,11 @@ func _enemies(con):
 	if con == "instance":
 		# Choose a random location on Path2D.
 		pitfalls_spawn_loc.set_offset(randi())
-	    # Create a enemy instance and add it to the scene.
+		# Create a enemy instance and add it to the scene.
 		ins_enemy = enemies[randi() % enemies.size()].instance() #choose an enemy and instance it
 		enemy_con.add_child(ins_enemy)
 		enemy_counter += 1
-	    # Set the asteroid's position to a random location.
+		# Set the asteroid's position to a random location.
 		ins_enemy.position = pitfalls_spawn_loc.global_position
 		#assign spaceship as target
 		ins_enemy.target_obj = spaceship
@@ -242,7 +247,7 @@ func _wave(con):
 			Global.wave += 1
 			UserDataManager.save_userdata("current_wave", int(Global.wave))
 			yield(get_tree().create_timer(5), "timeout")
-            #dog fight or new wave
+			#dog fight or new wave
 			_dog_fight("possibility")
 
 	if con == "new_wave":
