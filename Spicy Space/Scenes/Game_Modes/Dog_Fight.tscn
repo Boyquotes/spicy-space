@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scripts/Roads/Dog_Fight.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Enemies/CylonRaider.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Enemies/Speedy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemies/MissilePower.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Enemies/SpaceBee.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Enemies/CylonRaider.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Enemies/Speedy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemies/MissilePower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Enemies/SpaceBee.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Spaceship_w_Robots.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Game_Modes/Dog_Fight.gd" type="Script" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -15,17 +15,17 @@ _data = {
 }
 
 [node name="Dog_Fight" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 8 )
 game_mode = "Dog Fight"
-enemies = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ) ]
+enemies = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
 
-[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 8 )]
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 5 )]
 
-[node name="SpaceShip" parent="." instance=ExtResource( 9 )]
+[node name="Spaceship_w_Robots" parent="." instance=ExtResource( 6 )]
 
 [node name="StartGame_Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -47,7 +47,7 @@ rotation = -3.1231
 
 [node name="Enemy_Container" type="Node" parent="Pitfalls/Enemy"]
 
-[node name="HUD" parent="." instance=ExtResource( 10 )]
+[node name="HUD" parent="." instance=ExtResource( 7 )]
 layer = 5
 
 [node name="Crate_Container" type="Node" parent="."]

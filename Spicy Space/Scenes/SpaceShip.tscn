@@ -39,6 +39,5 @@ position = Vector2( 15, 30 )
 [node name="Shield" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 3 )
 scale = Vector2( 1.25, 1.25 )
-
 [connection signal="area_entered" from="." to="." method="_on_SpaceShip_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_SpaceShip_body_entered"]

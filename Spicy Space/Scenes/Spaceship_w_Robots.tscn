@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Spaceship_w_Robots.gd" type="Script" id=2]
+
+[node name="Spaceship_w_Robots" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="SpaceShip" parent="." instance=ExtResource( 1 )]

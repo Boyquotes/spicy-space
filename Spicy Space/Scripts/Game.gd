@@ -11,7 +11,7 @@ export (int) var max_border_of_ast = 5
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
 #Spaceship
-onready var spaceship = $SpaceShip
+onready var spaceship = $Spaceship_w_Robots/SpaceShip
 #Pitfalls
 onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Asteroid
@@ -24,10 +24,9 @@ onready var hud = $HUD
 #Uograde HUD
 onready var upg_hud = $HUD/Upgrade_HUD
 #Robots Follow AI
-onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
+onready var follow_ai = ResourceLoader.load("res://Scenes/Robots/RobotFollowAI.tscn")
 #Robots
 onready var health_robot = ResourceLoader.load("res://Scenes/Robots/HealthRobot.tscn")
-#onready var ammo_robot = ResourceLoader.load("res://Scenes/Robots/AmmoRobot.tscn")
 onready var shield_robot = ResourceLoader.load("res://Scenes/Robots/ShieldRobot.tscn")
 #Crate
 onready var crate_con = $Crate_Container
@@ -37,7 +36,6 @@ onready var mine_con = $Mine_Container
 onready var mine = ResourceLoader.load("res://Scenes/Mine.tscn")
 
 var ins_hr # health robot instance
-var ins_ar # ammo robot instance
 var ins_sr # shield robot instance
 var ins_ast # asteroid instance
 var ins_split_ast

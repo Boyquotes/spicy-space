@@ -7,20 +7,16 @@ export (bool) var reset_userdata = false
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
 #Spaceship
-onready var spaceship = $SpaceShip
+onready var spaceship_w_robots = $Spaceship_w_Robots
+onready var spaceship = $Spaceship_w_Robots/SpaceShip
 #Pitfalls
 onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Enemy
 onready var enemy_con = $Pitfalls/Enemy/Enemy_Container
 #HUD
 onready var hud = $HUD
-#Uograde HUD
+#Upgrade HUD
 onready var upg_hud = $HUD/Upgrade_HUD
-#Robots Follow AI
-onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
-#Robots
-onready var health_robot = ResourceLoader.load("res://Scenes/Robots/HealthRobot.tscn")
-onready var shield_robot = ResourceLoader.load("res://Scenes/Robots/ShieldRobot.tscn")
 #Crate
 onready var crate_con = $Crate_Container
 onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
@@ -28,11 +24,8 @@ onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
 onready var mine_con = $Mine_Container
 onready var mine = ResourceLoader.load("res://Scenes/Mine.tscn")
 
-var ins_hr # health robot instance
-var ins_ar # ammo robot instance
-var ins_sr # shield robot instance
 var ins_enemy # enemy instance
-var df_control = false #check out dog fight happened or not
+var mode_control = false #check out dog fight happened or not
 var border_of_enemy = 1
 var enemy_counter = 0
 
@@ -45,76 +38,28 @@ func _ready():
 	#get number of enemy
 	border_of_enemy = UserDataManager.load_userdata("number_of_enemy")
 	
-	_robots_activate()
 	_signal_connect("ss")
 	_signal_connect("upg_sys")
 
 func _process(delta):
-	if df_control:
+	if mode_control:
 		_dog_fight("checkout")
 	#automatic shoot system for spaceship
-	if df_control:
+	if mode_control:
 		_ss_shoot_system(true)
 	else:
 		_ss_shoot_system(false)
-
-func _robots_activate():
-	#create follow ai for robots
-	var hr_follow_ai = follow_ai.instance()
-	var sr_follow_ai = follow_ai.instance()
-	add_child(hr_follow_ai)
-	add_child(sr_follow_ai)
-	hr_follow_ai.global_position = Vector2(spaceship.global_position.x - 15, spaceship.global_position.y - 35)
-	sr_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
-
-	#create health robot
-	ins_hr = health_robot.instance()
-	hr_follow_ai.add_child(ins_hr)
-	#set location for hr to folllow spaceship
-	hr_follow_ai.following_obj = spaceship.hr_followpoint
-	hr_follow_ai.target = spaceship.hr_followpoint.global_position
-
-	#create shield robot
-	ins_sr = shield_robot.instance()
-	sr_follow_ai.add_child(ins_sr)
-	#set location for sr to follow spaceship
-	sr_follow_ai.following_obj = spaceship.sr_followpoint
-	sr_follow_ai.target = spaceship.sr_followpoint.global_position
-	
-	# add robots to the spaceship
-	spaceship.robots.append(ins_hr)
-	spaceship.robots.append(ins_sr)
-	
-	_signal_connect("hr")
-	_signal_connect("sr")
 
 func _signal_connect(which_obj):
 	if which_obj == "ss": #space ship
 		# game over signal connect
 		spaceship.connect("game_over", self, "game_over")
-		#when spaceship grabbed crate signal connect
-		spaceship.connect("crate_grabbed", ins_hr, "robot_charge")
-		spaceship.connect("crate_grabbed", ins_sr, "robot_charge")
 		#warning signal
 		spaceship.connect("warning", hud, "warning")
 		#screen shake signal connect
 		spaceship.connect("ss_damage", self, "screen_shake")
-		#health robot situation signal control
-		spaceship.connect("hr_situation", ins_hr, "hr_situation")
 		#when spaceship grabbed mine signal connect
 		spaceship.connect("mine_grabbed", self, "mine_system")
-	if which_obj == "hr": #health robot
-		#spaceship damage signal connect
-		spaceship.connect("ss_damage", ins_hr, "damage_happened")
-		#spaceship explode signal connect
-		ins_hr.connect("ss_explode", spaceship, "ss_explode")
-	if which_obj == "sr": #shield robot
-		#spaceship damage signal connect
-		spaceship.connect("ss_damage", ins_sr, "damage_happened")
-		#change health robot situation according to shield robot situation signal connect
-		ins_sr.connect("sr_deactivated", ins_hr, "hr_situation")
-		#change shield situation according to shield robot situation signal connect
-		ins_sr.connect("sr_deactivated", spaceship, "ss_shield_deactivate")
 	if which_obj == "upg_sys":
 		#signal to update mine after spend or collect it
 		upg_hud.connect("mine_spend", self, "mine_system")
@@ -146,11 +91,11 @@ func _dog_fight(con):
 	if con == "start":
 		while (enemy_counter < border_of_enemy):
 			_enemies("instance")
-		df_control = true #dog fight happen
+		mode_control = true #dog fight happen
 
 	if con == "checkout":
-		if df_control && enemy_con.get_child_count() == 0:
-			df_control = false #dog fight over
+		if mode_control && enemy_con.get_child_count() == 0:
+			mode_control = false #dog fight over
 			enemy_counter = 0 #reset enemy counter
 			
 			randomize()
@@ -184,9 +129,9 @@ func mine_system(con):
 
 func upgrade_system(part):
 	if part == "ship_dur":
-		ins_hr.reload_robot(part)
+		spaceship_w_robots.ins_hr.reload_robot(part)
 	if part == "shield":
-		ins_sr.reload_robot(part)
+		spaceship_w_robots.ins_sr.reload_robot(part)
 	if part == "shoot_rate":
 		spaceship.reload_spaceship()
 

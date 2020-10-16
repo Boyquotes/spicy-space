@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/Roads/Meteor_Shower.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/SplitAsteroid.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SplitAsteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Spaceship_w_Robots.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Game_Modes/Meteor_Shower.gd" type="Script" id=6]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -13,9 +13,9 @@ _data = {
 }
 
 [node name="Meteor_Shower" type="Node2D"]
-script = ExtResource( 1 )
-asteroid = ExtResource( 2 )
-split_asteroid = ExtResource( 3 )
+script = ExtResource( 6 )
+asteroid = ExtResource( 1 )
+split_asteroid = ExtResource( 2 )
 min_border_of_ast = 1
 max_border_of_ast = 4
 
@@ -23,9 +23,9 @@ max_border_of_ast = 4
 anchor_mode = 0
 current = true
 
-[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 8 )]
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 3 )]
 
-[node name="SpaceShip" parent="." instance=ExtResource( 9 )]
+[node name="Spaceship_w_Robots" parent="." instance=ExtResource( 4 )]
 
 [node name="StartGame_Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -50,7 +50,7 @@ rotation = -3.1231
 [node name="Asteroid_Timer" type="Timer" parent="Pitfalls/Asteroid"]
 wait_time = 1.5
 
-[node name="HUD" parent="." instance=ExtResource( 10 )]
+[node name="HUD" parent="." instance=ExtResource( 5 )]
 layer = 5
 
 [node name="Crate_Container" type="Node" parent="."]

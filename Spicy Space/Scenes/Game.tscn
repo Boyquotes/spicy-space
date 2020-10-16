@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/Enemies/MissilePower.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Enemies/SpaceBee.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Spaceship_w_Robots.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
@@ -28,7 +28,7 @@ current = true
 
 [node name="ScreenShake" parent="Camera2D" instance=ExtResource( 8 )]
 
-[node name="SpaceShip" parent="." instance=ExtResource( 9 )]
+[node name="Spaceship_w_Robots" parent="." instance=ExtResource( 9 )]
 
 [node name="StartGame_Timer" type="Timer" parent="."]
 wait_time = 0.5

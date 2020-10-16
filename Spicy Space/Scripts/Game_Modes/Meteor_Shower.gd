@@ -3,7 +3,6 @@ extends Node2D
 export(String, "Meteor Shower", "Dog Fight", "Random") var game_mode
 export (PackedScene) var asteroid
 export (PackedScene) var split_asteroid
-#export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
 export (int) var min_border_of_ast = 3
 export (int) var max_border_of_ast = 5
@@ -11,7 +10,8 @@ export (int) var max_border_of_ast = 5
 #Game
 onready var screen_shake = $Camera2D/ScreenShake
 #Spaceship
-onready var spaceship = $SpaceShip
+onready var spaceship_w_robots = $Spaceship_w_Robots
+onready var spaceship = $Spaceship_w_Robots/SpaceShip
 #Pitfalls
 onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Asteroid
@@ -19,13 +19,8 @@ onready var asteroid_timer = $Pitfalls/Asteroid/Asteroid_Timer
 onready var asteroid_con = $Pitfalls/Asteroid/Asteroid_Container
 #HUD
 onready var hud = $HUD
-#Uograde HUD
+#Upgrade HUD
 onready var upg_hud = $HUD/Upgrade_HUD
-#Robots Follow AI
-onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
-#Robots
-onready var health_robot = ResourceLoader.load("res://Scenes/Robots/HealthRobot.tscn")
-onready var shield_robot = ResourceLoader.load("res://Scenes/Robots/ShieldRobot.tscn")
 #Crate
 onready var crate_con = $Crate_Container
 onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
@@ -33,16 +28,13 @@ onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
 onready var mine_con = $Mine_Container
 onready var mine = ResourceLoader.load("res://Scenes/Mine.tscn")
 
-var ins_hr # health robot instance
-var ins_ar # ammo robot instance
-var ins_sr # shield robot instance
 var ins_ast # asteroid instance
 var ins_split_ast
 
 var border_of_ast = 4 #border for asteroid instance
 var number_of_ast = 1
 var ast_counter = 0 #asteroid counter
-var ms_control = false #check out to meteor shower
+var mode_control = false #check out to meteor shower
 var ast_border_control = false #check out to asteroid border
 var ast_split_pattern = {'big': 'med', 'med': null}
 
@@ -63,76 +55,28 @@ func _ready():
 	hud.wave_bar_max_value = int(border_of_ast * number_of_ast)
 	hud.wave_bar("wave_up")
 	
-	_robots_activate()
 	_signal_connect("ss")
 	_signal_connect("upg_sys")
 
 func _process(delta):
-	if ms_control:
-		_wave("checkout")
+	if mode_control:
+		_meteor_shower("checkout")
 	#automatic shoot system for spaceship
-	if ms_control:
+	if mode_control:
 		_ss_shoot_system(true)
 	else:
 		_ss_shoot_system(false)
-
-func _robots_activate():
-	#create follow ai for robots
-	var hr_follow_ai = follow_ai.instance()
-	var sr_follow_ai = follow_ai.instance()
-	add_child(hr_follow_ai)
-	add_child(sr_follow_ai)
-	hr_follow_ai.global_position = Vector2(spaceship.global_position.x - 15, spaceship.global_position.y - 35)
-	sr_follow_ai.global_position = Vector2(spaceship.global_position.x + 5, spaceship.global_position.y - 35)
-
-	#create health robot
-	ins_hr = health_robot.instance()
-	hr_follow_ai.add_child(ins_hr)
-	#set location for hr to folllow spaceship
-	hr_follow_ai.following_obj = spaceship.hr_followpoint
-	hr_follow_ai.target = spaceship.hr_followpoint.global_position
-
-	#create shield robot
-	ins_sr = shield_robot.instance()
-	sr_follow_ai.add_child(ins_sr)
-	#set location for sr to follow spaceship
-	sr_follow_ai.following_obj = spaceship.sr_followpoint
-	sr_follow_ai.target = spaceship.sr_followpoint.global_position
-	
-	# add robots to the spaceship
-	spaceship.robots.append(ins_hr)
-	spaceship.robots.append(ins_sr)
-	
-	_signal_connect("hr")
-	_signal_connect("sr")
 
 func _signal_connect(which_obj):
 	if which_obj == "ss": #space ship
 		# game over signal connect
 		spaceship.connect("game_over", self, "game_over")
-		#when spaceship grabbed crate signal connect
-		spaceship.connect("crate_grabbed", ins_hr, "robot_charge")
-		spaceship.connect("crate_grabbed", ins_sr, "robot_charge")
 		#warning signal
 		spaceship.connect("warning", hud, "warning")
 		#screen shake signal connect
 		spaceship.connect("ss_damage", self, "screen_shake")
-		#health robot situation signal control
-		spaceship.connect("hr_situation", ins_hr, "hr_situation")
 		#when spaceship grabbed mine signal connect
 		spaceship.connect("mine_grabbed", self, "mine_system")
-	if which_obj == "hr": #health robot
-		#spaceship damage signal connect
-		spaceship.connect("ss_damage", ins_hr, "damage_happened")
-		#spaceship explode signal connect
-		ins_hr.connect("ss_explode", spaceship, "ss_explode")
-	if which_obj == "sr": #shield robot
-		#spaceship damage signal connect
-		spaceship.connect("ss_damage", ins_sr, "damage_happened")
-		#change health robot situation according to shield robot situation signal connect
-		ins_sr.connect("sr_deactivated", ins_hr, "hr_situation")
-		#change shield situation according to shield robot situation signal connect
-		ins_sr.connect("sr_deactivated", spaceship, "ss_shield_deactivate")
 	if which_obj == "ast": #asteroid
 		#signal to crate control after asteroid exploded
 		ins_ast.connect("ast_exploded", self, "ast_content_control")
@@ -159,7 +103,7 @@ func _on_Asteroid_Timer_timeout():
 	asteroid_timer.wait_time = number_of_ast
 	if ast_counter < border_of_ast:
 		_asteroids("instance") #instance asteroid
-		ms_control = true
+		mode_control = true
 	else:
 		ast_border_control = true
 		ast_counter = 0 # reset asteroid counter
@@ -211,16 +155,16 @@ func spawn_split_ast(ast_size, ast_scale, pos, vel):
 	ins_split_ast.init(ast_size, ast_scale, pos, vel)
 	_signal_connect("split_ast")
 
-func _wave(con):
+func _meteor_shower(con):
 	if con == "checkout":
-		if ms_control && ast_border_control && asteroid_con.get_child_count() == 0:
+		if mode_control && ast_border_control && asteroid_con.get_child_count() == 0:
 			hud.presentation("meteor_shower", "completed")
-			ms_control = false
+			mode_control = false
 			ast_border_control = false
 			#increase wave value and save it
-			Global.wave += 1
-			UserDataManager.save_userdata("current_wave", int(Global.wave))
-			yield(get_tree().create_timer(5), "timeout")
+#			Global.wave += 1
+#			UserDataManager.save_userdata("current_wave", int(Global.wave))
+#			yield(get_tree().create_timer(5), "timeout")
 
 func ast_content_control(pos):
 	var content_possibility = rand_range(0, 100)
@@ -253,9 +197,9 @@ func mine_system(con):
 
 func upgrade_system(part):
 	if part == "ship_dur":
-		ins_hr.reload_robot(part)
+		spaceship_w_robots.ins_hr.reload_robot(part)
 	if part == "shield":
-		ins_sr.reload_robot(part)
+		spaceship_w_robots.ins_sr.reload_robot(part)
 	if part == "shoot_rate":
 		spaceship.reload_spaceship()
 

@@ -10,7 +10,6 @@ signal mine_grabbed(event)
 
 export var rot_speed = 2
 export var thrust = 300
-#export var max_vel = 200
 export var friction = 0.65
 
 onready var laser = preload("res://Scenes/Lasers/PlayerLaser.tscn")
@@ -33,7 +32,6 @@ var shoot_control = false
 
 func _ready():
 	reload_spaceship()
-#	prepare_laser()
 	randomize()
 	rot = rand_range(0, 90) #random rotation degree
 	screen_size = get_viewport_rect().size
@@ -59,25 +57,16 @@ func _ss_move_and_shoot(delta):
 	if shoot_control:
 		if shoot_timer.get_time_left() == 0 and explode_control == false:
 			_shoot()
-	
 	#move
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
-#		print("ship move")
-#	elif Input.is_action_pressed("ui_down"):
-#		acc = Vector2(thrust, 0).rotated(rot)
-##		print("ship move")
 	else:
 		acc = Vector2(0, 0)
-#		print("ship stopped")
-
 	if Input.is_action_pressed("ui_right"):
 		rot += rot_speed * delta
 #		print("ship move")
 	if Input.is_action_pressed("ui_left"):
 		rot -= rot_speed * delta
-#		print("ship move")
-	
 	_robots_mode("rotate") #rotate robots according to spaceship
 
 func _stay_on_screen(delta):
