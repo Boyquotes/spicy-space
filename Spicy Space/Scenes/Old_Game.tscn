@@ -1,34 +1,34 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/SplitAsteroid.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Enemies/CylonRaider.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Enemies/Speedy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemies/MissilePower.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Enemies/SpaceBee.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Spaceship_w_Robots.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SplitAsteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemies/CylonRaider.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Enemies/Speedy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemies/MissilePower.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/SpaceBee.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Old_Game.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Spaceship_w_Robots.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 839.586, -38.1318, 0, 0, 0, 0, 404.447, -46.1794, 0, 0, 0, 0, 404.447, -44.7403, 0, 0, 0, 0, 382.142, -47.6185, 0, 0, 0, 0, -45.5435, -46.4974, 0, 0, 0, 0, -32.2933, 796.215, 0, 0, 0, 0, 410.652, 789.365, 0, 0, 0, 0, 844.232, 787.649, 0, 0, 0, 0, 855.469, 364.259, 0, 0, 0, 0, 839.569, -33.2472 )
 }
 
-[node name="Game" type="Node2D"]
-script = ExtResource( 1 )
-asteroid = ExtResource( 2 )
-split_asteroid = ExtResource( 3 )
-enemies = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+[node name="Old_Game" type="Node2D"]
+script = ExtResource( 8 )
+asteroid = ExtResource( 1 )
+split_asteroid = ExtResource( 2 )
+enemies = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
 
-[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 8 )]
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 7 )]
 
-[node name="Spaceship_w_Robots" parent="." instance=ExtResource( 9 )]
+[node name="Spaceship_w_Robots" parent="." instance=ExtResource( 10 )]
 
 [node name="StartGame_Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -57,7 +57,7 @@ wait_time = 1.5
 
 [node name="Enemy_Container" type="Node" parent="Pitfalls/Enemy"]
 
-[node name="HUD" parent="." instance=ExtResource( 10 )]
+[node name="HUD" parent="." instance=ExtResource( 9 )]
 layer = 5
 
 [node name="Crate_Container" type="Node" parent="."]

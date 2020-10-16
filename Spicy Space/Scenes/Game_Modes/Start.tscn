@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Spaceship_w_Robots.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Game_Modes/Start.gd" type="Script" id=2]
 
 [node name="Start" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Spaceship_w_Robots" parent="." instance=ExtResource( 1 )]
