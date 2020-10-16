@@ -16,6 +16,9 @@ onready var fail_lbl = $GameOver_HUD/Fail_lbl
 onready var wave_hud = $Wave_HUD
 onready var wave_start_lbl = $Wave_HUD/Wave_Start_lbl
 onready var wave_completed_lbl = $Wave_HUD/Wave_Completed_lbl
+#Meteor Shower HUD
+onready var ms_start_lbl = $Meteor_Shower_HUD/Meteor_Shower_Start_lbl
+onready var ms_over_lbl = $Meteor_Shower_HUD/Meteor_Shower_Over_lbl
 #Dog Fight HUD
 onready var df_start_lbl = $DogFight_HUD/DF_Start_lbl
 onready var df_over_lbl = $DogFight_HUD/DF_Over_lbl
@@ -62,6 +65,10 @@ func presentation(action, con):
 			wave_start_lbl.visible = true
 			yield(get_tree().create_timer(3), "timeout")
 			wave_start_lbl.visible = false
+		if action == "meteor_shower":
+			ms_start_lbl.visible = true
+			yield(get_tree().create_timer(3), "timeout")
+			ms_start_lbl.visible = false
 		if action == "dog_fight":
 			df_start_lbl.visible = true
 			yield(get_tree().create_timer(3), "timeout")
@@ -72,6 +79,10 @@ func presentation(action, con):
 			wave_completed_lbl.visible = true
 			yield(get_tree().create_timer(3), "timeout")
 			wave_completed_lbl.visible = false
+		if action == "meteor_shower":
+			ms_over_lbl.visible = true
+			yield(get_tree().create_timer(3), "timeout")
+			ms_over_lbl.visible = false
 		if action == "dog_fight":
 			df_over_lbl.visible = true
 			yield(get_tree().create_timer(3), "timeout")

@@ -3,7 +3,7 @@ extends Node2D
 export(String, "Meteor Shower", "Dog Fight", "Random") var game_mode
 export (PackedScene) var asteroid
 export (PackedScene) var split_asteroid
-export (Array, PackedScene) var enemies
+#export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
 export (int) var min_border_of_ast = 3
 export (int) var max_border_of_ast = 5
@@ -17,8 +17,6 @@ onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Asteroid
 onready var asteroid_timer = $Pitfalls/Asteroid/Asteroid_Timer
 onready var asteroid_con = $Pitfalls/Asteroid/Asteroid_Container
-#Enemy
-onready var enemy_con = $Pitfalls/Enemy/Enemy_Container
 #HUD
 onready var hud = $HUD
 #Uograde HUD
@@ -27,7 +25,6 @@ onready var upg_hud = $HUD/Upgrade_HUD
 onready var follow_ai = ResourceLoader.load("res://Scenes/RobotFollowAI.tscn")
 #Robots
 onready var health_robot = ResourceLoader.load("res://Scenes/Robots/HealthRobot.tscn")
-#onready var ammo_robot = ResourceLoader.load("res://Scenes/Robots/AmmoRobot.tscn")
 onready var shield_robot = ResourceLoader.load("res://Scenes/Robots/ShieldRobot.tscn")
 #Crate
 onready var crate_con = $Crate_Container
@@ -41,16 +38,12 @@ var ins_ar # ammo robot instance
 var ins_sr # shield robot instance
 var ins_ast # asteroid instance
 var ins_split_ast
-var ins_enemy # enemy instance
 
 var border_of_ast = 4 #border for asteroid instance
 var number_of_ast = 1
 var ast_counter = 0 #asteroid counter
-var wave_control = false #check out to waves
+var ms_control = false #check out to meteor shower
 var ast_border_control = false #check out to asteroid border
-var df_control = false #check out dog fight happened or not
-var border_of_enemy = 1
-var enemy_counter = 0
 var ast_split_pattern = {'big': 'med', 'med': null}
 
 func _ready():
@@ -59,8 +52,6 @@ func _ready():
 		UserDataManager.reset_userdata()
 	#reset score after every new start
 	Global.score = 0
-	#reset wave after every new start
-#	Global.wave = 0
 	#get number of asteroid
 	if Global.wave < 25:
 		number_of_ast = Global.wave
@@ -71,21 +62,16 @@ func _ready():
 	#assign the border of asteroid to wave bar's max value
 	hud.wave_bar_max_value = int(border_of_ast * number_of_ast)
 	hud.wave_bar("wave_up")
-	#get number of enemy
-	border_of_enemy = UserDataManager.load_userdata("number_of_enemy")
 	
 	_robots_activate()
 	_signal_connect("ss")
 	_signal_connect("upg_sys")
 
 func _process(delta):
-	if wave_control:
+	if ms_control:
 		_wave("checkout")
-	if df_control:
-		_dog_fight("checkout")
-
 	#automatic shoot system for spaceship
-	if wave_control || df_control:
+	if ms_control:
 		_ss_shoot_system(true)
 	else:
 		_ss_shoot_system(false)
@@ -165,7 +151,7 @@ func _signal_connect(which_obj):
 
 func _on_StartGame_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
-	hud.presentation("wave", "started")
+	hud.presentation("meteor_shower", "started")
 	yield(get_tree().create_timer(5), "timeout")
 	_asteroids("start_timer")
 
@@ -173,7 +159,7 @@ func _on_Asteroid_Timer_timeout():
 	asteroid_timer.wait_time = number_of_ast
 	if ast_counter < border_of_ast:
 		_asteroids("instance") #instance asteroid
-		wave_control = true
+		ms_control = true
 	else:
 		ast_border_control = true
 		ast_counter = 0 # reset asteroid counter
@@ -225,81 +211,16 @@ func spawn_split_ast(ast_size, ast_scale, pos, vel):
 	ins_split_ast.init(ast_size, ast_scale, pos, vel)
 	_signal_connect("split_ast")
 
-func _enemies(con):
-	if con == "instance":
-		# Choose a random location on Path2D.
-		pitfalls_spawn_loc.set_offset(randi())
-		# Create a enemy instance and add it to the scene.
-		ins_enemy = enemies[randi() % enemies.size()].instance() #choose an enemy and instance it
-		enemy_con.add_child(ins_enemy)
-		enemy_counter += 1
-		# Set the asteroid's position to a random location.
-		ins_enemy.position = pitfalls_spawn_loc.global_position
-		#assign spaceship as target
-		ins_enemy.target_obj = spaceship
-
 func _wave(con):
 	if con == "checkout":
-		if wave_control && ast_border_control && asteroid_con.get_child_count() == 0:
-			hud.presentation("wave", "completed")
-			wave_control = false
+		if ms_control && ast_border_control && asteroid_con.get_child_count() == 0:
+			hud.presentation("meteor_shower", "completed")
+			ms_control = false
 			ast_border_control = false
 			#increase wave value and save it
 			Global.wave += 1
 			UserDataManager.save_userdata("current_wave", int(Global.wave))
 			yield(get_tree().create_timer(5), "timeout")
-			#dog fight or new wave
-			_dog_fight("possibility")
-
-	if con == "new_wave":
-		hud.presentation("wave", "started")
-		randomize()
-#		border_of_ast += randi()%Global.wave+1 #increase number of ast after every new wave
-		_asteroids("number_of_asteroid")
-		#assign the border of asteroid to wave bar's max value
-		hud.wave_bar_max_value = int(border_of_ast * number_of_ast)
-		hud.wave_bar("wave_up")
-		yield(get_tree().create_timer(5), "timeout")
-		_asteroids("start_timer")
-		_asteroids("instance")
-
-func _dog_fight(con):
-	if con == "possibility":
-		randomize()
-		var df_possibility = rand_range(0, 100) #dog fight's gonna happen or not ?
-#		print(df_possibility)
-		if df_possibility < 70:
-			hud.presentation("dog_fight", "started")
-			while (enemy_counter < border_of_enemy):
-				_enemies("instance")
-			df_control = true #dog fight happen
-		else:
-			df_control = false #dog fight doesn't happen
-			_wave("new_wave")
-
-	if con == "checkout":
-		if df_control && enemy_con.get_child_count() == 0:
-			df_control = false #dog fight over
-			enemy_counter = 0 #reset enemy counter
-			
-			randomize()
-			var noe_possibility = rand_range(0, 90) #number of enemy possibility
-#			print(noe_possibility)
-			if noe_possibility <= 45:
-				border_of_enemy += 1 #increase enemy number for present dog fight
-			elif noe_possibility > 45 && noe_possibility <= 75:
-				border_of_enemy += 0 #don't change enemy number for present dog fight
-			elif noe_possibility > 75:
-				if border_of_enemy > 3: #when number of enemy at least 4
-					border_of_enemy -= 1 #reduce enemy number for present dog fight
-				else:
-					border_of_enemy -= 0 #don't change enemy number for present dog fight
-#			print(border_of_enemy)
-			UserDataManager.save_userdata("number_of_enemy", border_of_enemy)
-
-			hud.presentation("dog_fight", "completed")
-			yield(get_tree().create_timer(5), "timeout")
-			_wave("new_wave")
 
 func ast_content_control(pos):
 	var content_possibility = rand_range(0, 100)
@@ -337,8 +258,6 @@ func upgrade_system(part):
 		ins_sr.reload_robot(part)
 	if part == "shoot_rate":
 		spaceship.reload_spaceship()
-#	if part == "laser_damage":
-#		spaceship.prepare_laser()
 
 func _ss_shoot_system(con): #spaceship shoot system
 	spaceship.shoot_control = con
