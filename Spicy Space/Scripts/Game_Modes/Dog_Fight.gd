@@ -68,4 +68,6 @@ func _dog_fight(con):
 			UserDataManager.save_userdata("number_of_enemy", border_of_enemy)
 			hud.presentation("dog_fight", "completed")
 			spaceship.shoot_control = false
+			yield(get_tree().create_timer(3), "timeout")
+			emit_signal("mode_completed")
 

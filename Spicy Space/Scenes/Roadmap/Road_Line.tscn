@@ -9,4 +9,5 @@ script = ExtResource( 1 )
 scale = Vector2( 1, 1.90541 )
 points = PoolVector2Array( 0, 0, 0, -64 )
 width = 5.0
-default_color = Color( 1, 1, 1, 1 )
+default_color = Color( 1, 1, 1, 0.352941 )
+[connection signal="visibility_changed" from="." to="." method="_on_Road_Line_visibility_changed"]

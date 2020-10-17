@@ -121,6 +121,8 @@ func _meteor_shower(con):
 			mode_control = false
 			ast_border_control = false
 			spaceship.shoot_control = false
+			yield(get_tree().create_timer(3), "timeout")
+			emit_signal("mode_completed")
 
 func ast_content_control(pos):
 	var content_possibility = rand_range(0, 100)

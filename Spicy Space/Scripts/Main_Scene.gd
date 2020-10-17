@@ -31,4 +31,9 @@ func prepare_game_mode(mode):
 	add_child(ins_game_mode)
 	ins_game_mode.spaceship = game.spaceship
 	ins_game_mode.hud = game.hud
+	ins_game_mode.connect("mode_completed", self, "go_back_to_roadmap")
+
+func go_back_to_roadmap():
+	game.visible = false
+	roadmap.visible = true
 

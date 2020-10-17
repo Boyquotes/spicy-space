@@ -9,6 +9,7 @@ game_mode = "random"
 [node name="Button" type="Button" parent="."]
 margin_right = 60.0
 margin_bottom = 60.0
+disabled = true
 text = "?"
 __meta__ = {
 "_edit_use_anchors_": false

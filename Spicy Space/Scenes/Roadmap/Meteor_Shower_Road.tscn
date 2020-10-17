@@ -9,6 +9,7 @@ game_mode = "meteor shower"
 [node name="Button" type="Button" parent="."]
 margin_right = 60.0
 margin_bottom = 60.0
+disabled = true
 text = "Meteor Shower"
 __meta__ = {
 "_edit_use_anchors_": false
