@@ -10,12 +10,12 @@ onready var enemy_con = $Pitfalls/Enemy/Enemy_Container
 
 var ins_enemy # enemy instance
 var mode_control = false #check out dog fight happened or not
-var border_of_enemy = 1
+var limit_for_enemy = 1
 var enemy_counter = 0
 
-func _ready():
-	#get number of enemy
-	border_of_enemy = UserDataManager.load_userdata("number_of_enemy")
+#func _ready():
+#	#get number of enemy
+#	limit_for_enemy = UserDataManager.load_userdata("number_of_enemy")
 
 func _process(delta):
 	if mode_control:
@@ -45,29 +45,16 @@ func _enemies(con):
 func _dog_fight(con):
 	if con == "start":
 		spaceship.shoot_control = true
-		while (enemy_counter < border_of_enemy):
+		while (enemy_counter < limit_for_enemy):
 			_enemies("instance")
 		mode_control = true #dog fight happen
 	if con == "checkout":
 		if mode_control && enemy_con.get_child_count() == 0:
 			mode_control = false #dog fight over
 			enemy_counter = 0 #reset enemy counter
-			randomize()
-			var noe_possibility = rand_range(0, 90) #number of enemy possibility
-#			print(noe_possibility)
-			if noe_possibility <= 45:
-				border_of_enemy += 1 #increase enemy number for present dog fight
-			elif noe_possibility > 45 && noe_possibility <= 75:
-				border_of_enemy += 0 #don't change enemy number for present dog fight
-			elif noe_possibility > 75:
-				if border_of_enemy > 3: #when number of enemy at least 4
-					border_of_enemy -= 1 #reduce enemy number for present dog fight
-				else:
-					border_of_enemy -= 0 #don't change enemy number for present dog fight
-#			print(border_of_enemy)
-			UserDataManager.save_userdata("number_of_enemy", border_of_enemy)
 			hud.presentation("dog_fight", "completed")
 			spaceship.shoot_control = false
 			yield(get_tree().create_timer(3), "timeout")
+#			limit_for_enemy += 1 #increase number of enemies for next dog fight
 			emit_signal("mode_completed")
 

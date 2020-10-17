@@ -263,6 +263,7 @@ margin_bottom = 320.0
 text = "Continue Game"
 
 [node name="UpgradeShip_btn" type="Button" parent="Paused_HUD"]
+visible = false
 margin_left = 242.489
 margin_top = 340.0
 margin_right = 400.489
@@ -389,6 +390,7 @@ text = "x 0 for Upgrade"
 icon = ExtResource( 12 )
 
 [node name="Laser" type="Node2D" parent="Upgrade_HUD"]
+visible = false
 position = Vector2( 140, 196 )
 
 [node name="Laser_lbl" type="Label" parent="Upgrade_HUD/Laser"]

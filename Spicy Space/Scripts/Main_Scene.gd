@@ -9,6 +9,8 @@ onready var game = $Game
 #roadmap
 onready var roadmap = $Roadmap
 
+var ins_game_mode
+
 func _ready():
 	#reset highscore
 	if reset_userdata == true:
@@ -19,7 +21,6 @@ func _ready():
 func prepare_game_mode(mode):
 	roadmap.visible = false
 	game.visible = true
-	var ins_game_mode
 	if mode == "start":
 		ins_game_mode = start_mode.instance()
 	elif mode == "meteor shower":
@@ -36,4 +37,5 @@ func prepare_game_mode(mode):
 func go_back_to_roadmap():
 	game.visible = false
 	roadmap.visible = true
+	ins_game_mode.call_deferred("free")
 

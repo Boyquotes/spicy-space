@@ -29,10 +29,10 @@ func _ready():
 	#rotation
 	rot_speed = rand_range(-1.5, 1.5)
 	#asteroid durability
-	if Global.wave > 1:
-		ast_dur = int(rand_range(Global.wave/2, Global.wave+1)) #assign durability
-	else:
-		ast_dur = randi()%Global.wave+1
+#	if Global.wave > 1:
+#		ast_dur = int(rand_range(Global.wave/2, Global.wave+1)) #assign durability
+#	else:
+#		ast_dur = randi()%Global.wave+1
 #	print("asteroid durability: " + str(ast_dur))
 	#screen border
 	screen_size = get_viewport_rect().size

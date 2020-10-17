@@ -14,40 +14,77 @@
 position = Vector2( 293.744, 523.257 )
 
 [node name="Dog_Fight_Road" parent="Roads" instance=ExtResource( 2 )]
-position = Vector2( 210.905, 389.773 )
+position = Vector2( 159.993, 430.785 )
 
 [node name="Meteor_Shower_Road" parent="Roads" instance=ExtResource( 3 )]
-position = Vector2( 329.532, 393.778 )
+position = Vector2( 414.385, 440.447 )
 
 [node name="Random_Road" parent="Roads" instance=ExtResource( 4 )]
-position = Vector2( 277.452, 250.691 )
+position = Vector2( 283.109, 341.201 )
+
+[node name="Random_Road2" parent="Roads" instance=ExtResource( 4 )]
+position = Vector2( 192.292, 199.93 )
+
+[node name="Meteor_Shower_Road2" parent="Roads" instance=ExtResource( 3 )]
+position = Vector2( 374.022, 231.905 )
+
+[node name="Dog_Fight_Road2" parent="Roads" instance=ExtResource( 2 )]
+position = Vector2( 291.515, 114.001 )
 
 [node name="Road_Lines" type="Node2D" parent="."]
 
 [node name="Road_Line" parent="Road_Lines" instance=ExtResource( 6 )]
 position = Vector2( 292.742, 521.845 )
-rotation = -0.333951
+rotation = -0.932384
 scale = Vector2( 1, 0.61881 )
 start_road = NodePath("../../Roads/Start_Road")
 end_road = NodePath("../../Roads/Dog_Fight_Road")
 
 [node name="Road_Line2" parent="Road_Lines" instance=ExtResource( 6 )]
 position = Vector2( 352.139, 523.259 )
-rotation = 0.127715
-scale = Vector2( 1, 0.543473 )
+rotation = 0.889668
+scale = Vector2( 0.830074, 0.650264 )
 start_road = NodePath("../../Roads/Start_Road")
 end_road = NodePath("../../Roads/Meteor_Shower_Road")
 
 [node name="Road_Line3" parent="Road_Lines" instance=ExtResource( 6 )]
-position = Vector2( 270.115, 384.666 )
-rotation = 0.127715
-scale = Vector2( 1, 0.543473 )
+position = Vector2( 202.233, 429.921 )
+rotation = 1.01393
+scale = Vector2( 1, 0.772281 )
 start_road = NodePath("../../Roads/Dog_Fight_Road")
 end_road = NodePath("../../Roads/Random_Road")
 
 [node name="Road_Line4" parent="Road_Lines" instance=ExtResource( 6 )]
-position = Vector2( 357.796, 390.323 )
-rotation = -0.333951
-scale = Vector2( 1, 0.61881 )
+position = Vector2( 458.626, 435.845 )
+rotation = -1.0213
+scale = Vector2( 1, 1.06398 )
 start_road = NodePath("../../Roads/Meteor_Shower_Road")
 end_road = NodePath("../../Roads/Random_Road")
+
+[node name="Road_Line5" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 283.72, 336.62 )
+rotation = -0.686015
+scale = Vector2( 1, 0.788143 )
+start_road = NodePath("../../Roads/Random_Road")
+end_road = NodePath("../../Roads/Random_Road2")
+
+[node name="Road_Line6" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 343.503, 339.104 )
+rotation = 1.01393
+scale = Vector2( 1, 0.772281 )
+start_road = NodePath("../../Roads/Random_Road")
+end_road = NodePath("../../Roads/Meteor_Shower_Road2")
+
+[node name="Road_Line7" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 213.396, 194.854 )
+rotation = 1.01393
+scale = Vector2( 1, 0.772281 )
+start_road = NodePath("../../Roads/Random_Road2")
+end_road = NodePath("../../Roads/Dog_Fight_Road2")
+
+[node name="Road_Line8" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 429.384, 224.897 )
+rotation = -0.686015
+scale = Vector2( 1, 0.788143 )
+start_road = NodePath("../../Roads/Meteor_Shower_Road2")
+end_road = NodePath("../../Roads/Dog_Fight_Road2")
