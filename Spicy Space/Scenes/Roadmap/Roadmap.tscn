@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Roadmap/Start_Road.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Roadmap/Dog_Fight_Road.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Roadmap/Meteor_Shower_Road.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Roadmap/Random_Road.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Roadmap/Road_Line.tscn" type="PackedScene" id=6]
+
+[node name="Roadmap" type="Node2D"]
+
+[node name="Roads" type="Node2D" parent="."]
+
+[node name="Start_Road" parent="Roads" instance=ExtResource( 1 )]
+position = Vector2( 293.744, 523.257 )
+
+[node name="Dog_Fight_Road" parent="Roads" instance=ExtResource( 2 )]
+position = Vector2( 210.905, 389.773 )
+
+[node name="Meteor_Shower_Road" parent="Roads" instance=ExtResource( 3 )]
+position = Vector2( 329.532, 393.778 )
+
+[node name="Random_Road" parent="Roads" instance=ExtResource( 4 )]
+position = Vector2( 277.452, 250.691 )
+
+[node name="Road_Lines" type="Node2D" parent="."]
+
+[node name="Road_Line" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 292.742, 521.845 )
+rotation = -0.333951
+scale = Vector2( 1, 0.61881 )
+start_road = NodePath("../../Roads/Start_Road")
+end_road = NodePath("../../Roads/Dog_Fight_Road")
+
+[node name="Road_Line2" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 352.139, 523.259 )
+rotation = 0.127715
+scale = Vector2( 1, 0.543473 )
+start_road = NodePath("../../Roads/Start_Road")
+end_road = NodePath("../../Roads/Meteor_Shower_Road")
+
+[node name="Road_Line3" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 270.115, 384.666 )
+rotation = 0.127715
+scale = Vector2( 1, 0.543473 )
+start_road = NodePath("../../Roads/Dog_Fight_Road")
+end_road = NodePath("../../Roads/Random_Road")
+
+[node name="Road_Line4" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 357.796, 390.323 )
+rotation = -0.333951
+scale = Vector2( 1, 0.61881 )
+start_road = NodePath("../../Roads/Meteor_Shower_Road")
+end_road = NodePath("../../Roads/Random_Road")

@@ -1,17 +1,22 @@
 extends Node2D
 
 export (bool) var reset_userdata = false
+export(PackedScene) var start_mode
 export(Array, PackedScene) var game_modes
 
 #Game
-onready var screen_shake = $Camera2D/ScreenShake
+onready var game = $Game
+#screen shake
+onready var screen_shake = $Game/Camera2D/ScreenShake
 #Spaceship
-onready var spaceship_w_robots = $Spaceship_w_Robots
-onready var spaceship = $Spaceship_w_Robots/SpaceShip
+onready var spaceship_w_robots = $Game/Spaceship_w_Robots
+onready var spaceship = $Game/Spaceship_w_Robots/SpaceShip
 #HUD
-onready var hud = $HUD
+onready var hud = $Game/HUD
 #Upgrade HUD
-onready var upg_hud = $HUD/Upgrade_HUD
+onready var upg_hud = $Game/HUD/Upgrade_HUD
+#roadmap
+onready var roadmap = $Roadmap
 
 func _ready():
 	#reset highscore
@@ -23,10 +28,20 @@ func _ready():
 	_signal_connect("ss")
 	_signal_connect("upg_sys")
 	
-	_prepare_game_mode()
+#	_prepare_game_mode()
 
-func _prepare_game_mode():
-	var ins_game_mode = game_modes[randi()% game_modes.size()].instance()
+func prepare_game_mode(mode):
+	roadmap.visible = false
+	game.visible = true
+	var ins_game_mode
+	if mode == "start":
+		ins_game_mode = start_mode.instance()
+	elif mode == "meteor shower":
+		ins_game_mode = game_modes[0].instance()
+	elif mode == "dog fight":
+		ins_game_mode = game_modes[1].instance()
+	elif mode == "random":
+		ins_game_mode = game_modes[randi()% game_modes.size()].instance()
 	add_child(ins_game_mode)
 	ins_game_mode.spaceship = spaceship
 	ins_game_mode.hud = hud
