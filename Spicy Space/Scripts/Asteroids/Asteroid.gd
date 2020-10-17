@@ -4,8 +4,8 @@ signal ast_exploded(pos)
 signal ast_split(ast_size, ast_scale, pos, vel, hit_vel)
 
 export (int) var number_of_ast = 5
-export (int) var min_speed = 30
-export (int) var max_speed = 250
+export (int) var min_speed = 50
+export (int) var max_speed = 350
 export (float) var min_scale = 0.6
 export (float) var max_scale = 2
 
