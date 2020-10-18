@@ -4,6 +4,7 @@
 [ext_resource path="res://Scripts/Spaceship_w_Robots.gd" type="Script" id=2]
 
 [node name="Spaceship_w_Robots" type="Node2D"]
+z_index = 1
 script = ExtResource( 2 )
 
 [node name="SpaceShip" parent="." instance=ExtResource( 1 )]

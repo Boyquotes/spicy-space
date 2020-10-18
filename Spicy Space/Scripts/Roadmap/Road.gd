@@ -5,6 +5,10 @@ export(String, "null", "start", "random", "meteor shower", "dog fight", "repairs
 
 onready var button = $Button
 
+func _ready():
+	if mode_completed:
+		button.modulate = Color.green
+
 func _on_Button_pressed():
 	if !mode_completed:
 		mode_completed = true

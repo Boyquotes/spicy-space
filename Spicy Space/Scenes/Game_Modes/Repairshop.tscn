@@ -28,6 +28,7 @@ size = 18
 font_data = ExtResource( 2 )
 
 [node name="Repairshop" type="Node2D"]
+z_index = 5
 script = ExtResource( 1 )
 
 [node name="Upgrade_HUD" type="Node2D" parent="."]
@@ -41,6 +42,9 @@ margin_left = 60.0
 margin_top = 80.0
 margin_right = 580.0
 margin_bottom = 560.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="Upgrade_HUD"]
 margin_left = 220.0
