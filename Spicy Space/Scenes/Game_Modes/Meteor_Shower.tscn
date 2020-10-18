@@ -13,7 +13,6 @@ _data = {
 script = ExtResource( 6 )
 asteroid = ExtResource( 1 )
 split_asteroid = ExtResource( 2 )
-max_border_of_ast = 15
 
 [node name="Pitfalls" type="Node" parent="."]
 

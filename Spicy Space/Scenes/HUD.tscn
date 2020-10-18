@@ -1,16 +1,10 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes/WaveBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Textures/HUD/restart_button1.png" type="Texture" id=4]
 [ext_resource path="res://Textures/HUD/restart_button2.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/UpgradeSystem.gd" type="Script" id=6]
-[ext_resource path="res://Textures/spaceship.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/Engine.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Shield.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Robots/HealthRobot.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Robots/ShieldRobot.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Textures/mine.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
@@ -54,23 +48,6 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=11]
 size = 45
 outline_size = 1
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=12]
-size = 45
-outline_size = 1
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=13]
-size = 25
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 18
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=15]
-size = 18
 font_data = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
@@ -270,160 +247,9 @@ margin_right = 400.489
 margin_bottom = 380.0
 text = "Upgrade Ship"
 
-[node name="Upgrade_HUD" type="Node2D" parent="."]
-pause_mode = 2
-visible = false
-script = ExtResource( 6 )
-
-[node name="Panel" type="Panel" parent="Upgrade_HUD"]
-modulate = Color( 0.384314, 0, 0.643137, 1 )
-show_behind_parent = true
-margin_left = 60.0
-margin_top = 80.0
-margin_right = 580.0
-margin_bottom = 560.0
-
-[node name="Title" type="Label" parent="Upgrade_HUD"]
-margin_left = 220.0
-margin_top = 100.0
-margin_right = 418.0
-margin_bottom = 146.0
-custom_fonts/font = SubResource( 12 )
-text = "Upgrade Ship"
-align = 1
-valign = 1
-
-[node name="SpaceShip" type="Sprite" parent="Upgrade_HUD"]
-position = Vector2( 320, 244 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 7 )
-
-[node name="Engine" parent="Upgrade_HUD/SpaceShip" instance=ExtResource( 8 )]
-position = Vector2( 0.0463257, 14.0268 )
-scale = Vector2( 0.5, 0.75 )
-
-[node name="Shield" parent="Upgrade_HUD/SpaceShip" instance=ExtResource( 9 )]
-position = Vector2( 0.475014, 2.02682 )
-scale = Vector2( 1.50325, 1.5 )
-
-[node name="HealthRobot" parent="Upgrade_HUD/SpaceShip" instance=ExtResource( 10 )]
-self_modulate = Color( 1, 1, 1, 1 )
-margin_left = -19.525
-margin_top = 30.7125
-margin_right = 12.475
-margin_bottom = 62.7125
-
-[node name="ShieldRobot" parent="Upgrade_HUD/SpaceShip" instance=ExtResource( 11 )]
-self_modulate = Color( 1, 1, 1, 1 )
-margin_left = 4.47501
-margin_top = 30.7125
-margin_right = 36.475
-margin_bottom = 62.7125
-
-[node name="Durability" type="Node2D" parent="Upgrade_HUD"]
-position = Vector2( 140, 360 )
-
-[node name="Durability_lbl" type="Label" parent="Upgrade_HUD/Durability"]
-margin_left = -60.0
-margin_top = -40.0
-margin_right = 80.0
-margin_bottom = 4.0
-custom_fonts/font = SubResource( 13 )
-text = "Durability: 0"
-align = 1
-valign = 1
-
-[node name="Durability_btn" type="Button" parent="Upgrade_HUD/Durability"]
-margin_left = -59.0
-margin_top = -4.0
-margin_right = 94.0
-margin_bottom = 34.0
-custom_fonts/font = SubResource( 14 )
-disabled = true
-text = "x 0 for Upgrade"
-icon = ExtResource( 12 )
-
-[node name="Shield" type="Node2D" parent="Upgrade_HUD"]
-position = Vector2( 480, 360 )
-
-[node name="Shield_lbl" type="Label" parent="Upgrade_HUD/Shield"]
-margin_left = -60.0
-margin_top = -40.0
-margin_right = 80.0
-margin_bottom = 4.0
-custom_fonts/font = SubResource( 13 )
-text = "Shield: 0"
-align = 1
-valign = 1
-
-[node name="Shield_btn" type="Button" parent="Upgrade_HUD/Shield"]
-margin_left = -73.4067
-margin_top = -4.0
-margin_right = 78.5933
-margin_bottom = 34.0
-custom_fonts/font = SubResource( 15 )
-disabled = true
-text = "x 0 for Upgrade"
-icon = ExtResource( 12 )
-
-[node name="Shoot" type="Node2D" parent="Upgrade_HUD"]
-position = Vector2( 480, 196 )
-
-[node name="Shoot_lbl" type="Label" parent="Upgrade_HUD/Shoot"]
-margin_left = -60.0
-margin_top = -40.0
-margin_right = 80.0
-margin_bottom = 4.0
-custom_fonts/font = SubResource( 13 )
-text = "Shoot Rate: 0"
-align = 1
-valign = 1
-
-[node name="Shoot_btn" type="Button" parent="Upgrade_HUD/Shoot"]
-margin_left = -73.4067
-margin_top = -4.0
-margin_right = 78.5933
-margin_bottom = 34.0
-custom_fonts/font = SubResource( 15 )
-disabled = true
-text = "x 0 for Upgrade"
-icon = ExtResource( 12 )
-
-[node name="Laser" type="Node2D" parent="Upgrade_HUD"]
-visible = false
-position = Vector2( 140, 196 )
-
-[node name="Laser_lbl" type="Label" parent="Upgrade_HUD/Laser"]
-margin_left = -59.0
-margin_top = -40.0
-margin_right = 81.0
-margin_bottom = 4.0
-custom_fonts/font = SubResource( 13 )
-text = "Laser Damage: 0"
-align = 1
-valign = 1
-
-[node name="Laser_btn" type="Button" parent="Upgrade_HUD/Laser"]
-margin_left = -59.0
-margin_top = -4.0
-margin_right = 93.0
-margin_bottom = 34.0
-custom_fonts/font = SubResource( 15 )
-disabled = true
-text = "x 0 for Upgrade"
-icon = ExtResource( 12 )
-
-[node name="Continue_btn" type="Button" parent="Upgrade_HUD"]
-margin_left = 240.0
-margin_top = 480.0
-margin_right = 420.0
-margin_bottom = 520.0
-text = "Continue Game"
-
 [node name="Info_HUD" type="Node2D" parent="."]
 
 [node name="Mine_info" type="Node2D" parent="Info_HUD"]
-visible = false
 position = Vector2( 340, 60 )
 
 [node name="mine_sprite" type="Sprite" parent="Info_HUD/Mine_info"]
@@ -445,9 +271,3 @@ __meta__ = {
 [connection signal="pressed" from="GameOver_HUD/Restart_btn" to="." method="_on_Restart_btn_pressed"]
 [connection signal="pressed" from="Paused_HUD/Continue_btn" to="." method="_on_Continue_btn_pressed"]
 [connection signal="pressed" from="Paused_HUD/UpgradeShip_btn" to="." method="_on_UpgradeShip_btn_pressed"]
-[connection signal="visibility_changed" from="Upgrade_HUD" to="Upgrade_HUD" method="_on_Upgrade_HUD_visibility_changed"]
-[connection signal="pressed" from="Upgrade_HUD/Durability/Durability_btn" to="Upgrade_HUD" method="_on_Durability_btn_pressed"]
-[connection signal="pressed" from="Upgrade_HUD/Shield/Shield_btn" to="Upgrade_HUD" method="_on_Shield_btn_pressed"]
-[connection signal="pressed" from="Upgrade_HUD/Shoot/Shoot_btn" to="Upgrade_HUD" method="_on_Shoot_btn_pressed"]
-[connection signal="pressed" from="Upgrade_HUD/Laser/Laser_btn" to="Upgrade_HUD" method="_on_Laser_btn_pressed"]
-[connection signal="pressed" from="Upgrade_HUD/Continue_btn" to="." method="_on_Continue_btn_pressed"]

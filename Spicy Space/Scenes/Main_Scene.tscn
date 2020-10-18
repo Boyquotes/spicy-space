@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Roadmap/Roadmap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
@@ -6,10 +6,12 @@
 [ext_resource path="res://Scenes/Game_Modes/Start.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Game_Modes/Meteor_Shower.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Game_Modes/Dog_Fight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Game_Modes/Repairshop.tscn" type="PackedScene" id=7]
 
 [node name="Main_Scene" type="Node2D"]
 script = ExtResource( 3 )
 start_mode = ExtResource( 4 )
+repairshop_mode = ExtResource( 7 )
 game_modes = [ ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Game" parent="." instance=ExtResource( 2 )]

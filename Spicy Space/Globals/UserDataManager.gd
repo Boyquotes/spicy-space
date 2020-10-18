@@ -6,7 +6,7 @@ var data ={
 	#game datas
 	highscore = 0,
 #	bestwave = 0,
-	mine = 0,
+	mine = 5000,
 	current_wave = 1,
 	number_of_enemy = 1,
 	#ship datas

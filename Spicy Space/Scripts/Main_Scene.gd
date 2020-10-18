@@ -2,6 +2,7 @@ extends Node2D
 
 export (bool) var reset_userdata = false
 export(PackedScene) var start_mode
+export(PackedScene) var repairshop_mode
 export(Array, PackedScene) var game_modes
 
 #Game
@@ -23,16 +24,19 @@ func prepare_game_mode(mode):
 	game.visible = true
 	if mode == "start":
 		ins_game_mode = start_mode.instance()
+	elif mode == "repairshop":
+		ins_game_mode = repairshop_mode.instance()
 	elif mode == "meteor shower":
 		ins_game_mode = game_modes[0].instance()
 	elif mode == "dog fight":
 		ins_game_mode = game_modes[1].instance()
 	elif mode == "random":
 		ins_game_mode = game_modes[randi()% game_modes.size()].instance()
-	add_child(ins_game_mode)
+	ins_game_mode.spaceship_w_robots = game.spaceship_w_robots
 	ins_game_mode.spaceship = game.spaceship
 	ins_game_mode.hud = game.hud
 	ins_game_mode.connect("mode_completed", self, "go_back_to_roadmap")
+	add_child(ins_game_mode)
 
 func go_back_to_roadmap():
 	game.visible = false

@@ -10,7 +10,6 @@ onready var next_wave_text = $Game_HUD/WaveBar/Next_Wave_Lvl/wave_lvl_sprite/wav
 #Game Over HUD
 onready var gameover_hud = $GameOver_HUD
 onready var highscore_lbl = $GameOver_HUD/HighScore_lbl
-#onready var bestwave_lbl = $GameOver_HUD/BestWave_lbl
 onready var fail_lbl = $GameOver_HUD/Fail_lbl
 #Wave HUD
 onready var wave_hud = $Wave_HUD
@@ -26,8 +25,6 @@ onready var df_over_lbl = $DogFight_HUD/DF_Over_lbl
 onready var out_of_ammo_lbl = $Warning_HUD/Out_of_Ammo_lbl
 #Paused HUD
 onready var paused_hud = $Paused_HUD
-#Upgrade HUD
-onready var upgrade_hud = $Upgrade_HUD
 #Info HUD
 onready var mine_lbl = $Info_HUD/Mine_info/Mine_lbl
 
@@ -132,8 +129,3 @@ func _on_Continue_btn_pressed():
 	paused_hud.visible = false
 	game_hud.visible = true
 	get_tree().paused = false
-	upgrade_hud.visible = false
-
-func _on_UpgradeShip_btn_pressed():
-	paused_hud.visible = false
-	upgrade_hud.visible = true
