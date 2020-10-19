@@ -10,9 +10,6 @@ onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Asteroid
 onready var asteroid_timer = $Pitfalls/Asteroid/Asteroid_Timer
 onready var asteroid_con = $Pitfalls/Asteroid/Asteroid_Container
-#Crate
-onready var crate_con = $Crate_Container
-onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
 #Mine
 onready var mine_con = $Mine_Container
 onready var mine = ResourceLoader.load("res://Scenes/Mine.tscn")
@@ -41,14 +38,14 @@ func _process(delta):
 
 func _signal_connect(which_obj):
 	if which_obj == "ast": #asteroid
-		#signal to crate control after asteroid exploded
-		ins_ast.connect("ast_exploded", self, "ast_content_control")
-		#signal to split asteroid signal control
+		#signal to drop mine after asteroid exploded
+		ins_ast.connect("ast_exploded", self, "drop_mine")
+		#signal to split asteroid
 		ins_ast.connect("ast_split", self, "ast_split")
 	if which_obj == "split_ast":
-		#signal to crate control after asteroid exploded
-		ins_split_ast.connect("ast_exploded", self, "ast_content_control")
-		#signal to split asteroid signal control
+		#signal to drop mine after asteroid exploded
+		ins_split_ast.connect("ast_exploded", self, "drop_mine")
+		#signal to split asteroid
 		ins_split_ast.connect("ast_split", self, "ast_split")
 
 func _on_StartMode_Timer_timeout():
@@ -124,15 +121,10 @@ func _meteor_shower(con):
 			yield(get_tree().create_timer(3), "timeout")
 			emit_signal("mode_completed")
 
-func ast_content_control(pos):
+func drop_mine(pos):
 	var content_possibility = rand_range(0, 100)
-	#crate
-	if content_possibility <= 15: 
-		var ins_crate = crate.instance()
-		crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
-		ins_crate.position = pos
-	#mine
-	elif content_possibility > 15 && content_possibility < 50: 
+	#drop mine
+	if content_possibility < 50: 
 		var ins_mine = mine.instance()
 		mine_con.call_deferred("add_child", ins_mine) # !flushed_queries error fixed with this line
 		ins_mine.position = pos

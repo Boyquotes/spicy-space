@@ -12,6 +12,7 @@ func _ready():
 func _on_Button_pressed():
 	if !mode_completed:
 		mode_completed = true
+		button.modulate = Color.green
 		get_tree().get_root().get_node("Main_Scene").prepare_game_mode(game_mode)
 	else:
 		print("this level already completed")

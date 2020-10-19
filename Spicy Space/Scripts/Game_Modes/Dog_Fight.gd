@@ -7,6 +7,9 @@ export (bool) var reset_userdata = false
 onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Enemy
 onready var enemy_con = $Pitfalls/Enemy/Enemy_Container
+#Crate
+onready var crate_con = $Crate_Container
+onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
 
 var ins_enemy # enemy instance
 var mode_control = false #check out dog fight happened or not
@@ -20,6 +23,10 @@ var enemy_counter = 0
 func _process(delta):
 	if mode_control:
 		_dog_fight("checkout")
+
+func _signal_connect():
+	#signal connect to drop crate after enemyship exploded
+	ins_enemy.connect("enemyship_exploded", self, "drop_crate")
 
 func _on_StartMode_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
@@ -41,6 +48,8 @@ func _enemies(con):
 		ins_enemy.target_obj = spaceship
 		#start dog fight
 		_dog_fight("start")
+		#signal connect for instanced enemyships
+		_signal_connect()
 
 func _dog_fight(con):
 	if con == "start":
@@ -58,3 +67,13 @@ func _dog_fight(con):
 #			limit_for_enemy += 1 #increase number of enemies for next dog fight
 			emit_signal("mode_completed")
 
+func drop_crate(pos):
+	var content_possibility = rand_range(0, 100)
+	#drop crate
+	if content_possibility < 50: 
+		var ins_crate = crate.instance()
+		crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
+		ins_crate.position = pos
+	#nothing
+	else: 
+		pass

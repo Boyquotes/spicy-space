@@ -23,6 +23,5 @@ texture = SubResource( 1 )
 
 [node name="crate_coll" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
 [connection signal="area_entered" from="." to="." method="_on_Crate_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Crate_body_entered"]

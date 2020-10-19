@@ -1,5 +1,7 @@
 extends Area2D
 
+signal enemyship_exploded(pos)
+
 export (float) var speed = 2.1
 export (float) var health = 100
 #export (float) var received_damage = 50
@@ -108,5 +110,6 @@ func _get_damage(area, damage_value):
 	area.queue_free()
 
 func _explode():
+	emit_signal("enemyship_exploded", self.position)
 	call_deferred("free")
 	Global.score += Global.wave * 5 #increase score

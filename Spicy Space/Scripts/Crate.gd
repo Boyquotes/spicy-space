@@ -12,7 +12,7 @@ var rot_dir = 1
 
 func _ready():
 	set_physics_process(true)
-	_choose_crate()
+	_random_crate()
 	_rot_dir() # choose rotate direction
 	
 
@@ -28,7 +28,7 @@ func _rot_dir():
 	var rot_dir_chance = rand_range(0, 100)
 	rot_dir = 1 if rot_dir_chance < 50 else -1
 
-func _choose_crate():
+func _random_crate():
 	randomize()
 	choosen_crate = CRATES[randi() % CRATES.size()]
 	match choosen_crate:
