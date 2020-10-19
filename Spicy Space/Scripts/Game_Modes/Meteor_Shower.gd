@@ -118,7 +118,7 @@ func _meteor_shower(con):
 			mode_control = false
 			ast_border_control = false
 			spaceship.shoot_control = false
-			yield(get_tree().create_timer(3), "timeout")
+			yield(get_tree().create_timer(15), "timeout")
 			emit_signal("mode_completed")
 
 func drop_mine(pos):

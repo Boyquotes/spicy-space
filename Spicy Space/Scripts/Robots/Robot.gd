@@ -19,6 +19,12 @@ func rotate_robot():
 func explode_robot():
 	self.visible = false
 
+#does robot need charge or not?
+func robot_charge_control():
+	if self.value == self.max_value:
+		return false
+	return true
+
 func robot_charge(which_crate):
 	if which_crate == "health_crate" && self.is_in_group("health_robot"):
 		self.value += self.max_value / 10

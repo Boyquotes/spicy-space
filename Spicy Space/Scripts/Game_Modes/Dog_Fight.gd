@@ -13,7 +13,7 @@ onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
 
 var ins_enemy # enemy instance
 var mode_control = false #check out dog fight happened or not
-var limit_for_enemy = 1
+var limit_for_enemy = 2
 var enemy_counter = 0
 
 #func _ready():
@@ -23,10 +23,6 @@ var enemy_counter = 0
 func _process(delta):
 	if mode_control:
 		_dog_fight("checkout")
-
-func _signal_connect():
-	#signal connect to drop crate after enemyship exploded
-	ins_enemy.connect("enemyship_exploded", self, "drop_crate")
 
 func _on_StartMode_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
@@ -46,10 +42,10 @@ func _enemies(con):
 		ins_enemy.position = pitfalls_spawn_loc.global_position
 		#assign spaceship as target
 		ins_enemy.target_obj = spaceship
+		#signal connect to drop crate after enemyship exploded
+		ins_enemy.connect("enemyship_exploded", self, "drop_crate")
 		#start dog fight
 		_dog_fight("start")
-		#signal connect for instanced enemyships
-		_signal_connect()
 
 func _dog_fight(con):
 	if con == "start":
@@ -63,7 +59,7 @@ func _dog_fight(con):
 			enemy_counter = 0 #reset enemy counter
 			hud.presentation("dog_fight", "completed")
 			spaceship.shoot_control = false
-			yield(get_tree().create_timer(3), "timeout")
+			yield(get_tree().create_timer(15), "timeout")
 #			limit_for_enemy += 1 #increase number of enemies for next dog fight
 			emit_signal("mode_completed")
 
