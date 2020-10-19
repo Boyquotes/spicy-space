@@ -4,6 +4,7 @@ export (bool) var reset_userdata = false
 export(PackedScene) var start_mode
 export(PackedScene) var repairshop_mode
 export(Array, PackedScene) var game_modes
+export(PackedScene) var planet_mode
 
 #Game
 onready var game = $Game
@@ -32,6 +33,8 @@ func prepare_game_mode(mode):
 		ins_game_mode = game_modes[1].instance()
 	elif mode == "random":
 		ins_game_mode = game_modes[randi()% game_modes.size()].instance()
+	elif mode == "planet":
+		ins_game_mode = planet_mode.instance()
 	ins_game_mode.spaceship_w_robots = game.spaceship_w_robots
 	ins_game_mode.spaceship = game.spaceship
 	ins_game_mode.hud = game.hud

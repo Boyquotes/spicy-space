@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/Roadmap/Start_Road.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Roadmap/Dog_Fight_Road.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Roadmap/Meteor_Shower_Road.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Roadmap/Random_Road.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Roadmap/Repairshop_Road.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Roadmap/Roads/Start_Road.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Roadmap/Roads/Dog_Fight_Road.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Roadmap/Roads/Meteor_Shower_Road.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Roadmap/Roads/Random_Road.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Roadmap/Roads/Repairshop_Road.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Roadmap/Road_Line.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Roadmap/Roads/Planet_Road.tscn" type="PackedScene" id=7]
 
 [node name="Roadmap" type="Node2D"]
 
@@ -24,13 +25,19 @@ position = Vector2( 414.385, 440.447 )
 position = Vector2( 280.014, 328.098 )
 
 [node name="Random_Road2" parent="Roads" instance=ExtResource( 4 )]
-position = Vector2( 192.292, 199.93 )
+position = Vector2( 149.529, 242.693 )
 
 [node name="Meteor_Shower_Road2" parent="Roads" instance=ExtResource( 3 )]
-position = Vector2( 374.022, 231.905 )
+position = Vector2( 447.076, 258.632 )
 
 [node name="Dog_Fight_Road2" parent="Roads" instance=ExtResource( 2 )]
-position = Vector2( 291.515, 114.001 )
+position = Vector2( 189.953, 124.692 )
+
+[node name="Random_Road3" parent="Roads" instance=ExtResource( 4 )]
+position = Vector2( 454.216, 89.4586 )
+
+[node name="Planet_Road" parent="Roads" instance=ExtResource( 7 )]
+position = Vector2( 301.124, 28.5087 )
 
 [node name="Road_Lines" type="Node2D" parent="."]
 
@@ -63,29 +70,43 @@ start_road = NodePath("../../Roads/Meteor_Shower_Road")
 end_road = NodePath("../../Roads/Repairshop_Road")
 
 [node name="Road_Line5" parent="Road_Lines" instance=ExtResource( 6 )]
-position = Vector2( 283.72, 336.62 )
-rotation = -0.686015
-scale = Vector2( 1, 0.788143 )
+position = Vector2( 276.593, 324.147 )
+rotation = -0.960886
+scale = Vector2( 1.25496, 0.701816 )
 start_road = NodePath("../../Roads/Repairshop_Road")
 end_road = NodePath("../../Roads/Random_Road2")
 
 [node name="Road_Line6" parent="Road_Lines" instance=ExtResource( 6 )]
-position = Vector2( 343.503, 339.104 )
+position = Vector2( 366.666, 328.413 )
 rotation = 1.01393
 scale = Vector2( 1, 0.772281 )
 start_road = NodePath("../../Roads/Repairshop_Road")
 end_road = NodePath("../../Roads/Meteor_Shower_Road2")
 
 [node name="Road_Line7" parent="Road_Lines" instance=ExtResource( 6 )]
-position = Vector2( 213.396, 194.854 )
-rotation = 1.01393
-scale = Vector2( 1, 0.772281 )
+position = Vector2( 175.978, 241.181 )
+rotation = 0.593789
+scale = Vector2( 1, 0.539375 )
 start_road = NodePath("../../Roads/Random_Road2")
 end_road = NodePath("../../Roads/Dog_Fight_Road2")
 
 [node name="Road_Line8" parent="Road_Lines" instance=ExtResource( 6 )]
-position = Vector2( 429.384, 224.897 )
-rotation = -0.686015
+position = Vector2( 463.238, 248.06 )
+rotation = 0.0489758
 scale = Vector2( 1, 0.788143 )
 start_road = NodePath("../../Roads/Meteor_Shower_Road2")
-end_road = NodePath("../../Roads/Dog_Fight_Road2")
+end_road = NodePath("../../Roads/Random_Road3")
+
+[node name="Road_Line9" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 240.514, 121.553 )
+rotation = 0.64539
+scale = Vector2( 1, 0.788143 )
+start_road = NodePath("../../Roads/Dog_Fight_Road2")
+end_road = NodePath("../../Roads/Planet_Road")
+
+[node name="Road_Line10" parent="Road_Lines" instance=ExtResource( 6 )]
+position = Vector2( 463.238, 84.135 )
+rotation = -1.28281
+scale = Vector2( 1.10322, 0.861786 )
+start_road = NodePath("../../Roads/Random_Road3")
+end_road = NodePath("../../Roads/Planet_Road")
