@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node2D
 
 #Game HUD
 onready var game_hud = $Game_HUD
