@@ -9,7 +9,7 @@ export(PackedScene) var planet_mode
 #Game
 onready var game = $Game
 #roadmap
-onready var roadmap = $Roadmap
+onready var roadmaps = $Roadmaps
 
 var ins_game_mode
 
@@ -19,9 +19,16 @@ func _ready():
 		UserDataManager.reset_userdata()
 	#reset score after every new start
 	Global.score = 0
+	#choose a random roadmap
+	_prepare_roadmap()
+
+func _prepare_roadmap():
+	randomize()
+	var random_roadmap = roadmaps.get_child(randi()% roadmaps.get_child_count())
+	random_roadmap.visible = true
 
 func prepare_game_mode(mode):
-	roadmap.visible = false
+	roadmaps.visible = false
 	game.visible = true
 	if mode == "start":
 		ins_game_mode = start_mode.instance()
@@ -43,6 +50,6 @@ func prepare_game_mode(mode):
 
 func go_back_to_roadmap():
 	game.visible = false
-	roadmap.visible = true
+	roadmaps.visible = true
 	ins_game_mode.call_deferred("free")
 
