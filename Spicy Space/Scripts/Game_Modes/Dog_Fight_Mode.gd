@@ -1,4 +1,4 @@
-extends "res://Scripts/Game_Modes/Game_Mode.gd"
+extends "res://Scripts/Game_Modes/Mode.gd"
 
 export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
@@ -59,9 +59,8 @@ func _dog_fight(con):
 			enemy_counter = 0 #reset enemy counter
 			hud.presentation("dog_fight", "completed")
 			spaceship.shoot_control = false
-			yield(get_tree().create_timer(15), "timeout")
 #			limit_for_enemy += 1 #increase number of enemies for next dog fight
-			emit_signal("mode_completed")
+			emit_signal("mode_completed", "dog fight")
 
 func drop_crate(pos):
 	var content_possibility = rand_range(0, 100)

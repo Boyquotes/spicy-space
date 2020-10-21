@@ -1,0 +1,15 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Globals/Game_Logic.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Space_Objects/Planets/Planet1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Space_Objects/Planets/Planet2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Space_Objects/Planets/Planet3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Space_Objects/Planets/Planet4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Roadmap/Roadmap1.tscn" type="PackedScene" id=6]
+
+
+
+[node name="Game_Logic" type="Node2D"]
+script = ExtResource( 1 )
+planets = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+roadmaps = [ ExtResource( 6 ) ]

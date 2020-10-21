@@ -35,8 +35,7 @@ func _ready():
 	randomize()
 	rot = rand_range(0, 90) #random rotation degree
 	screen_size = get_viewport_rect().size
-	pos = screen_size / 2
-	self.position = pos
+	centered_position()
 	set_process(true)
 	explode_control = false
 
@@ -46,6 +45,10 @@ func _process(delta):
 		_shoot(delta)
 
 	_stay_on_screen(delta) 
+
+func centered_position():
+	pos = screen_size / 2
+	self.position = pos
 
 func reload_spaceship():
 	shoot_timer.wait_time = UserDataManager.load_userdata("shoot_rate")

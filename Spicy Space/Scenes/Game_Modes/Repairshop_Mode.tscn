@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Scripts/Game_Modes/Repairshop.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Game_Modes/Repairshop_Mode.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/UpgradeSystem.gd" type="Script" id=6]
 [ext_resource path="res://Textures/spaceship.png" type="Texture" id=7]
@@ -9,17 +9,6 @@
 [ext_resource path="res://Scenes/Spaceship_,Parts/Robots/HealthRobot.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Spaceship_,Parts/Robots/ShieldRobot.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Textures/mine.png" type="Texture" id=12]
-
-
-
-
-
-
-
-
-
-
-
 
 [sub_resource type="DynamicFont" id=1]
 size = 45
@@ -38,7 +27,7 @@ font_data = ExtResource( 2 )
 size = 18
 font_data = ExtResource( 2 )
 
-[node name="Repairshop" type="Node2D"]
+[node name="Repairshop_Mode" type="Node2D"]
 z_index = 5
 script = ExtResource( 1 )
 

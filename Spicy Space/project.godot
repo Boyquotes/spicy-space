@@ -27,6 +27,7 @@ config/icon="res://Textures/spaceship.png"
 Global="*res://Globals/Global.gd"
 SceneManager="*res://Globals/SceneManager.gd"
 UserDataManager="*res://Globals/UserDataManager.gd"
+GameLogic="*res://Globals/Game_Logic.tscn"
 
 [display]
 

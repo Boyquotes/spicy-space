@@ -9,7 +9,7 @@ export(PackedScene) var planet_mode
 #Game
 onready var game = $Game
 #roadmap
-onready var roadmaps = $Roadmaps
+onready var roadmap = $Roadmap
 
 var ins_game_mode
 
@@ -19,16 +19,12 @@ func _ready():
 		UserDataManager.reset_userdata()
 	#reset score after every new start
 	Global.score = 0
-	#choose a random roadmap
-	_prepare_roadmap()
-
-func _prepare_roadmap():
-	randomize()
-	var random_roadmap = roadmaps.get_child(randi()% roadmaps.get_child_count())
-	random_roadmap.visible = true
+	#start game
+	prepare_game_mode("start")
 
 func prepare_game_mode(mode):
-	roadmaps.visible = false
+	game.spaceship.centered_position()
+	roadmap.visible = false
 	game.visible = true
 	if mode == "start":
 		ins_game_mode = start_mode.instance()
@@ -48,8 +44,15 @@ func prepare_game_mode(mode):
 	ins_game_mode.connect("mode_completed", self, "go_back_to_roadmap")
 	add_child(ins_game_mode)
 
-func go_back_to_roadmap():
+func go_back_to_roadmap(completed_mode):
+	if completed_mode == "start":
+		_prepare_roadmap()
+	else:
+		yield(get_tree().create_timer(3), "timeout")
 	game.visible = false
-	roadmaps.visible = true
+	roadmap.visible = true
 	ins_game_mode.call_deferred("free")
 
+func _prepare_roadmap():
+	var selected_roadmap = GameLogic.choosen_roadmap
+	roadmap.add_child(selected_roadmap)

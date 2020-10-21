@@ -7,7 +7,6 @@
 [ext_resource path="res://Textures/HUD/restart_button2.png" type="Texture" id=5]
 [ext_resource path="res://Textures/mine.png" type="Texture" id=6]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 35
 font_data = ExtResource( 3 )
@@ -251,6 +250,7 @@ text = "Upgrade Ship"
 [node name="Info_HUD" type="Node2D" parent="."]
 
 [node name="Mine_info" type="Node2D" parent="Info_HUD"]
+visible = false
 position = Vector2( 340, 60 )
 
 [node name="mine_sprite" type="Sprite" parent="Info_HUD/Mine_info"]

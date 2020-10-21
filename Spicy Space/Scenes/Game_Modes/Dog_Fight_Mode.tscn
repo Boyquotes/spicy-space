@@ -1,22 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Space_Objects/Asteroids/Asteroid.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Space_Objects/Asteroids/SplitAsteroid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/Game_Modes/Meteor_Shower.gd" type="Script" id=6]
-
-
-
-
+[ext_resource path="res://Scenes/Spaceships/Enemies/CylonRaider.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Spaceships/Enemies/Speedy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Spaceships/Enemies/MissilePower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Spaceships/Enemies/SpaceBee.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Game_Modes/Dog_Fight_Mode.gd" type="Script" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 839.586, -38.1318, 0, 0, 0, 0, 404.447, -46.1794, 0, 0, 0, 0, 404.447, -44.7403, 0, 0, 0, 0, 382.142, -47.6185, 0, 0, 0, 0, -45.5435, -46.4974, 0, 0, 0, 0, -32.2933, 796.215, 0, 0, 0, 0, 410.652, 789.365, 0, 0, 0, 0, 844.232, 787.649, 0, 0, 0, 0, 855.469, 364.259, 0, 0, 0, 0, 839.569, -33.2472 )
 }
 
-[node name="Meteor_Shower" type="Node2D"]
-script = ExtResource( 6 )
-asteroid = ExtResource( 1 )
-split_asteroid = ExtResource( 2 )
+[node name="Dog_Fight_Mode" type="Node2D"]
+script = ExtResource( 8 )
+enemies = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ]
 
 [node name="Pitfalls" type="Node" parent="."]
 
@@ -29,18 +26,14 @@ curve = SubResource( 1 )
 position = Vector2( 839.586, -38.1318 )
 rotation = -3.1231
 
-[node name="Asteroid" type="Node" parent="Pitfalls"]
+[node name="Enemy" type="Node" parent="Pitfalls"]
 
-[node name="Asteroid_Container" type="Node" parent="Pitfalls/Asteroid"]
-
-[node name="Asteroid_Timer" type="Timer" parent="Pitfalls/Asteroid"]
-wait_time = 1.5
+[node name="Enemy_Container" type="Node" parent="Pitfalls/Enemy"]
 
 [node name="StartMode_Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="Mine_Container" type="Node" parent="."]
-[connection signal="timeout" from="Pitfalls/Asteroid/Asteroid_Timer" to="." method="_on_Asteroid_Timer_timeout"]
+[node name="Crate_Container" type="Node" parent="."]
 [connection signal="timeout" from="StartMode_Timer" to="." method="_on_StartMode_Timer_timeout"]

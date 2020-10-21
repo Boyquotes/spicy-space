@@ -1,4 +1,4 @@
-extends "res://Scripts/Game_Modes/Game_Mode.gd"
+extends "res://Scripts/Game_Modes/Mode.gd"
 
 export (PackedScene) var asteroid
 export (PackedScene) var split_asteroid
@@ -118,8 +118,7 @@ func _meteor_shower(con):
 			mode_control = false
 			ast_border_control = false
 			spaceship.shoot_control = false
-			yield(get_tree().create_timer(15), "timeout")
-			emit_signal("mode_completed")
+			emit_signal("mode_completed", "meteor shower")
 
 func drop_mine(pos):
 	var content_possibility = rand_range(0, 100)

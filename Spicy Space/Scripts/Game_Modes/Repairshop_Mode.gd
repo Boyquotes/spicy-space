@@ -1,4 +1,4 @@
-extends "res://Scripts/Game_Modes/Game_Mode.gd"
+extends "res://Scripts/Game_Modes/Mode.gd"
 
 #Upgrade HUD
 onready var upg_hud = $Upgrade_HUD
@@ -21,4 +21,4 @@ func upgrade_system(part):
 		spaceship.reload_spaceship()
 
 func _on_Close_btn_pressed():
-	emit_signal("mode_completed")
+	emit_signal("mode_completed", "repairshop")
