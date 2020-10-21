@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Spaceship_,Parts/Engine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Spaceship_,Parts/Shield.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Spaceships/Player/SpaceShip.gd" type="Script" id=3]
+[ext_resource path="res://Textures/spaceship.png" type="Texture" id=4]
+
+
+
+
+
+
+
+[node name="SpaceShip" type="Area2D"]
+script = ExtResource( 3 )
+
+[node name="spaceship_sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.854902, 0.490196, 0.913725, 1 )
+texture = ExtResource( 4 )
+
+[node name="spaceship_coll" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0.0994415, -11.8726, 14.2655, 5.72776, 7.61177, 11.7376, -6.98361, 11.523, -14.0667, 6.15704 )
+
+[node name="laser_muzzle" type="Position2D" parent="."]
+position = Vector2( 0, -15 )
+
+[node name="laser_container" type="Node" parent="."]
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Engine" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 14 )
+scale = Vector2( 0.5, 0.8 )
+z_as_relative = false
+
+[node name="HR_FollowPoint" type="Position2D" parent="."]
+position = Vector2( -15, 30 )
+
+[node name="SR_FollowPoint" type="Position2D" parent="."]
+position = Vector2( 15, 30 )
+
+[node name="Shield" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 3 )
+scale = Vector2( 1.25, 1.25 )
+[connection signal="area_entered" from="." to="." method="_on_SpaceShip_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_SpaceShip_body_entered"]

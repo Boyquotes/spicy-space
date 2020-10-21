@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Space_Objects/Asteroids/SplitAsteroid.gd" type="Script" id=1]
+[ext_resource path="res://Textures/asteroids.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 13.2908
+
+[node name="SplitAsteroid" type="KinematicBody2D" groups=[
+"asteroid",
+]]
+position = Vector2( -29, -30 )
+z_index = 9
+script = ExtResource( 1 )
+
+[node name="asteroid_sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="asteroid_coll" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="puff_particle" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2( 0, 30 )
+emitting = false
+amount = 32
+lifetime = 0.4
+one_shot = true

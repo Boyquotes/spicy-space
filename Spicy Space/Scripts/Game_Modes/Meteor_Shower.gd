@@ -12,7 +12,7 @@ onready var asteroid_timer = $Pitfalls/Asteroid/Asteroid_Timer
 onready var asteroid_con = $Pitfalls/Asteroid/Asteroid_Container
 #Mine
 onready var mine_con = $Mine_Container
-onready var mine = ResourceLoader.load("res://Scenes/Mine.tscn")
+onready var mine = ResourceLoader.load("res://Scenes/Loot_Objects/Mine.tscn")
 
 var ins_ast # asteroid instance
 var ins_split_ast

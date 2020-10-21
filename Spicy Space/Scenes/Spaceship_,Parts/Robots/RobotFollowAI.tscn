@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Spaceship_Parts/Robots/RobotFollowAI.gd" type="Script" id=1]
+
+
+
+[node name="RobotFollowAI" type="Node2D"]
+script = ExtResource( 1 )

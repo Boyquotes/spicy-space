@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Spaceships/Enemyship.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Enemies/spacebee.png" type="Texture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.866667, 0.866667, 0.866667, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.321569, 0.321569, 0.321569, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SpaceBee" type="Area2D" groups=[
+"enemyship",
+]]
+modulate = Color( 1, 0.133333, 0.498039, 1 )
+script = ExtResource( 1 )
+speed = 1.2
+health = 11.0
+shoot_time = 5.0
+
+[node name="enemyship_sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="enemyship_coll" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -0.194431, -13.5785, 3.72858, -13.1727, 4.13441, -11.2788, 13.6037, -2.35059, 15.2271, 0.084383, 14.686, 11.9887, 8.05742, 7.11875, 8.32797, 10.0948, 5.21662, 12.8003, -5.06437, 13.2062, -7.90517, 9.82427, -8.17573, 6.57764, -14.669, 12.2592, -15.0748, -0.591997, -14.1279, -1.80948, -4.52327, -11.1435, -4.25272, -13.308 )
+
+[node name="laser_container" type="Node" parent="."]
+
+[node name="laser_muzzles" type="Node2D" parent="."]
+
+[node name="laser_muzzle1" type="Position2D" parent="laser_muzzles"]
+position = Vector2( 0.0269651, -14.0987 )
+
+[node name="direction_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="idle_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_left = -10.0
+margin_top = 18.0
+margin_right = 10.0
+margin_bottom = 23.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 75.0
+percent_visible = false
+[connection signal="area_entered" from="." to="." method="_on_CylonRaider_area_entered"]
+[connection signal="timeout" from="direction_timer" to="." method="_on_direction_timer_timeout"]
+[connection signal="timeout" from="idle_timer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

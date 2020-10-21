@@ -4,11 +4,22 @@
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/UpgradeSystem.gd" type="Script" id=6]
 [ext_resource path="res://Textures/spaceship.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/Engine.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Shield.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Robots/HealthRobot.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Robots/ShieldRobot.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Spaceship_,Parts/Engine.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Spaceship_,Parts/Shield.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Spaceship_,Parts/Robots/HealthRobot.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Spaceship_,Parts/Robots/ShieldRobot.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Textures/mine.png" type="Texture" id=12]
+
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 45

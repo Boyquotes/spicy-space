@@ -9,7 +9,7 @@ onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 onready var enemy_con = $Pitfalls/Enemy/Enemy_Container
 #Crate
 onready var crate_con = $Crate_Container
-onready var crate = ResourceLoader.load("res://Scenes/Crate.tscn")
+onready var crate = ResourceLoader.load("res://Scenes/Loot_Objects/Crate.tscn")
 
 var ins_enemy # enemy instance
 var mode_control = false #check out dog fight happened or not
