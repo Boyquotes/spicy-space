@@ -1,18 +1,20 @@
 extends "res://Scripts/Game_Modes/Mode.gd"
 
+#Repairshop HUD
+onready var repairshop_hud = $Repairshop_HUD
 #Upgrade HUD
-onready var upg_hud = $Upgrade_HUD
+onready var upg_hud = $Repairshop_HUD/TabContainer/Upgrade/Upgrade_HUD
 
 func _ready():
 	_signal_connect()
 
 func _signal_connect():
+	#signal to close repairshop
+	repairshop_hud.connect("closed", self, "close_repairshop")
 	#signal to update mine value after spend it
 	upg_hud.connect("mine_spend", get_parent().get_node("Game"), "mine_system")
 	#signal to upgrade ship part
 	upg_hud.connect("upgraded", self, "upgrade_system")
-	#signal to close repairshop scene
-	upg_hud.connect("closed", self, "close_repairshop")
 
 func upgrade_system(part):
 	if part == "ship_dur":

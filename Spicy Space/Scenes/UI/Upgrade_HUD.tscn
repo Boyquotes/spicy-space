@@ -36,7 +36,7 @@ show_behind_parent = true
 margin_left = 60.0
 margin_top = 80.0
 margin_right = 580.0
-margin_bottom = 560.0
+margin_bottom = 460.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -179,18 +179,7 @@ custom_fonts/font = SubResource( 4 )
 disabled = true
 text = "x 0 for Upgrade"
 icon = ExtResource( 6 )
-
-[node name="Close_btn" type="Button" parent="."]
-margin_left = 288.0
-margin_top = 480.0
-margin_right = 352.0
-margin_bottom = 520.0
-text = "Close"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="visibility_changed" from="." to="." method="_on_Upgrade_HUD_visibility_changed"]
 [connection signal="pressed" from="Durability/Durability_btn" to="." method="_on_Durability_btn_pressed"]
 [connection signal="pressed" from="Shield/Shield_btn" to="." method="_on_Shield_btn_pressed"]
 [connection signal="pressed" from="Shoot/Shoot_btn" to="." method="_on_Shoot_btn_pressed"]
-[connection signal="pressed" from="Close_btn" to="." method="_on_Close_btn_pressed"]
