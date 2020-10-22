@@ -11,6 +11,8 @@ func _signal_connect():
 	upg_hud.connect("mine_spend", get_parent().get_node("Game"), "mine_system")
 	#signal to upgrade ship part
 	upg_hud.connect("upgraded", self, "upgrade_system")
+	#signal to close repairshop scene
+	upg_hud.connect("closed", self, "close_repairshop")
 
 func upgrade_system(part):
 	if part == "ship_dur":
@@ -20,5 +22,5 @@ func upgrade_system(part):
 	if part == "shoot_rate":
 		spaceship.reload_spaceship()
 
-func _on_Close_btn_pressed():
+func close_repairshop():
 	emit_signal("mode_completed", "repairshop")

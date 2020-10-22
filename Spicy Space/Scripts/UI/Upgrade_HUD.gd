@@ -2,6 +2,7 @@ extends Node2D
 
 signal mine_spend(event)
 signal upgraded(part)
+signal closed
 
 onready var dur_lbl = $Durability/Durability_lbl
 onready var dur_btn = $Durability/Durability_btn
@@ -110,3 +111,6 @@ func _spend_mine(data_key):
 
 func _on_Upgrade_HUD_visibility_changed():
 	_prepare_upg_scene()
+
+func _on_Close_btn_pressed():
+	emit_signal("closed")
