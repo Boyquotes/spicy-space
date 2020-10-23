@@ -60,7 +60,7 @@ func _dog_fight(con):
 			hud.presentation("dog_fight", "completed")
 			spaceship.shoot_control = false
 #			limit_for_enemy += 1 #increase number of enemies for next dog fight
-			emit_signal("mode_completed", "dog fight")
+			emit_signal("mode_completed", Global.game_mode.dog_fight)
 
 func drop_crate(pos):
 	var content_possibility = rand_range(0, 100)

@@ -2,8 +2,8 @@ extends Node2D
 
 export(bool) var mode_completed = false
 export(bool) var skipped = false
-export(String, "null", "start", "random", "meteor shower", "dog fight", "repairshop", "planet") var game_mode
-export(String, "null", "easy", "normal", "hard") var difficulty
+export(Global.game_mode) var game_mode
+export(Global.difficulty) var difficulty
 
 onready var button = $Button
 onready var info_card = $Info_Card
@@ -24,7 +24,7 @@ func road(status):
 		button.disabled = true
 
 func go_to_road():
-		mode_completed = true	
+		mode_completed = true
 		button.modulate = Color.green
 		get_tree().get_root().get_node("Main_Scene").prepare_game_mode(game_mode)
 

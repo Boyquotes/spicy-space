@@ -118,7 +118,7 @@ func _meteor_shower(con):
 			mode_control = false
 			ast_border_control = false
 			spaceship.shoot_control = false
-			emit_signal("mode_completed", "meteor shower")
+			emit_signal("mode_completed", Global.game_mode.meteor_shower)
 
 func drop_mine(pos):
 	var content_possibility = rand_range(0, 100)

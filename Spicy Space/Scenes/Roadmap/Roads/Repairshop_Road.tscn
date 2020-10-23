@@ -5,7 +5,7 @@
 
 [node name="Repairshop_Road" type="Node2D"]
 script = ExtResource( 1 )
-game_mode = "repairshop"
+game_mode = 4
 
 [node name="Button" type="Button" parent="."]
 margin_right = 60.0

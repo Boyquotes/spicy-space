@@ -5,7 +5,7 @@
 
 [node name="Meteor_Shower_Road" type="Node2D"]
 script = ExtResource( 1 )
-game_mode = "meteor shower"
+game_mode = 3
 
 [node name="Button" type="Button" parent="."]
 margin_right = 60.0

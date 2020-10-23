@@ -91,9 +91,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Difficuty" type="Node2D" parent="Popup"]
+[node name="Difficulty" type="Node2D" parent="Popup"]
 
-[node name="difficulty_lbl" type="Label" parent="Popup/Difficuty"]
+[node name="difficulty_title" type="Label" parent="Popup/Difficulty"]
 margin_left = 10.0
 margin_top = 260.0
 margin_right = 80.0
@@ -107,7 +107,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="difficulty_level" type="Label" parent="Popup/Difficuty"]
+[node name="difficulty_level_lbl" type="Label" parent="Popup/Difficulty"]
 margin_left = 80.0
 margin_top = 260.0
 margin_right = 150.0

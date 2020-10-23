@@ -6,7 +6,6 @@
 [node name="Start_Road" type="Node2D"]
 script = ExtResource( 1 )
 mode_completed = true
-game_mode = "start"
 
 [node name="Button" type="Button" parent="."]
 margin_right = 60.0

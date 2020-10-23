@@ -1,5 +1,9 @@
 extends Node
 
+#Enums
+enum game_mode{start, random, dog_fight, meteor_shower, repairshop, planet}
+enum difficulty{null, easy, normal, hard}
+
 #GAME VALUES
 var score = 0
 var wave = 0

@@ -5,7 +5,7 @@
 
 [node name="Dog_Fight_Road" type="Node2D"]
 script = ExtResource( 1 )
-game_mode = "dog fight"
+game_mode = 2
 
 [node name="Button" type="Button" parent="."]
 margin_right = 60.0

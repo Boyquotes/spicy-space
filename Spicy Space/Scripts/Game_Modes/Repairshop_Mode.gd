@@ -25,4 +25,4 @@ func upgrade_system(part):
 		spaceship.reload_spaceship()
 
 func close_repairshop():
-	emit_signal("mode_completed", "repairshop")
+	emit_signal("mode_completed", Global.game_mode.repairshop)

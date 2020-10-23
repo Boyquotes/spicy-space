@@ -20,23 +20,23 @@ func _ready():
 	#reset score after every new start
 	Global.score = 0
 	#start game
-	prepare_game_mode("start")
+	prepare_game_mode(Global.game_mode.start)
 
 func prepare_game_mode(mode):
 	game.spaceship.centered_position()
 	roadmap.visible = false
 	game.visible = true
-	if mode == "start":
+	if mode == Global.game_mode.start:
 		ins_game_mode = start_mode.instance()
-	elif mode == "repairshop":
+	elif mode == Global.game_mode.repairshop:
 		ins_game_mode = repairshop_mode.instance()
-	elif mode == "meteor shower":
+	elif mode == Global.game_mode.meteor_shower:
 		ins_game_mode = game_modes[0].instance()
-	elif mode == "dog fight":
+	elif mode == Global.game_mode.dog_fight:
 		ins_game_mode = game_modes[1].instance()
-	elif mode == "random":
+	elif mode == Global.game_mode.random:
 		ins_game_mode = game_modes[randi()% game_modes.size()].instance()
-	elif mode == "planet":
+	elif mode == Global.game_mode.planet:
 		ins_game_mode = planet_mode.instance()
 	ins_game_mode.spaceship_w_robots = game.spaceship_w_robots
 	ins_game_mode.spaceship = game.spaceship
@@ -45,7 +45,7 @@ func prepare_game_mode(mode):
 	add_child(ins_game_mode)
 
 func go_back_to_roadmap(completed_mode):
-	if completed_mode == "start":
+	if completed_mode == Global.game_mode.start:
 		_prepare_roadmap()
 	else:
 		yield(get_tree().create_timer(3), "timeout")

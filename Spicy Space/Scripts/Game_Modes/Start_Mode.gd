@@ -12,4 +12,4 @@ func _prepare_black_holes():
 		black_hole.connect("entered_to_hole", self, "start_mode_completed")
 
 func start_mode_completed():
-	emit_signal("mode_completed", "start")
+	emit_signal("mode_completed", Global.game_mode.start)
