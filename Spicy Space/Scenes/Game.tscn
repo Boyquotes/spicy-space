@@ -8,6 +8,14 @@
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
 
+[node name="PreventScroll" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 640.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
