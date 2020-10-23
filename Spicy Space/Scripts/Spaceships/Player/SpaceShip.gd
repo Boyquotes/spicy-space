@@ -51,7 +51,7 @@ func centered_position():
 	self.position = pos
 
 func reload_spaceship():
-	shoot_timer.wait_time = UserDataManager.load_userdata("shoot_rate")
+	shoot_timer.wait_time = Global.ship_datas.get("shoot_rate")
 
 func _move(delta):
 	#move

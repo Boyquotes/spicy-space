@@ -23,13 +23,10 @@ func _signal_connect():
 
 func mine_system(con):
 	if con == "collect":
-#		var collected_mine = int(rand_range(Global.wave * 2, Global.wave * 3))
-#		print(collected_mine)
-		Global.mine_counter += 1
+		Global.mine += 1
 	if con == "spend":
 		pass
-	#save and show mine value
-	UserDataManager.save_userdata("mine", Global.mine_counter)
+	#show mine value
 	hud.show_mine_value()
 
 func screen_shake(which_pitfall):

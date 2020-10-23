@@ -16,10 +16,6 @@ var mode_control = false #check out dog fight happened or not
 var limit_for_enemy = 2
 var enemy_counter = 0
 
-#func _ready():
-#	#get number of enemy
-#	limit_for_enemy = UserDataManager.load_userdata("number_of_enemy")
-
 func _process(delta):
 	if mode_control:
 		_dog_fight("checkout")

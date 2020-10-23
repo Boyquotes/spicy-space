@@ -32,7 +32,7 @@ func _ready():
 	#direction
 	dir = rand_range(-25, 25)
 	#health bar
-	health += (Global.wave * int(health / 10))
+#	health += (Global.wave * int(health / 10))
 	health_bar.max_value = health
 	health_bar.value = health_bar.max_value
 	#shoot time
@@ -112,4 +112,4 @@ func _get_damage(area, damage_value):
 func _explode():
 	emit_signal("enemyship_exploded", self.position)
 	call_deferred("free")
-	Global.score += Global.wave * 5 #increase score
+	Global.score += 5 #increase score

@@ -39,17 +39,13 @@ func _process(delta):
 
 func update_values():
 	score_lbl.text = "Score: " + str(Global.score)
-	wave_lbl.text = "Wave: " + str(Global.wave)
+#	wave_lbl.text = "Wave: " + str(Global.wave)
 
 func assign_playerdata(whichdata, value):
 	if whichdata == "highscore":
 		UserDataManager.save_userdata(whichdata, value)
 		var highscore = str(UserDataManager.load_userdata(whichdata)) # update high score
 		highscore_lbl.text = "Highscore: " + highscore # assign high score to text
-#	if whichdata == "bestwave":
-#		UserDataManager.save_userdata(whichdata, value)
-#		var bestwave = str(UserDataManager.load_userdata(whichdata))
-#		bestwave_lbl.text = "Best Wave: " + bestwave
 	if whichdata == "fail":
 		UserDataManager.save_userdata(whichdata, value)
 		var fail = str(UserDataManager.load_userdata(whichdata))
@@ -57,11 +53,11 @@ func assign_playerdata(whichdata, value):
 
 func presentation(action, con):
 	if con == "started":
-		if action == "wave":
-			wave_start_lbl.text = "Wave " + str(Global.wave) + " Coming"
-			wave_start_lbl.visible = true
-			yield(get_tree().create_timer(3), "timeout")
-			wave_start_lbl.visible = false
+#		if action == "wave":
+#			wave_start_lbl.text = "Wave " + str(Global.wave) + " Coming"
+#			wave_start_lbl.visible = true
+#			yield(get_tree().create_timer(3), "timeout")
+#			wave_start_lbl.visible = false
 		if action == "meteor_shower":
 			ms_start_lbl.visible = true
 			yield(get_tree().create_timer(3), "timeout")
@@ -71,11 +67,11 @@ func presentation(action, con):
 			yield(get_tree().create_timer(3), "timeout")
 			df_start_lbl.visible = false
 	if con == "completed":
-		if action == "wave":
-			wave_completed_lbl.text = "Wave " + str(Global.wave) + " Completed"
-			wave_completed_lbl.visible = true
-			yield(get_tree().create_timer(3), "timeout")
-			wave_completed_lbl.visible = false
+#		if action == "wave":
+#			wave_completed_lbl.text = "Wave " + str(Global.wave) + " Completed"
+#			wave_completed_lbl.visible = true
+#			yield(get_tree().create_timer(3), "timeout")
+#			wave_completed_lbl.visible = false
 		if action == "meteor_shower":
 			ms_over_lbl.visible = true
 			yield(get_tree().create_timer(3), "timeout")
@@ -95,14 +91,14 @@ func wave_bar(con):
 	if con == "fill_bar":
 		if wave_bar.value < wave_bar.max_value:
 			wave_bar.value += 1
-	if con == "wave_up":
-			wave_bar.max_value = wave_bar_max_value
-			current_wave_text.text = str(Global.wave)
-			next_wave_text.text = str(Global.wave + 1)
-			wave_bar.value = 0
+#	if con == "wave_up":
+#			wave_bar.max_value = wave_bar_max_value
+#			current_wave_text.text = str(Global.wave)
+#			next_wave_text.text = str(Global.wave + 1)
+#			wave_bar.value = 0
 
 func show_mine_value():
-	mine_lbl.text = "x " + str(UserDataManager.load_userdata("mine"))
+	mine_lbl.text = "x " + str(Global.mine)
 
 func warning(type):
 	if type == "out_of_ammo":

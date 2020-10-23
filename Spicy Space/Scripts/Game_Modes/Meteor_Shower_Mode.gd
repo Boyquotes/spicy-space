@@ -2,8 +2,8 @@ extends "res://Scripts/Game_Modes/Mode.gd"
 
 export (PackedScene) var asteroid
 export (PackedScene) var split_asteroid
-export (int) var min_border_of_ast = 3
-export (int) var max_border_of_ast = 5
+export (int) var min_limit_for_ast = 3
+export (int) var max_limit_for_ast = 5
 
 #Pitfalls
 onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
@@ -16,8 +16,8 @@ onready var mine = ResourceLoader.load("res://Scenes/Loot_Objects/Mine.tscn")
 
 var ins_ast # asteroid instance
 var ins_split_ast
-var border_of_ast = 4 #border for asteroid instance
-var number_of_ast = 1
+var limit_of_ast = 4 #limit for asteroid instance
+var number_of_ast = 3 #number of asteroids for every instance
 var ast_counter = 0 #asteroid counter
 var mode_control = false #check out to meteor shower
 var ast_border_control = false #check out to asteroid border
@@ -25,11 +25,11 @@ var ast_split_pattern = {'big': 'med', 'med': null}
 
 func _ready():
 	#get number of asteroid
-	if Global.wave < 25:
-		number_of_ast = Global.wave
-	else:
-		number_of_ast = 25
-	#assign a border of asteroid for first wave
+#	if Global.wave < 25:
+#		number_of_ast = Global.wave
+#	else:
+#		number_of_ast = 25
+	#assign a limit for asteroids for first wave
 	_asteroids("number_of_asteroid")
 
 func _process(delta):
@@ -57,7 +57,7 @@ func _on_StartMode_Timer_timeout():
 func _on_Asteroid_Timer_timeout():
 	spaceship.shoot_control = true
 	asteroid_timer.wait_time = number_of_ast
-	if ast_counter < border_of_ast:
+	if ast_counter < limit_of_ast:
 		_asteroids("instance") #instance asteroid
 		mode_control = true
 	else:
@@ -73,10 +73,10 @@ func _asteroids(con):
 	if con == "stop_timer":
 		asteroid_timer.stop()
 	if con == "instance":
-		if Global.wave < 25:
-			number_of_ast = Global.wave
-		else:
-			number_of_ast = 25
+#		if Global.wave < 25:
+#			number_of_ast = Global.wave
+#		else:
+#			number_of_ast = 25
 		#instance wave asteroids
 		for i in range(number_of_ast):
 			# Choose a random location on Path2D.
@@ -94,7 +94,7 @@ func _asteroids(con):
 		ast_counter += 1
 	if con == "number_of_asteroid":
 		randomize()
-		border_of_ast = rand_range(min_border_of_ast, max_border_of_ast)
+		limit_of_ast = rand_range(min_limit_for_ast, max_limit_for_ast)
 #		print("number of asteroid: " + str(int(border_of_ast)))
 
 func ast_split(ast_size, ast_scale, pos, vel, hit_vel):

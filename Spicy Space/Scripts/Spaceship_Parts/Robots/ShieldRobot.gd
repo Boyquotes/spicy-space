@@ -2,8 +2,6 @@ extends "res://Scripts/Spaceship_Parts/Robots/Robot.gd"
 
 signal sr_deactivated(hr_situation)
 
-var damage_value = 0
-
 func _ready():
 	reload_robot("shield")
 

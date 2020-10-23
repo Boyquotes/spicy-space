@@ -14,7 +14,6 @@ func _ready():
 	set_physics_process(true)
 	_random_crate()
 	_rot_dir() # choose rotate direction
-	
 
 func _physics_process(delta):
 	_rotate(delta)

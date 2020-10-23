@@ -28,12 +28,6 @@ func _ready():
 	vel = Vector2(rand_range(min_speed, max_speed), 0).rotated(rand_range(0, 2 * PI))
 	#rotation
 	rot_speed = rand_range(-1.5, 1.5)
-	#asteroid durability
-#	if Global.wave > 1:
-#		ast_dur = int(rand_range(Global.wave/2, Global.wave+1)) #assign durability
-#	else:
-#		ast_dur = randi()%Global.wave+1
-#	print("asteroid durability: " + str(ast_dur))
 	#screen border
 	screen_size = get_viewport_rect().size
 	extents = ast_sprite.get_texture().get_size() / 2
@@ -44,9 +38,6 @@ func _physics_process(delta):
 	var collide = move_and_collide(delta * vel)
 	if collide:
 		vel = vel.bounce(collide.normal)
-		# puff effect
-#		puff_effect.global_position = collide.position
-#		puff_effect.emitting = true
 
 	# wrap around screen edges
 	var pos = self.position
@@ -89,4 +80,4 @@ func explode(hit_vel):
 		emit_signal("ast_split", 'big', self.scale, self.position, vel, hit_vel)
 	emit_signal("ast_exploded", self.position)
 	call_deferred("free")
-	Global.score += Global.wave * 2 #increase score
+	Global.score += 2 #increase score

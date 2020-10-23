@@ -23,6 +23,8 @@ func _ready():
 	prepare_game_mode(Global.game_mode.start)
 
 func prepare_game_mode(mode):
+#	print("durability:", game.spaceship_w_robots.ins_hr.value)
+#	print("shield:", game.spaceship_w_robots.ins_sr.value)
 	game.spaceship.centered_position()
 	roadmap.visible = false
 	game.visible = true

@@ -2,7 +2,6 @@ extends "res://Scripts/Spaceship_Parts/Robots/Robot.gd"
 
 signal ss_explode #spaceship explode
 
-var damage_value = 0
 var hr_on = false #health robot off
 
 func _ready():

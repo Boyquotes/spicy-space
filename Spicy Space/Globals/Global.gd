@@ -6,11 +6,25 @@ enum difficulty{null, easy, normal, hard}
 
 #GAME VALUES
 var score = 0
-var wave = 0
-var mine_counter = 0
 var fail_counter = 0
+var mine = 5000
+#ship datas
+var ship_datas = {
+	ship_dur = 10,
+	shield = 5,
+	shoot_rate = 0.5,
+	laser_damage = 1
+}
+#upgrade datas
+var fully_upg_datas = {
+	shoot_fully_upg_control = false
+}
+var price_datas = {
+	price_for_durability = 5,
+	price_for_shield = 4,
+	price_for_shoot_rate = 7,
+	price_for_laser_damage = 6
+}
 
 func _ready():
-	wave = int(UserDataManager.load_userdata("current_wave"))
-	mine_counter = UserDataManager.load_userdata("mine")
 	fail_counter = UserDataManager.load_userdata("fail")

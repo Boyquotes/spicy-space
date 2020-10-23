@@ -2,23 +2,9 @@ extends Node
 
 const SAVE_FILE_PATH = "user://userdata.save"
 
-var data ={
+var data = {
 	#game datas
 	highscore = 0,
-#	bestwave = 0,
-	mine = 5000,
-	current_wave = 1,
-	number_of_enemy = 1,
-	#ship datas
-	ship_dur = 10,
-	shield = 5,
-	shoot_rate = 0.5,
-	laser_damage = 1,
-	#upgrade datas
-	mine_for_dur_upg = 17,
-	mine_for_shield_upg = 12,
-	mine_for_shoot_rate_upg = 21,
-	mine_for_laser_damage_upg = 20,
 	#statistics
 	fail = 0
 }
