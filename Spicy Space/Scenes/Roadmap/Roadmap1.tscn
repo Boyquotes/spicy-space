@@ -10,7 +10,9 @@
 [ext_resource path="res://Scenes/Roadmap/Stage.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Roadmap/Roadmap.gd" type="Script" id=9]
 
-[node name="Roadmap1" type="Node2D"]
+[node name="Roadmap1" type="Node2D" groups=[
+"roadmap",
+]]
 script = ExtResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -32,12 +34,15 @@ stage_no = 2
 
 [node name="Dog_Fight_Road" parent="Roadmap_System/Stages/Stage2" instance=ExtResource( 4 )]
 position = Vector2( 448, 440 )
+difficulty = "easy"
 
 [node name="Meteor_Shower_Road" parent="Roadmap_System/Stages/Stage2" instance=ExtResource( 6 )]
 position = Vector2( 72, 472 )
+difficulty = "easy"
 
 [node name="Random_Road" parent="Roadmap_System/Stages/Stage2" instance=ExtResource( 3 )]
 position = Vector2( 288, 392 )
+difficulty = "easy"
 
 [node name="Stage3" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
 stage_no = 3
@@ -50,15 +55,18 @@ stage_no = 4
 
 [node name="Meteor_Shower_Road2" parent="Roadmap_System/Stages/Stage4" instance=ExtResource( 6 )]
 position = Vector2( 200, 168 )
+difficulty = "normal"
 
 [node name="Stage5" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
 stage_no = 5
 
 [node name="Dog_Fight_Road2" parent="Roadmap_System/Stages/Stage5" instance=ExtResource( 4 )]
 position = Vector2( 72, 48 )
+difficulty = "normal"
 
 [node name="Random_Road2" parent="Roadmap_System/Stages/Stage5" instance=ExtResource( 3 )]
 position = Vector2( 328, 56 )
+difficulty = "normal"
 
 [node name="Stage6" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
 stage_no = 6
@@ -74,18 +82,22 @@ stage_no = 7
 
 [node name="Meteor_Shower_Road3" parent="Roadmap_System/Stages/Stage7" instance=ExtResource( 6 )]
 position = Vector2( 40, -224 )
+difficulty = "hard"
 
 [node name="Dog_Fight_Road3" parent="Roadmap_System/Stages/Stage7" instance=ExtResource( 4 )]
 position = Vector2( 352, -168 )
+difficulty = "hard"
 
 [node name="Stage8" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
 stage_no = 8
 
 [node name="Random_Road3" parent="Roadmap_System/Stages/Stage8" instance=ExtResource( 3 )]
 position = Vector2( 232, -304 )
+difficulty = "hard"
 
 [node name="Meteor_Shower_Road4" parent="Roadmap_System/Stages/Stage8" instance=ExtResource( 6 )]
 position = Vector2( 432, -296 )
+difficulty = "hard"
 
 [node name="Stage9" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
 stage_no = 9
