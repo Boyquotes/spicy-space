@@ -20,9 +20,9 @@ func _ready():
 	#reset score after every new start
 	Global.score = 0
 	#start game
-	prepare_game_mode(Global.game_mode.start)
+	prepare_game_mode(Global.game_mode.start, null)
 
-func prepare_game_mode(mode):
+func prepare_game_mode(mode, difficulty):
 #	print("durability:", game.spaceship_w_robots.ins_hr.value)
 #	print("shield:", game.spaceship_w_robots.ins_sr.value)
 	game.spaceship.centered_position()
@@ -44,6 +44,7 @@ func prepare_game_mode(mode):
 	ins_game_mode.spaceship = game.spaceship
 	ins_game_mode.hud = game.hud
 	ins_game_mode.connect("mode_completed", self, "go_back_to_roadmap")
+	ins_game_mode.setting_for_mode_difficulty(difficulty)
 	add_child(ins_game_mode)
 
 func go_back_to_roadmap(completed_mode):

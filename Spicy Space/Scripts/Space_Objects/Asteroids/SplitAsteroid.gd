@@ -5,7 +5,7 @@ signal ast_split(ast_size, pos, vel, hit_vel)
 
 export (int) var number_of_ast = 5
 export (int) var min_speed = 30
-export (int) var max_speed = 180
+export (int) var max_speed = 280
 
 onready var ast_sprite = $asteroid_sprite
 onready var ast_coll = $asteroid_coll

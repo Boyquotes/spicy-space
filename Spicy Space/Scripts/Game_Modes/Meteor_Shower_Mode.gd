@@ -24,12 +24,6 @@ var ast_border_control = false #check out to asteroid border
 var ast_split_pattern = {'big': 'med', 'med': null}
 
 func _ready():
-	#get number of asteroid
-#	if Global.wave < 25:
-#		number_of_ast = Global.wave
-#	else:
-#		number_of_ast = 25
-	#assign a limit for asteroids for first wave
 	_asteroids("number_of_asteroid")
 
 func _process(delta):
@@ -47,6 +41,22 @@ func _signal_connect(which_obj):
 		ins_split_ast.connect("ast_exploded", self, "drop_mine")
 		#signal to split asteroid
 		ins_split_ast.connect("ast_split", self, "ast_split")
+
+func setting_for_mode_difficulty(difficulty):
+	if difficulty != null:
+		if difficulty == Global.difficulty.easy:
+			min_limit_for_ast = 3
+			max_limit_for_ast = 5
+			number_of_ast = 3
+		elif difficulty == Global.difficulty.normal:
+			min_limit_for_ast = 5
+			max_limit_for_ast = 7
+			number_of_ast = 5
+		elif difficulty == Global.difficulty.hard:
+			min_limit_for_ast = 7
+			max_limit_for_ast = 9
+			number_of_ast = 7
+		print(min_limit_for_ast, max_limit_for_ast, number_of_ast)
 
 func _on_StartMode_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
@@ -123,7 +133,7 @@ func _meteor_shower(con):
 func drop_mine(pos):
 	var content_possibility = rand_range(0, 100)
 	#drop mine
-	if content_possibility < 50: 
+	if content_possibility < 75: 
 		var ins_mine = mine.instance()
 		mine_con.call_deferred("add_child", ins_mine) # !flushed_queries error fixed with this line
 		ins_mine.position = pos

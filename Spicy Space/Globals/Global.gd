@@ -7,7 +7,7 @@ enum difficulty{null, easy, normal, hard}
 #GAME VALUES
 var score = 0
 var fail_counter = 0
-var mine = 5000
+var mine = 0
 #ship datas
 var ship_datas = {
 	ship_dur = 10,
@@ -22,7 +22,7 @@ var fully_upg_datas = {
 var price_datas = {
 	price_for_durability = 5,
 	price_for_shield = 4,
-	price_for_shoot_rate = 7,
+	price_for_shoot_rate = 6,
 	price_for_laser_damage = 6
 }
 

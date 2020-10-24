@@ -112,7 +112,7 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 			ss_shield_deactivate(false) #activate shield if it was deactive
 			area.remove_crate()
 	if area.is_in_group("enemy_laser"):
-		print("enemy laser damage: " + str(area.laser_damage))
+#		print("enemy laser damage: " + str(area.laser_damage))
 		emit_signal("ss_damage", area.laser_damage) #spaceship got damage from enemy
 	if area.is_in_group("mine"):
 		emit_signal("mine_grabbed", "collect")

@@ -23,7 +23,7 @@ corner_radius_bottom_left = 5
 modulate = Color( 1, 0.133333, 0.498039, 1 )
 script = ExtResource( 1 )
 speed = 1.2
-health = 11.0
+durability = 9.0
 shoot_time = 5.0
 
 [node name="enemyship_sprite" type="Sprite" parent="."]
@@ -60,7 +60,7 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 75.0
 percent_visible = false
-[connection signal="area_entered" from="." to="." method="_on_CylonRaider_area_entered"]
+[connection signal="area_entered" from="." to="." method="_on_Enemyship_area_entered"]
 [connection signal="timeout" from="direction_timer" to="." method="_on_direction_timer_timeout"]
 [connection signal="timeout" from="idle_timer" to="." method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

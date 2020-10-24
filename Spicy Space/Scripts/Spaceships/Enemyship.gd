@@ -3,7 +3,7 @@ extends Area2D
 signal enemyship_exploded(pos)
 
 export (float) var speed = 2.1
-export (float) var health = 100
+export (float) var durability = 5
 #export (float) var received_damage = 50
 export (float) var shoot_time = 3
 
@@ -31,9 +31,8 @@ func _ready():
 	set_physics_process(true)
 	#direction
 	dir = rand_range(-25, 25)
-	#health bar
-#	health += (Global.wave * int(health / 10))
-	health_bar.max_value = health
+	#health bar9
+	health_bar.max_value = durability
 	health_bar.value = health_bar.max_value
 	#shoot time
 	shoot_timer.wait_time = shoot_time
@@ -94,7 +93,7 @@ func _on_idle_timer_timeout():
 func _on_shoot_timer_timeout():
 	_shoot()
 
-func _on_CylonRaider_area_entered(area):
+func _on_Enemyship_area_entered(area):
 	if area.is_in_group("laser") || area.is_in_group("enemy_laser"):
 		damage_value = area.laser_damage
 		_get_damage(area, damage_value)
@@ -104,6 +103,7 @@ func _on_CylonRaider_area_entered(area):
 
 func _get_damage(area, damage_value):
 	if health_bar.value > 0:
+		print(damage_value)
 		health_bar.value -= damage_value #get damage
 	elif health_bar.value <= 0:
 		_explode()
