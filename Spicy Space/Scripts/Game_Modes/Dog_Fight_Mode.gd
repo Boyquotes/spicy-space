@@ -3,6 +3,8 @@ extends "res://Scripts/Game_Modes/Mode.gd"
 export (Array, PackedScene) var enemies
 export (bool) var reset_userdata = false
 
+#HUD
+onready var mode_hud = $Dog_Fight_HUD
 #Pitfalls
 onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Enemy
@@ -44,7 +46,7 @@ func setting_for_mode_difficulty(difficulty):
 
 func _on_StartMode_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
-	hud.presentation("dog_fight", "started")
+	mode_hud.presentation("started")
 	yield(get_tree().create_timer(5), "timeout")
 	_enemies("instance")
 
@@ -81,7 +83,7 @@ func _dog_fight(con):
 		if mode_control && enemy_con.get_child_count() == 0:
 			mode_control = false #dog fight over
 			enemy_counter = 0 #reset enemy counter
-			hud.presentation("dog_fight", "completed")
+			mode_hud.presentation("completed")
 			spaceship.shoot_control = false
 			emit_signal("mode_completed", Global.game_mode.dog_fight)
 

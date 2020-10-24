@@ -3,6 +3,7 @@ extends Node2D
 signal mine_spend(event)
 signal upgraded(part)
 
+onready var repairshop_hud = self.get_parent().get_parent().get_parent()
 onready var dur_lbl = $Durability/Durability_lbl
 onready var dur_btn = $Durability/Durability_btn
 onready var shoot_rate_lbl = $Shoot/Shoot_lbl
@@ -98,6 +99,7 @@ func _on_Shield_btn_pressed():
 func _spend_mine(data_key):
 	var upg_price = Global.price_datas.get(data_key)
 	Global.mine = Global.mine - upg_price
+	repairshop_hud.show_mine_value()
 	emit_signal("mine_spend", "spend")
 	#calculate new price
 	var new_upg_price = upg_price + (upg_price * 0.3)

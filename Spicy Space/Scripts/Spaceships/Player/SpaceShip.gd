@@ -4,7 +4,6 @@ signal ss_damage(which_pitfall)
 signal game_over
 signal shoot
 signal crate_grabbed(which_crate)
-signal warning(type)
 signal hr_situation(situation)
 signal mine_grabbed(event)
 

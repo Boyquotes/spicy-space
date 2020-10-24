@@ -5,6 +5,8 @@ export (PackedScene) var split_asteroid
 export (int) var min_limit_for_ast = 3
 export (int) var max_limit_for_ast = 5
 
+#HUD
+onready var mode_hud = $Meteor_Shower_HUD
 #Pitfalls
 onready var pitfalls_spawn_loc = $Pitfalls/Pitfalls_Path/PathFollow2D
 #Asteroid
@@ -60,7 +62,7 @@ func setting_for_mode_difficulty(difficulty):
 
 func _on_StartMode_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
-	hud.presentation("meteor_shower", "started")
+	mode_hud.presentation("started")
 	yield(get_tree().create_timer(5), "timeout")
 	_asteroids("start_timer")
 
@@ -79,14 +81,9 @@ func _on_Asteroid_Timer_timeout():
 func _asteroids(con):
 	if con == "start_timer":
 		asteroid_timer.start()
-		hud.wave_bar("wave_up")
 	if con == "stop_timer":
 		asteroid_timer.stop()
 	if con == "instance":
-#		if Global.wave < 25:
-#			number_of_ast = Global.wave
-#		else:
-#			number_of_ast = 25
 		#instance wave asteroids
 		for i in range(number_of_ast):
 			# Choose a random location on Path2D.
@@ -94,8 +91,6 @@ func _asteroids(con):
 			# Create a asteroid instance and add it to the scene.
 			ins_ast = asteroid.instance()
 			asteroid_con.add_child(ins_ast)
-			#fill wave bar after every asteroid instance
-			hud.wave_bar("fill_bar")
 			# Set the asteroid's position to a random location.
 			ins_ast.position = pitfalls_spawn_loc.global_position
 			#signal connect
@@ -124,7 +119,7 @@ func spawn_split_ast(ast_size, ast_scale, pos, vel):
 func _meteor_shower(con):
 	if con == "checkout":
 		if mode_control && ast_border_control && asteroid_con.get_child_count() == 0:
-			hud.presentation("meteor_shower", "completed")
+			mode_hud.presentation("completed")
 			mode_control = false
 			ast_border_control = false
 			spaceship.shoot_control = false

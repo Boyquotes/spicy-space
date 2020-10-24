@@ -14,7 +14,7 @@ onready var roadmap = $Roadmap
 var ins_game_mode
 
 func _ready():
-	#reset highscore
+	#reset all userdata
 	if reset_userdata == true:
 		UserDataManager.reset_userdata()
 	#reset score after every new start
@@ -23,8 +23,6 @@ func _ready():
 	prepare_game_mode(Global.game_mode.start, null)
 
 func prepare_game_mode(mode, difficulty):
-#	print("durability:", game.spaceship_w_robots.ins_hr.value)
-#	print("shield:", game.spaceship_w_robots.ins_sr.value)
 	game.spaceship.centered_position()
 	roadmap.visible = false
 	game.visible = true
@@ -42,7 +40,6 @@ func prepare_game_mode(mode, difficulty):
 		ins_game_mode = planet_mode.instance()
 	ins_game_mode.spaceship_w_robots = game.spaceship_w_robots
 	ins_game_mode.spaceship = game.spaceship
-	ins_game_mode.hud = game.hud
 	ins_game_mode.connect("mode_completed", self, "go_back_to_roadmap")
 	ins_game_mode.setting_for_mode_difficulty(difficulty)
 	add_child(ins_game_mode)

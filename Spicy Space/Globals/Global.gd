@@ -23,7 +23,7 @@ var price_datas = {
 	price_for_durability = 5,
 	price_for_shield = 4,
 	price_for_shoot_rate = 6,
-	price_for_laser_damage = 6
+	price_for_laser_damage = 7
 }
 
 func _ready():
