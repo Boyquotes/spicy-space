@@ -5,7 +5,7 @@ signal ss_explode #spaceship explode
 var hr_on = false #health robot off
 
 func _ready():
-	reload_robot("ship_dur")
+	reload_robot("durability")
 
 func hr_situation(situation):
 	hr_on = situation #health robot on or off according to shield robot

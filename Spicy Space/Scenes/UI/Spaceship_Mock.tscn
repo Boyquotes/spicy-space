@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/Spaceship_,Parts/Engine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Spaceship_,Parts/Shield.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Animation.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Spaceship_Parts/Robots/HealthRobot.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Spaceship_Parts/Robots/ShieldRobot.gd" type="Script" id=5]
+[ext_resource path="res://Textures/spaceship.png" type="Texture" id=6]
+[ext_resource path="res://Textures/Robots/health_robot_empty.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Robots/health_robot_fill.png" type="Texture" id=8]
+[ext_resource path="res://Textures/Robots/shield_robot_empty.png" type="Texture" id=9]
+[ext_resource path="res://Textures/Robots/shield_robot_fill.png" type="Texture" id=10]
+
+[node name="Spaceship_Mock" type="Node2D"]
+
+[node name="SpaceShip" type="Sprite" parent="."]
+modulate = Color( 0.854902, 0.490196, 0.913725, 1 )
+position = Vector2( 320, 244 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 6 )
+
+[node name="Engine" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 320.139, 286.08 )
+scale = Vector2( 1.5, 2.25 )
+script = ExtResource( 3 )
+
+[node name="Shield" type="Node2D" parent="." instance=ExtResource( 2 )]
+modulate = Color( 0.34902, 0.898039, 0.85098, 1 )
+position = Vector2( 321.425, 250.08 )
+scale = Vector2( 4.50975, 4.5 )
+script = ExtResource( 3 )
+
+[node name="HealthRobot" type="TextureProgress" parent="." groups=[
+"health_robot",
+]]
+modulate = Color( 0.501961, 0.898039, 0.34902, 1 )
+margin_left = 256.0
+margin_top = 336.0
+margin_right = 288.0
+margin_bottom = 368.0
+rect_scale = Vector2( 1.7, 1.7 )
+value = 25.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+fill_mode = 8
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Engine" type="Node2D" parent="HealthRobot" instance=ExtResource( 1 )]
+position = Vector2( 16, 36 )
+scale = Vector2( 0.5, 1 )
+script = ExtResource( 3 )
+
+[node name="ShieldRobot" type="TextureProgress" parent="." groups=[
+"shield_robot",
+]]
+modulate = Color( 0.34902, 0.898039, 0.85098, 1 )
+margin_left = 328.0
+margin_top = 336.0
+margin_right = 360.0
+margin_bottom = 368.0
+rect_scale = Vector2( 1.7, 1.7 )
+max_value = 50.0
+value = 20.0
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+fill_mode = 3
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Engine" type="Node2D" parent="ShieldRobot" instance=ExtResource( 1 )]
+position = Vector2( 16, 36 )
+scale = Vector2( 0.5, 1 )
+script = ExtResource( 3 )

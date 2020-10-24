@@ -17,7 +17,7 @@ func _signal_connect():
 	upg_hud.connect("upgraded", self, "upgrade_system")
 
 func upgrade_system(part):
-	if part == "ship_dur":
+	if part == "durability":
 		spaceship_w_robots.ins_hr.reload_robot(part)
 	if part == "shield":
 		spaceship_w_robots.ins_sr.reload_robot(part)

@@ -3,7 +3,6 @@ extends Node2D
 signal mine_spend(event)
 signal upgraded(part)
 
-onready var repairshop_hud = self.get_parent().get_parent().get_parent()
 onready var dur_lbl = $Durability/Durability_lbl
 onready var dur_btn = $Durability/Durability_btn
 onready var shoot_rate_lbl = $Shoot/Shoot_lbl
@@ -21,7 +20,7 @@ func _ready():
 
 func _prepare_upg_scene():
 	#Durability
-	dur_lbl.text = "Durability: " + _get_ship_data("ship_dur")
+	dur_lbl.text = "Durability: " + _get_ship_data("durability")
 	dur_btn.text = _prepare_upg_btns("price_for_durability")
 	_check_upg_btns("price_for_durability")
 	#Shoot Rate
@@ -69,9 +68,9 @@ func _find_btn(data_key):
 	return btn
 
 func _on_Durability_btn_pressed():
-	Global.ship_datas["ship_dur"] += 1
+	Global.ship_datas["durability"] += 1
 	_spend_mine("price_for_durability")
-	emit_signal("upgraded", "ship_dur")
+	emit_signal("upgraded", "durability")
 
 func _on_Shoot_btn_pressed():
 	var shoot_rate = Global.ship_datas.get("shoot_rate")
@@ -99,6 +98,7 @@ func _on_Shield_btn_pressed():
 func _spend_mine(data_key):
 	var upg_price = Global.price_datas.get(data_key)
 	Global.mine = Global.mine - upg_price
+	var repairshop_hud = self.get_parent().get_parent().get_parent()
 	repairshop_hud.show_mine_value()
 	emit_signal("mine_spend", "spend")
 	#calculate new price

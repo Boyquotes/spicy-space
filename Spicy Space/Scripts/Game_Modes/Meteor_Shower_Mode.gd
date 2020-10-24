@@ -51,12 +51,12 @@ func setting_for_mode_difficulty(difficulty):
 			max_limit_for_ast = 5
 			number_of_ast = 3
 		elif difficulty == Global.difficulty.normal:
-			min_limit_for_ast = 5
-			max_limit_for_ast = 7
+			min_limit_for_ast = 4
+			max_limit_for_ast = 6
 			number_of_ast = 5
 		elif difficulty == Global.difficulty.hard:
-			min_limit_for_ast = 7
-			max_limit_for_ast = 9
+			min_limit_for_ast = 5
+			max_limit_for_ast = 7
 			number_of_ast = 7
 		print(min_limit_for_ast, max_limit_for_ast, number_of_ast)
 

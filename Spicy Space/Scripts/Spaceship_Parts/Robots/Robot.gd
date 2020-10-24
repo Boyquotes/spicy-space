@@ -12,7 +12,7 @@ func _physics_process(delta):
 
 func reload_robot(upgraded_part):
 	self.max_value = Global.ship_datas.get(upgraded_part)
-	self.value = self.max_value
+#	self.value = self.max_value
 
 func damage_happened(value):
 	pass

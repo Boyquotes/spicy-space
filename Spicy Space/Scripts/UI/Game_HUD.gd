@@ -18,6 +18,7 @@ func assign_playerdata(whichdata, value):
 		fail_lbl.text = "Fail: " + fail
 
 func game_over():
+	pause_btn.visible = false
 	gameover_hud.visible = true
 	assign_playerdata("highscore", Global.score)
 	assign_playerdata("fail", Global.fail_counter)

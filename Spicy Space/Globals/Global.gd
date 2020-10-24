@@ -10,7 +10,7 @@ var fail_counter = 0
 var mine = 0
 #ship datas
 var ship_datas = {
-	ship_dur = 10,
+	durability = 10,
 	shield = 5,
 	shoot_rate = 0.5,
 	laser_damage = 1

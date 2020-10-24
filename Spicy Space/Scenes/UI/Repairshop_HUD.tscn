@@ -15,6 +15,7 @@ z_index = 2
 script = ExtResource( 3 )
 
 [node name="TabContainer" type="TabContainer" parent="."]
+self_modulate = Color( 0.831373, 0.615686, 1, 1 )
 margin_right = 640.0
 margin_bottom = 640.0
 __meta__ = {
@@ -61,7 +62,6 @@ __meta__ = {
 }
 
 [node name="Close_btn" type="Button" parent="."]
-modulate = Color( 0.8, 0.552941, 1, 1 )
 margin_left = 256.0
 margin_top = 512.0
 margin_right = 384.0

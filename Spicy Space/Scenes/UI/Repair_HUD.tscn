@@ -1,12 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/Repair_HUD.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Spaceship_,Parts/Engine.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Spaceship_,Parts/Shield.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Textures/spaceship.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/Spaceship_,Parts/Robots/HealthRobot.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Spaceship_,Parts/Robots/ShieldRobot.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/UI/Spaceship_Mock.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 45
@@ -41,29 +37,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpaceShip" type="Sprite" parent="."]
-position = Vector2( 320, 244 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 5 )
-
-[node name="Engine" parent="SpaceShip" instance=ExtResource( 3 )]
-position = Vector2( 0.0463257, 14.0268 )
-scale = Vector2( 0.5, 0.75 )
-
-[node name="Shield" parent="SpaceShip" instance=ExtResource( 4 )]
-position = Vector2( 0.475014, 2.02682 )
-scale = Vector2( 1.50325, 1.5 )
-
-[node name="HealthRobot" parent="SpaceShip" instance=ExtResource( 7 )]
-self_modulate = Color( 1, 1, 1, 1 )
-margin_left = -19.525
-margin_top = 30.7125
-margin_right = 12.475
-margin_bottom = 62.7125
-
-[node name="ShieldRobot" parent="SpaceShip" instance=ExtResource( 8 )]
-self_modulate = Color( 1, 1, 1, 1 )
-margin_left = 4.47501
-margin_top = 30.7125
-margin_right = 36.475
-margin_bottom = 62.7125
+[node name="Spaceship_Mock" parent="." instance=ExtResource( 3 )]
