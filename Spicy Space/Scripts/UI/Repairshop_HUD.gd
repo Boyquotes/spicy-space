@@ -2,7 +2,7 @@ extends Node2D
 
 signal closed
 
-onready var mine_lbl = $Mine_HUD/Mine_lbl
+onready var mine_lbl = $Mine_Info/Mine_lbl
 
 func _ready():
 	show_mine_value()

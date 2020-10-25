@@ -43,13 +43,13 @@ margin_bottom = -4.0
 
 [node name="Upgrade_HUD" parent="TabContainer/Upgrade" instance=ExtResource( 1 )]
 
-[node name="Mine_HUD" type="Node2D" parent="."]
+[node name="Mine_Info" type="Node2D" parent="."]
 
-[node name="mine_sprite" type="Sprite" parent="Mine_HUD"]
+[node name="mine_sprite" type="Sprite" parent="Mine_Info"]
 position = Vector2( 300, 60 )
 texture = ExtResource( 5 )
 
-[node name="Mine_lbl" type="Label" parent="Mine_HUD"]
+[node name="Mine_lbl" type="Label" parent="Mine_Info"]
 margin_left = 320.0
 margin_top = 40.0
 margin_right = 400.0

@@ -108,48 +108,49 @@ position = Vector2( 320, -424 )
 [node name="Road_Lines" type="Node2D" parent="Roadmap_System"]
 
 [node name="Road_Line" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
-position = Vector2( 344, 592 )
+position = Vector2( 333.321, 594.002 )
 rotation = 0.825285
-scale = Vector2( 1, 1.14018 )
+scale = Vector2( 0.858467, 1.60396 )
 start_road = NodePath("../../Stages/Stage/Start_Road")
 end_road = NodePath("../../Stages/Stage2/Dog_Fight_Road")
 
 [node name="Road_Line2" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 280, 592 )
 rotation = 5.41527
-scale = Vector2( 1, 1.05171 )
+scale = Vector2( 1, 1.3124 )
 start_road = NodePath("../../Stages/Stage/Start_Road")
 end_road = NodePath("../../Stages/Stage2/Meteor_Shower_Road")
 
 [node name="Road_Line3" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 312, 560 )
-scale = Vector2( 1, 0.88 )
+scale = Vector2( 1, 1.04 )
 start_road = NodePath("../../Stages/Stage/Start_Road")
 end_road = NodePath("../../Stages/Stage2/Random_Road")
 
 [node name="Road_Line4" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 312, 392 )
 rotation = -1.13077
-scale = Vector2( 1, 1.33852 )
+scale = Vector2( 1, 1.51947 )
 start_road = NodePath("../../Stages/Stage2/Random_Road")
 end_road = NodePath("../../Stages/Stage3/Repairshop_Road")
 
 [node name="Road_Line5" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 120, 472 )
-scale = Vector2( 1, 1.08 )
+scale = Vector2( 1, 1.48 )
 start_road = NodePath("../../Stages/Stage2/Meteor_Shower_Road")
 end_road = NodePath("../../Stages/Stage3/Repairshop_Road")
 
 [node name="Road_Line6" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 480, 440 )
 rotation = -0.633701
-scale = Vector2( 1, 2.38393 )
+scale = Vector2( 1, 2.46353 )
 start_road = NodePath("../../Stages/Stage2/Dog_Fight_Road")
 end_road = NodePath("../../Stages/Stage4/Meteor_Shower_Road2")
 
 [node name="Road_Line7" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 120, 280 )
-rotation = 0.718215
+rotation = 0.818038
+scale = Vector2( 1, 1.10529 )
 start_road = NodePath("../../Stages/Stage3/Repairshop_Road")
 end_road = NodePath("../../Stages/Stage4/Meteor_Shower_Road2")
 
@@ -167,8 +168,9 @@ start_road = NodePath("../../Stages/Stage4/Meteor_Shower_Road2")
 end_road = NodePath("../../Stages/Stage5/Random_Road2")
 
 [node name="Road_Line10" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
-position = Vector2( 392, 80 )
+position = Vector2( 385.636, 84.2426 )
 rotation = 0.725921
+scale = Vector2( 1, 1.19932 )
 start_road = NodePath("../../Stages/Stage5/Random_Road2")
 end_road = NodePath("../../Stages/Stage6/Repairshop_Road3")
 
@@ -181,33 +183,34 @@ end_road = NodePath("../../Stages/Stage6/Repairshop_Road2")
 [node name="Road_Line12" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 112, 48 )
 rotation = 0.630597
-scale = Vector2( 1, 0.870772 )
+scale = Vector2( 1, 1.11793 )
 start_road = NodePath("../../Stages/Stage5/Dog_Fight_Road2")
 end_road = NodePath("../../Stages/Stage6/Repairshop_Road2")
 
 [node name="Road_Line13" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 256, -96 )
 rotation = 1.12578
-scale = Vector2( 1, 0.874468 )
+scale = Vector2( 1, 1.00166 )
 start_road = NodePath("../../Stages/Stage6/Repairshop_Road2")
 end_road = NodePath("../../Stages/Stage7/Dog_Fight_Road3")
 
 [node name="Road_Line14" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 176, -96 )
 rotation = -0.863157
-scale = Vector2( 1, 0.852416 )
+scale = Vector2( 1, 0.943604 )
 start_road = NodePath("../../Stages/Stage6/Repairshop_Road2")
 end_road = NodePath("../../Stages/Stage7/Meteor_Shower_Road3")
 
 [node name="Road_Line15" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 120, -224 )
 rotation = 1.15877
+scale = Vector2( 1, 1.10996 )
 start_road = NodePath("../../Stages/Stage7/Meteor_Shower_Road3")
 end_road = NodePath("../../Stages/Stage8/Random_Road3")
 
 [node name="Road_Line16" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 512, -40 )
-scale = Vector2( 1, 1.6 )
+scale = Vector2( 1, 1.84 )
 start_road = NodePath("../../Stages/Stage6/Repairshop_Road3")
 end_road = NodePath("../../Stages/Stage8/Meteor_Shower_Road4")
 
@@ -220,14 +223,14 @@ end_road = NodePath("../../Stages/Stage8/Random_Road3")
 [node name="Road_Line18" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 496, -296 )
 rotation = -0.851218
-scale = Vector2( 1, 1.25587 )
+scale = Vector2( 1, 1.43637 )
 start_road = NodePath("../../Stages/Stage8/Meteor_Shower_Road4")
 end_road = NodePath("../../Stages/Stage9/Planet_Road")
 
 [node name="Road_Line19" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
 position = Vector2( 264, -304 )
 rotation = 0.574973
-scale = Vector2( 1, 0.837981 )
+scale = Vector2( 1, 1.03751 )
 start_road = NodePath("../../Stages/Stage8/Random_Road3")
 end_road = NodePath("../../Stages/Stage9/Planet_Road")
 [connection signal="hide" from="Camera2D" to="." method="_on_Camera2D_hide"]
