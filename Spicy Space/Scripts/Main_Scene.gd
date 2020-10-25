@@ -9,7 +9,7 @@ export(PackedScene) var planet_mode
 #Game
 onready var game = $Game
 #roadmap
-onready var roadmap = $Roadmap
+onready var roadmap_manager = $Roadmap_Manager
 
 var ins_game_mode
 
@@ -21,10 +21,16 @@ func _ready():
 	Global.score = 0
 	#start game
 	prepare_game_mode(Global.game_mode.start, null)
+	#signal
+	_signal_connect()
+
+func _signal_connect():
+	#signal connect to activate roadmap when clicked roadmap button
+	game.spaceship_w_robots.cockpit_hud.connect("activate_roadmap", roadmap_manager, "open_roadmap")
 
 func prepare_game_mode(mode, difficulty):
 	game.spaceship.centered_position()
-	roadmap.visible = false
+	roadmap_manager.visible = false
 	game.visible = true
 	if mode == Global.game_mode.start:
 		ins_game_mode = start_mode.instance()
@@ -40,19 +46,8 @@ func prepare_game_mode(mode, difficulty):
 		ins_game_mode = planet_mode.instance()
 	ins_game_mode.spaceship_w_robots = game.spaceship_w_robots
 	ins_game_mode.spaceship = game.spaceship
-	ins_game_mode.connect("mode_completed", self, "go_back_to_roadmap")
+	ins_game_mode.connect("mode_completed", roadmap_manager, "roadmap_handler")
 	ins_game_mode.setting_for_mode_difficulty(difficulty)
 	add_child(ins_game_mode)
 
-func go_back_to_roadmap(completed_mode):
-	if completed_mode == Global.game_mode.start:
-		_prepare_roadmap()
-	else:
-		yield(get_tree().create_timer(3), "timeout")
-	game.visible = false
-	roadmap.visible = true
-	ins_game_mode.call_deferred("free")
 
-func _prepare_roadmap():
-	var selected_roadmap = GameLogic.choosen_roadmap
-	roadmap.add_child(selected_roadmap)

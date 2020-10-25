@@ -42,7 +42,7 @@ func setting_for_mode_difficulty(difficulty):
 			max_limit_for_enemy = 5
 			enemy_shoot_rate = 1
 			increase_rate_for_enemy_dur = 2
-		print(min_limit_for_enemy, max_limit_for_enemy, enemy_shoot_rate)
+#		print(min_limit_for_enemy, max_limit_for_enemy, enemy_shoot_rate)
 
 func _on_StartMode_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")

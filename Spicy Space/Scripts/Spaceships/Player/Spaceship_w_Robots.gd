@@ -6,6 +6,9 @@ onready var follow_ai = ResourceLoader.load("res://Scenes/Spaceship_,Parts/Robot
 #Robots
 onready var health_robot = ResourceLoader.load("res://Scenes/Spaceship_,Parts/Robots/HealthRobot.tscn")
 onready var shield_robot = ResourceLoader.load("res://Scenes/Spaceship_,Parts/Robots/ShieldRobot.tscn")
+#Cockpit
+onready var cockpit_hud = $Cockpit_HUD
+
 
 var ins_hr # health robot instance
 var ins_sr # shield robot instance
@@ -13,6 +16,26 @@ var ins_sr # shield robot instance
 func _ready():
 	_activate_robots()
 	_signal_connect()
+	cockpit_hud.show_cockpit(true)
+
+#signal connects between spaceship and robots
+func _signal_connect():
+	#when spaceship grabbed crate signal connect
+	spaceship.connect("crate_grabbed", ins_hr, "robot_charge")
+	spaceship.connect("crate_grabbed", ins_sr, "robot_charge")
+	#health robot situation signal control
+	spaceship.connect("hr_situation", ins_hr, "hr_situation")
+	#spaceship damage signal connect
+	spaceship.connect("ss_damage", ins_hr, "damage_happened")
+	#spaceship explode signal connect
+	ins_hr.connect("ss_explode", spaceship, "ss_explode")
+	ins_hr.connect("ss_explode", cockpit_hud, "show_cockpit", [false])
+	#spaceship damage signal connect
+	spaceship.connect("ss_damage", ins_sr, "damage_happened")
+	#change health robot situation according to shield robot situation signal connect
+	ins_sr.connect("sr_deactivated", ins_hr, "hr_situation")
+	#change shield situation according to shield robot situation signal connect
+	ins_sr.connect("sr_deactivated", spaceship, "ss_shield_deactivate")
 
 func _activate_robots():
 	#create follow ai for robots
@@ -41,21 +64,4 @@ func _activate_robots():
 	spaceship.robots.append(ins_hr)
 	spaceship.robots.append(ins_sr)
 
-#signal connects between spaceship and robots
-func _signal_connect():
-	#when spaceship grabbed crate signal connect
-	spaceship.connect("crate_grabbed", ins_hr, "robot_charge")
-	spaceship.connect("crate_grabbed", ins_sr, "robot_charge")
-	#health robot situation signal control
-	spaceship.connect("hr_situation", ins_hr, "hr_situation")
-	#spaceship damage signal connect
-	spaceship.connect("ss_damage", ins_hr, "damage_happened")
-	#spaceship explode signal connect
-	ins_hr.connect("ss_explode", spaceship, "ss_explode")
-	#spaceship damage signal connect
-	spaceship.connect("ss_damage", ins_sr, "damage_happened")
-	#change health robot situation according to shield robot situation signal connect
-	ins_sr.connect("sr_deactivated", ins_hr, "hr_situation")
-	#change shield situation according to shield robot situation signal connect
-	ins_sr.connect("sr_deactivated", spaceship, "ss_shield_deactivate")
 

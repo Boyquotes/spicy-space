@@ -58,7 +58,7 @@ func setting_for_mode_difficulty(difficulty):
 			min_limit_for_ast = 5
 			max_limit_for_ast = 7
 			number_of_ast = 7
-		print(min_limit_for_ast, max_limit_for_ast, number_of_ast)
+#		print(min_limit_for_ast, max_limit_for_ast, number_of_ast)
 
 func _on_StartMode_Timer_timeout():
 	yield(get_tree().create_timer(1), "timeout")
