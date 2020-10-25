@@ -38,10 +38,10 @@ func robot_charge(which_crate):
 #		print("health robot charged: " + str(self.value))
 	if which_crate == "shield_crate" && self.is_in_group("shield_robot"):
 		self.value += self.max_value / 5
-		robot_color("white") #if it was red make it white because it charged again
+		robot_color("blue") #if it was red make it white because it charged again
 
 func robot_color(which_color):
 	if which_color == "red":
 		self.modulate = Color(0.8, 0.3, 0.3) #change robots color as red
-	if which_color == "white":
-		self.modulate = Color(1, 1, 1) #change robots color as white
+	if which_color == "blue":
+		self.modulate = Color(0.35, 0.9, 0.85) #change robots color as blue

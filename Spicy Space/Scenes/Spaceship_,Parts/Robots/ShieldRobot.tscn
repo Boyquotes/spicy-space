@@ -1,25 +1,44 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Spaceship_,Parts/Engine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Spaceship_Parts/Robots/ShieldRobot.gd" type="Script" id=2]
 [ext_resource path="res://Textures/Robots/shield_robot_empty.png" type="Texture" id=3]
 [ext_resource path="res://Textures/Robots/shield_robot_fill.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Robots/robot_head_and_arms1_2.png" type="Texture" id=5]
+[ext_resource path="res://Textures/Robots/robot_head_and_arms1_1.png" type="Texture" id=6]
+
+[sub_resource type="AnimatedTexture" id=1]
+flags = 4
+frames = 2
+frame_0/texture = ExtResource( 6 )
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
 
 [node name="ShieldRobot" type="TextureProgress" groups=[
 "shield_robot",
 ]]
-self_modulate = Color( 0.34902, 0.898039, 0.85098, 1 )
+modulate = Color( 0.34902, 0.898039, 0.85098, 1 )
 margin_left = -8.0
-margin_top = -8.0
 margin_right = 24.0
-margin_bottom = 24.0
+margin_bottom = 32.0
 rect_scale = Vector2( 0.5, 0.5 )
 max_value = 50.0
-value = 20.0
+value = 15.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
 fill_mode = 3
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Head_n_Arms" type="TextureRect" parent="."]
+margin_left = -7.63174
+margin_top = -14.0424
+margin_right = 24.3683
+margin_bottom = 17.9576
+rect_scale = Vector2( 1.5, 1.5 )
+texture = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

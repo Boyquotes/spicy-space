@@ -11,3 +11,4 @@ script = ExtResource( 2 )
 [node name="Cockpit_HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="SpaceShip" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 1.2, 1.2 )

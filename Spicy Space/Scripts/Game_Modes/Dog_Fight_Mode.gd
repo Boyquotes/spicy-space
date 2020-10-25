@@ -88,12 +88,12 @@ func _dog_fight(con):
 			emit_signal("mode_completed", Global.game_mode.dog_fight)
 
 func drop_crate(pos):
-	var content_possibility = rand_range(0, 100)
-	#drop crate
-	if content_possibility < 50: 
-		var ins_crate = crate.instance()
-		crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
-		ins_crate.position = pos
-	#nothing
-	else: 
-		pass
+#	var content_possibility = rand_range(0, 100)
+#	#drop crate
+#	if content_possibility < 50: 
+	var ins_crate = crate.instance()
+	crate_con.call_deferred("add_child", ins_crate) # !flushed_queries error fixed with this line
+	ins_crate.position = pos
+#	#nothing
+#	else: 
+#		pass
