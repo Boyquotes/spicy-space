@@ -2,17 +2,19 @@
 
 [ext_resource path="res://Scenes/Spaceship_,Parts/Engine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Spaceship_,Parts/Shield.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Textures/Robots/robot_head_and_arms1_2.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/robot_head_and_arms1_2.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Spaceship_Parts/Robots/HealthRobot.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Spaceship_Parts/Robots/ShieldRobot.gd" type="Script" id=5]
-[ext_resource path="res://Textures/spaceship.png" type="Texture" id=6]
-[ext_resource path="res://Textures/Robots/health_robot_empty.png" type="Texture" id=7]
-[ext_resource path="res://Textures/Robots/health_robot_fill.png" type="Texture" id=8]
-[ext_resource path="res://Textures/Robots/shield_robot_empty.png" type="Texture" id=9]
-[ext_resource path="res://Textures/Robots/shield_robot_fill.png" type="Texture" id=10]
-[ext_resource path="res://Textures/Robots/robot_head_and_arms1_1.png" type="Texture" id=11]
-[ext_resource path="res://Textures/Robots/robot_head_and_arms2_2.png" type="Texture" id=12]
-[ext_resource path="res://Textures/Robots/robot_head_and_arms2_1.png" type="Texture" id=13]
+[ext_resource path="res://Textures/Spaceships/spaceship.png" type="Texture" id=6]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/health_robot_empty.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/health_robot_fill.png" type="Texture" id=8]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/shield_robot_empty.png" type="Texture" id=9]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/shield_robot_fill.png" type="Texture" id=10]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/robot_head_and_arms1_1.png" type="Texture" id=11]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/robot_head_and_arms2_2.png" type="Texture" id=12]
+[ext_resource path="res://Textures/Spaceship_Parts/Robots/robot_head_and_arms2_1.png" type="Texture" id=13]
+
+
 
 [sub_resource type="AnimatedTexture" id=2]
 flags = 4

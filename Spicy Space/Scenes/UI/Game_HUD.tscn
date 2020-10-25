@@ -2,8 +2,9 @@
 
 [ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/Game_HUD.gd" type="Script" id=2]
-[ext_resource path="res://Textures/HUD/restart_button1.png" type="Texture" id=3]
-[ext_resource path="res://Textures/HUD/restart_button2.png" type="Texture" id=4]
+[ext_resource path="res://Textures/UI/restart_button1.png" type="Texture" id=3]
+[ext_resource path="res://Textures/UI/restart_button2.png" type="Texture" id=4]
+
 
 [sub_resource type="DynamicFont" id=2]
 size = 65

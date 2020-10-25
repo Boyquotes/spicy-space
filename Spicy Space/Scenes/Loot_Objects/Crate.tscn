@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Loot_Objects/Crate.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Crates/health_crate.png" type="Texture" id=2]
-[ext_resource path="res://Textures/Crates/shield_crate.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Loot_Objects/Crates/health_crate.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Loot_Objects/Crates/shield_crate.png" type="Texture" id=3]
+
 
 
 

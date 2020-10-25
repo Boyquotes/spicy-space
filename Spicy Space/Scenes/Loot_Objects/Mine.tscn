@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Loot_Objects/Mine.gd" type="Script" id=1]
-[ext_resource path="res://Textures/mine.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Loot_Objects/mine.png" type="Texture" id=2]
+
 
 [node name="Mine" type="Area2D" groups=[
 "mine",

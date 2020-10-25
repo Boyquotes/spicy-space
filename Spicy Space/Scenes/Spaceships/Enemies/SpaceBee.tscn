@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Spaceships/Enemyship.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Enemies/spacebee.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Spaceships/Enemies/spacebee.png" type="Texture" id=2]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.866667, 0.866667, 0.866667, 1 )

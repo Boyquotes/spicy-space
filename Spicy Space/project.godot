@@ -20,7 +20,7 @@ run/main_scene="res://Scenes/Main_Scene.tscn"
 boot_splash/image="res://Textures/nordicebeargames transparent.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.133333, 0.0823529, 0.180392, 1 )
-config/icon="res://Textures/spaceship.png"
+config/icon="res://Textures/Spaceships/spaceship.png"
 
 [autoload]
 
