@@ -4,8 +4,9 @@
 [ext_resource path="res://Scenes/Spaceships/Enemies/Speedy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Spaceships/Enemies/MissilePower.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Spaceships/Enemies/SpaceBee.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/UI/Dog_Fight_HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/UI/Modes/Dog_Fight_HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Game_Modes/Dog_Fight_Mode.gd" type="Script" id=8]
+
 
 [sub_resource type="Curve2D" id=1]
 _data = {

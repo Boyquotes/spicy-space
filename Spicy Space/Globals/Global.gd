@@ -15,7 +15,7 @@ var ship_datas = {
 	shoot_rate = 0.5,
 	laser_damage = 1
 }
-#upgrade datas
+#repairshop datas
 var fully_upg_datas = {
 	shoot_fully_upg_control = false
 }
@@ -23,7 +23,9 @@ var price_datas = {
 	price_for_durability = 5,
 	price_for_shield = 4,
 	price_for_shoot_rate = 6,
-	price_for_laser_damage = 7
+	price_for_laser_damage = 7,
+	price_for_durability_repair = 10,
+	price_for_shield_repair = 5
 }
 
 func _ready():

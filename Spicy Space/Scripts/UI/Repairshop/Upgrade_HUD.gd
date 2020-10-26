@@ -1,6 +1,5 @@
-extends Node2D
+extends "res://Scripts/UI/Repairshop/Repairshop_Tab.gd"
 
-signal mine_spend(event)
 signal upgraded(part)
 
 onready var dur_lbl = $Durability/Durability_lbl
@@ -16,37 +15,32 @@ onready var shield_btn = $Shield/Shield_btn
 var shoot_fully_upg_control = false
 
 func _ready():
+	repairshop_hud = self.get_parent().get_parent().get_parent()
 	_prepare_upg_scene()
 
 func _prepare_upg_scene():
 	#Durability
-	dur_lbl.text = "Durability: " + _get_ship_data("durability")
+	dur_lbl.text = "Durability: " + get_ship_data("durability")
 	dur_btn.text = _prepare_upg_btns("price_for_durability")
 	_check_upg_btns("price_for_durability")
 	#Shoot Rate
-	shoot_rate_lbl.text = "Shoot Rate: " + _get_ship_data("shoot_rate")
+	shoot_rate_lbl.text = "Shoot Rate: " + get_ship_data("shoot_rate")
 	shoot_rate_btn.text = _prepare_upg_btns("price_for_shoot_rate")
 	_check_upg_btns("price_for_shoot_rate")
 	if Global.fully_upg_datas.get("shoot_fully_upg_control"):
 		shoot_rate_btn.visible = false
 		shoot_fully_upg_lbl.visible = true
 	#Laser Damage
-	laser_lbl.text = "Laser Damage: " + _get_ship_data("laser_damage")
+	laser_lbl.text = "Laser Damage: " + get_ship_data("laser_damage")
 	laser_btn.text = _prepare_upg_btns("price_for_laser_damage")
 	_check_upg_btns("price_for_laser_damage")
 	#Shield
-	shield_lbl.text = "Shield: " + _get_ship_data("shield")
+	shield_lbl.text = "Shield: " + get_ship_data("shield")
 	shield_btn.text = _prepare_upg_btns("price_for_shield")
 	_check_upg_btns("price_for_shield")
 
-func _get_ship_data(data_key):
-	return str(Global.ship_datas.get(data_key))
-
-func _get_price_data(data_key):
-	return str(Global.price_datas.get(data_key))
-
 func _prepare_upg_btns(data_key):
-	return "x " + _get_price_data(data_key) + " for Upgrade"
+	return "x " + get_price_data(data_key) + " for Upgrade"
 
 func _check_upg_btns(data_key):
 	var upg_btn = _find_btn(data_key)
@@ -98,14 +92,14 @@ func _on_Shield_btn_pressed():
 func _spend_mine(data_key):
 	var upg_price = Global.price_datas.get(data_key)
 	Global.mine = Global.mine - upg_price
-	var repairshop_hud = self.get_parent().get_parent().get_parent()
 	repairshop_hud.show_mine_value()
 	emit_signal("mine_spend", "spend")
-	#calculate new price
-	var new_upg_price = upg_price + (upg_price * 0.3)
-	Global.price_datas[data_key] = int(new_upg_price)
-	
+	_calc_new_price(data_key, upg_price)
 	_prepare_upg_scene()
+
+func _calc_new_price(data_key, old_price):
+	var new_upg_price = old_price + (old_price * 0.3)
+	Global.price_datas[data_key] = int(new_upg_price)
 
 func _on_Upgrade_HUD_visibility_changed():
 	_prepare_upg_scene()

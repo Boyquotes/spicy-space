@@ -10,9 +10,13 @@ func _ready():
 func _physics_process(delta):
 	rotate_robot()
 
-func reload_robot(upgraded_part):
-	self.max_value = Global.ship_datas.get(upgraded_part)
-#	self.value = self.max_value
+func reload_robot(part):
+	self.max_value = Global.ship_datas.get(part)
+
+func repair_robot(robot):
+	self.value = self.max_value
+	if robot == "shield":
+		robot_color("blue")
 
 func damage_happened(value):
 	pass
