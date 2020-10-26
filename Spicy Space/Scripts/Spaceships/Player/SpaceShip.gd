@@ -117,7 +117,7 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 		area.remove_mine()
 	if area.is_in_group("bomb"):
 		print("bomb exploded!")
-		emit_signal("ss_damage", 5)
+		emit_signal("ss_damage", 3)
 		area.call_deferred("free")
 
 func ss_shield_deactivate(situation): #spaceship shield deactivate or not

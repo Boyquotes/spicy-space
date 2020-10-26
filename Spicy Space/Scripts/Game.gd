@@ -1,7 +1,7 @@
 extends Node2D
 
 #screen shake
-onready var screen_shake = $Camera2D/ScreenShake
+#onready var screen_shake = $Camera2D/ScreenShake
 #Spaceship
 onready var spaceship_w_robots = $Spaceship_w_Robots
 onready var spaceship = $Spaceship_w_Robots/SpaceShip
@@ -26,7 +26,7 @@ func mine_system(con):
 		pass
 
 func screen_shake(which_pitfall):
-	screen_shake.start(0.2, 15, 16, 1)
+	get_parent().screen_shake.start(0.2, 15, 16, 1)
 
 func game_over():
 	Global.fail_counter += 1

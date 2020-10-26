@@ -15,10 +15,6 @@
 ]]
 script = ExtResource( 9 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-
 [node name="Roadmap_System" type="Node2D" parent="."]
 
 [node name="Stages" type="Node2D" parent="Roadmap_System"]
@@ -233,5 +229,5 @@ rotation = 0.574973
 scale = Vector2( 1, 1.03751 )
 start_road = NodePath("../../Stages/Stage8/Random_Road3")
 end_road = NodePath("../../Stages/Stage9/Planet_Road")
-[connection signal="hide" from="Camera2D" to="." method="_on_Camera2D_hide"]
-[connection signal="visibility_changed" from="Camera2D" to="." method="_on_Camera2D_visibility_changed"]
+[connection signal="hide" from="." to="." method="_on_Roadmap1_hide"]
+[connection signal="visibility_changed" from="." to="." method="_on_Roadmap1_visibility_changed"]

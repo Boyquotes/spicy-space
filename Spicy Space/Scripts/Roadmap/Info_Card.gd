@@ -20,7 +20,7 @@ func show_card(game_mode, difficulty_level):
 		difficulty_lbl.modulate = Color.yellow
 	elif difficulty_level == Global.difficulty.hard:
 		difficulty_lbl.modulate = Color.red 
-	yield(get_tree().create_timer(.5), "timeout")
+#	yield(get_tree().create_timer(.5), "timeout")
 	popup.show()
 
 func _on_Close_btn_pressed():

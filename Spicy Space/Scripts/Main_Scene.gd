@@ -6,6 +6,9 @@ export(PackedScene) var repairshop_mode
 export(Array, PackedScene) var game_modes
 export(PackedScene) var planet_mode
 
+#Camera
+onready var camera = $Camera2D
+onready var screen_shake = $Camera2D/ScreenShake
 #Game
 onready var game = $Game
 #roadmap

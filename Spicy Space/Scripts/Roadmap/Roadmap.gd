@@ -2,9 +2,8 @@ extends Node2D
 
 const ROADMAP_LIMIT = 500
 
-onready var camera = $Camera2D
-
-var current_camera_pos = Vector2.ZERO
+var camera
+var roadmap_camera_pos = Vector2.ZERO
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and event.button_mask > 0:
@@ -17,10 +16,13 @@ func _unhandled_input(event):
 			camera_pos.y = 0
 		camera.position = camera_pos
 
-func _on_Camera2D_visibility_changed():
-	camera.position = current_camera_pos
+func _on_Roadmap1_visibility_changed():
+	camera.position = roadmap_camera_pos
 
-func _on_Camera2D_hide():
-		current_camera_pos = camera.get_camera_position()
-#		print(current_camera_pos)
+func _on_Roadmap1_hide():
+		roadmap_camera_pos = camera.get_camera_position()
+#		print(roadmap_camera_pos)
 		camera.position = Vector2.ZERO
+
+
+
