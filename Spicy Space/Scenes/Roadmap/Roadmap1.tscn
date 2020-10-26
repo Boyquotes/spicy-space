@@ -229,5 +229,5 @@ rotation = 0.574973
 scale = Vector2( 1, 1.03751 )
 start_road = NodePath("../../Stages/Stage8/Random_Road3")
 end_road = NodePath("../../Stages/Stage9/Planet_Road")
-[connection signal="hide" from="." to="." method="_on_Roadmap1_hide"]
-[connection signal="visibility_changed" from="." to="." method="_on_Roadmap1_visibility_changed"]
+[connection signal="hide" from="." to="." method="_on_Roadmap_hide"]
+[connection signal="visibility_changed" from="." to="." method="_on_Roadmap_visibility_changed"]

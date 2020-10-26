@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/Game_Modes/Dog_Fight_Mode.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Game_Modes/Repairshop_Mode.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Game_Modes/Planet_Mode.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=9]
 
 [node name="Main_Scene" type="Node2D"]
 script = ExtResource( 3 )
@@ -17,11 +17,7 @@ repairshop_mode = ExtResource( 7 )
 game_modes = [ ExtResource( 5 ), ExtResource( 6 ) ]
 planet_mode = ExtResource( 8 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-current = true
-
-[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 9 )]
+[node name="Camera2D" parent="." instance=ExtResource( 9 )]
 
 [node name="Game" parent="." instance=ExtResource( 2 )]
 visible = false

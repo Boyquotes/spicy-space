@@ -12,6 +12,7 @@ func roadmap_handler(completed_mode):
 func _prepare_roadmap():
 	var selected_roadmap = GameLogic.choosen_roadmap
 	selected_roadmap.camera = get_parent().camera
+	get_parent().camera.y_limit = selected_roadmap.scroll_limit
 	add_child(selected_roadmap)
 
 func open_roadmap():
