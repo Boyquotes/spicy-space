@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://Scenes/UI/Result_HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Game_Modes/Planet_Mode.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/Planet_HUD.tscn" type="PackedScene" id=3]
 
 [node name="Planet_Mode" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="planet_pos" type="Position2D" parent="."]
 position = Vector2( 331.04, 120.135 )
+
+[node name="Planet_HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="Result_HUD" parent="." instance=ExtResource( 1 )]
+visible = false
