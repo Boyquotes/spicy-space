@@ -4,7 +4,6 @@
 [ext_resource path="res://Scripts/Game_Modes/Planet_Mode.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/UI/Modes/Planet_HUD.tscn" type="PackedScene" id=3]
 
-
 [node name="Planet_Mode" type="Node2D"]
 script = ExtResource( 2 )
 

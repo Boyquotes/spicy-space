@@ -4,10 +4,6 @@
 [ext_resource path="res://Textures/Loot_Objects/Crates/health_crate.png" type="Texture" id=2]
 [ext_resource path="res://Textures/Loot_Objects/Crates/shield_crate.png" type="Texture" id=3]
 
-
-
-
-
 [sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/health_crate.png-c44866e251b9266540dfe20684302f46.stex"
