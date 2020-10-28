@@ -76,6 +76,7 @@ func _choose_asteroid(number_of_ast):
 	ast_coll.shape = shape
 
 func explode(hit_vel):
+	SFXManager.asteroid.play()
 	if self.scale.x * 0.5 > min_scale:
 		emit_signal("ast_split", 'big', self.scale, self.position, vel, hit_vel)
 	emit_signal("ast_exploded", self.position)

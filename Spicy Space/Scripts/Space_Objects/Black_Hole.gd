@@ -16,5 +16,6 @@ func _on_Black_Hole_area_entered(area):
 	if area.name == "SpaceShip":
 		GameLogic.choosen_planet = target_planet
 		GameLogic.choosen_roadmap = roadmap
+		SFXManager.enter_to_black_hole.play()
 		emit_signal("entered_to_hole")
 		print("spaceship entered to black hole")

@@ -58,12 +58,14 @@ func _find_btn(data_key):
 	return btn
 
 func _on_Durability_btn_pressed():
+	SFXManager.button.play()
 	_spend_mine("price_for_durability_repair")
 	emit_signal("repaired", "durability")
 	dur_btn.disabled = !_check_repair_need("price_for_durability_repair")
 	_prepare_repair_scene()
 
 func _on_Shield_btn_pressed():
+	SFXManager.button.play()
 	_spend_mine("price_for_shield_repair")
 	emit_signal("repaired", "shield")
 	shield_btn.disabled = !_check_repair_need("price_for_shield_repair")

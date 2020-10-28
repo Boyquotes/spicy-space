@@ -19,4 +19,5 @@ func spaceship_mock_info(robot):
 	return spaceship_mock.get_robot_info(robot)
 
 func _on_Close_btn_pressed():
+	SFXManager.button.play()
 	emit_signal("closed")

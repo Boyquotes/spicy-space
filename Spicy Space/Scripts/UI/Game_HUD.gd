@@ -24,15 +24,18 @@ func game_over():
 	assign_playerdata("fail", Global.fail_counter)
 
 func _on_Restart_btn_pressed():
+	SFXManager.button.play()
 	gameover_hud.visible = false
 	SceneManager.change_scene("Main_Scene")
 
 func _on_Pause_btn_pressed():
+	SFXManager.button.play()
 	paused_hud.visible = true
 	pause_btn.visible = false
 	get_tree().paused = true
 
 func _on_Continue_btn_pressed():
+	SFXManager.button.play()
 	paused_hud.visible = false
 	pause_btn.visible = true
 	get_tree().paused = false

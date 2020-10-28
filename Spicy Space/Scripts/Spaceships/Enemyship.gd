@@ -75,6 +75,7 @@ func _move_or_idle(delta):
 
 func _shoot():
 	for lm in laser_muzzles.get_children():
+		SFXManager.enemy_shoot.play()
 		var laser_ins = laser.instance()
 		laser_con.add_child(laser_ins)
 		laser_ins.start_at(self.rotation, lm.global_position, vel)
@@ -110,6 +111,7 @@ func _get_damage(area, damage_value):
 	area.queue_free()
 
 func _explode():
+	SFXManager.ship_explosion.play()
 	emit_signal("enemyship_exploded", self.position)
 	call_deferred("free")
 	Global.score += 5 #increase score

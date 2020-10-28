@@ -33,8 +33,10 @@ func show_card(game_mode, difficulty_level):
 	popup.show()
 
 func _on_Close_btn_pressed():
+	SFXManager.button.play()
 	popup.hide()
 
 func _on_Go_btn_pressed():
+	SFXManager.button.play()
 	popup.hide()
 	get_parent().go_to_road(_difficulty_level)

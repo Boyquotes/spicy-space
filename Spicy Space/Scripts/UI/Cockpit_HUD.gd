@@ -22,5 +22,6 @@ func _get_spaceship_infos():
 	shoot_rate_lbl.text = "Shoot Rate: "+ str(Global.ship_datas.get("shoot_rate"))
 
 func _on_Roadmap_btn_pressed():
+	SFXManager.button.play()
 	emit_signal("activate_roadmap")
 	roadmap_btn_state(false)

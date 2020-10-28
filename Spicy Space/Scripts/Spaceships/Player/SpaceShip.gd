@@ -70,6 +70,7 @@ func _shoot(delta):
 			_start_shooting()
 
 func _start_shooting():
+	SFXManager.player_shoot.play()
 	shoot_timer.start()
 	var ins_laser = laser.instance()
 	laser_container.add_child(ins_laser)
@@ -102,10 +103,12 @@ func _on_SpaceShip_body_entered(body): #when any collide happen with kinematic o
 func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("health_crate"):
 		if get_parent().ins_hr.robot_charge_control():
+			SFXManager.health_crate.play()
 			emit_signal("crate_grabbed", "health_crate")
 			area.remove_crate()
 	if area.is_in_group("shield_crate"):
 		if get_parent().ins_sr.robot_charge_control():
+			SFXManager.shield_crate.play()
 			emit_signal("crate_grabbed", "shield_crate")
 			emit_signal("hr_situation", false) #deactivate health robot if it was active
 			ss_shield_deactivate(false) #activate shield if it was deactive
@@ -113,9 +116,11 @@ func _on_SpaceShip_area_entered(area): #when any collide happen with area
 	if area.is_in_group("enemy_laser"):
 		emit_signal("ss_damage", area.laser_damage) #spaceship got damage from enemy
 	if area.is_in_group("mine"):
+		SFXManager.collect_mine.play()
 		emit_signal("mine_grabbed", "collect")
 		area.remove_mine()
 	if area.is_in_group("bomb"):
+		SFXManager.bomb.play()
 		print("bomb exploded!")
 		emit_signal("ss_damage", 3)
 		area.call_deferred("free")
@@ -127,6 +132,7 @@ func ss_shield_deactivate(situation): #spaceship shield deactivate or not
 		shield.hide()
 
 func ss_explode():
+	SFXManager.ship_explosion.play()
 	explode_control = true
 	self.visible = false
 	self.call_deferred("set_monitoring", false)

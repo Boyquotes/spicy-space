@@ -62,12 +62,14 @@ func _find_btn(data_key):
 	return btn
 
 func _on_Durability_btn_pressed():
+	SFXManager.button.play()
 	Global.ship_datas["durability"] += 1
 	Global.price_datas["price_for_durability_repair"] += 1
 	_spend_mine("price_for_durability")
 	emit_signal("upgraded", "durability")
 
 func _on_Shoot_btn_pressed():
+	SFXManager.button.play()
 	var shoot_rate = Global.ship_datas.get("shoot_rate")
 	var new_shoot_rate = shoot_rate - 0.08
 	if new_shoot_rate <= 0.15:
@@ -81,11 +83,13 @@ func _on_Shoot_btn_pressed():
 	emit_signal("upgraded", "shoot_rate")
 
 func _on_Laser_btn_pressed():
+	SFXManager.button.play()
 	Global.ship_datas["laser_damage"] += 1
 	_spend_mine("price_for_laser_damage")
 	emit_signal("upgraded", "laser_damage")
 
 func _on_Shield_btn_pressed():
+	SFXManager.button.play()
 	Global.ship_datas["shield"] += 1
 	Global.price_datas["price_for_shield_repair"] += 1
 	_spend_mine("price_for_shield")

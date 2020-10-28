@@ -26,6 +26,7 @@ func mine_system(con):
 		pass
 
 func screen_shake(which_pitfall):
+	SFXManager.hit.play()
 	get_parent().screen_shake.start(0.2, 15, 16, 1)
 
 func game_over():

@@ -30,6 +30,7 @@ func go_to_road(difficulty):
 
 func _on_Button_pressed():
 	if !mode_completed:
+		SFXManager.button.play()
 		info_card.show_card(game_mode, difficulty)
 	else:
 		print("this level already completed")

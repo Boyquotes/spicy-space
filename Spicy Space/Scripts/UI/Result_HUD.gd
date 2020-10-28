@@ -13,4 +13,5 @@ func prepare_result(result):
 	home_btn.visible = true
 
 func _on_Home_btn_pressed():
+	SFXManager.button.play()
 	SceneManager.change_scene("Main_Scene")
