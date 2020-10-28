@@ -8,11 +8,13 @@ var roadmap_list = []
 var choosen_planet
 var choosen_roadmap
 
-func _ready():
+#func _ready():
+#	_prepare_planets()
+#	_prepare_roadmaps()
+
+func prepare_game_logic():
 	_prepare_planets()
 	_prepare_roadmaps()
-#	_select_a_planet()
-#	_select_a_roadmap()
 
 func _prepare_planets():
 	for planet in planets:
@@ -40,6 +42,7 @@ func select_a_planet():
 func select_a_roadmap():
 	randomize()
 	var selected_roadmap = roadmap_list[randi()% roadmap_list.size()]
+	roadmap_list.erase(selected_roadmap)
 	return selected_roadmap
 
 

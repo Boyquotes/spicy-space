@@ -24,8 +24,8 @@ var price_datas = {
 	price_for_shield = 4,
 	price_for_shoot_rate = 6,
 	price_for_laser_damage = 7,
-	price_for_durability_repair = ship_datas.durability,
-	price_for_shield_repair = ship_datas.shield
+	price_for_durability_repair = 10,
+	price_for_shield_repair = 5
 }
 
 func _ready():

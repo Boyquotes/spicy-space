@@ -26,7 +26,7 @@ func road(status):
 func go_to_road(difficulty):
 		mode_completed = true
 		button.modulate = Color.green
-		get_tree().get_root().get_node("Main_Scene").prepare_game_mode(game_mode, difficulty)
+		get_tree().get_root().get_node("Game_Scene").prepare_game_mode(game_mode, difficulty)
 
 func _on_Button_pressed():
 	if !mode_completed:

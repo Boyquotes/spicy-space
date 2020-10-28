@@ -7,9 +7,7 @@
 [ext_resource path="res://Scenes/Space_Objects/Planets/Planet4.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Roadmap/Roadmap1.tscn" type="PackedScene" id=6]
 
-
-
 [node name="Game_Logic" type="Node2D"]
 script = ExtResource( 1 )
 planets = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
-roadmaps = [ ExtResource( 6 ) ]
+roadmaps = [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ]

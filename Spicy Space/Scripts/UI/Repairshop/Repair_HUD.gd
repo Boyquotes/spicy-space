@@ -31,6 +31,8 @@ func _check_repair_btns(data_key):
 			repair_btn.disabled = false
 		else:
 			repair_btn.disabled = true
+	else:
+		repair_btn.disabled = true
 
 #does robots need repair or not?
 func _check_repair_need(data_key):
@@ -58,13 +60,13 @@ func _find_btn(data_key):
 func _on_Durability_btn_pressed():
 	_spend_mine("price_for_durability_repair")
 	emit_signal("repaired", "durability")
-	dur_btn.disabled = !_check_repair_need("durability")
+	dur_btn.disabled = !_check_repair_need("price_for_durability_repair")
 	_prepare_repair_scene()
 
 func _on_Shield_btn_pressed():
 	_spend_mine("price_for_shield_repair")
 	emit_signal("repaired", "shield")
-	shield_btn.disabled = !_check_repair_need("shield")
+	shield_btn.disabled = !_check_repair_need("price_for_shield_repair")
 	_prepare_repair_scene()
 
 func _spend_mine(data_key):

@@ -25,7 +25,7 @@ func game_over():
 
 func _on_Restart_btn_pressed():
 	gameover_hud.visible = false
-	SceneManager.change_scene("Game")
+	SceneManager.change_scene("Main_Scene")
 
 func _on_Pause_btn_pressed():
 	paused_hud.visible = true
