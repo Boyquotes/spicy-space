@@ -53,11 +53,11 @@ func setting_for_mode_difficulty(difficulty):
 		elif difficulty == Global.difficulty.normal:
 			min_limit_for_ast = 4
 			max_limit_for_ast = 6
-			number_of_ast = 5
+			number_of_ast = 4
 		elif difficulty == Global.difficulty.hard:
 			min_limit_for_ast = 5
 			max_limit_for_ast = 7
-			number_of_ast = 7
+			number_of_ast = 5
 #		print(min_limit_for_ast, max_limit_for_ast, number_of_ast)
 
 func _on_StartMode_Timer_timeout():

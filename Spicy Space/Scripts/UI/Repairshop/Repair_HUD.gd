@@ -59,6 +59,7 @@ func _on_Durability_btn_pressed():
 	_spend_mine("price_for_durability_repair")
 	emit_signal("repaired", "durability")
 	dur_btn.disabled = !_check_repair_need("durability")
+	_prepare_repair_scene()
 
 func _on_Shield_btn_pressed():
 	_spend_mine("price_for_shield_repair")

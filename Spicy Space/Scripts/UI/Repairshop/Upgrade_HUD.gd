@@ -63,6 +63,7 @@ func _find_btn(data_key):
 
 func _on_Durability_btn_pressed():
 	Global.ship_datas["durability"] += 1
+	Global.price_datas["price_for_durability_repair"] += 1
 	_spend_mine("price_for_durability")
 	emit_signal("upgraded", "durability")
 
@@ -86,6 +87,7 @@ func _on_Laser_btn_pressed():
 
 func _on_Shield_btn_pressed():
 	Global.ship_datas["shield"] += 1
+	Global.price_datas["price_for_shield_repair"] += 1
 	_spend_mine("price_for_shield")
 	emit_signal("upgraded", "shield")
 
