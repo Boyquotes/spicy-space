@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Roadmap/Info_Card.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Fonts/advanced_pixel-7.ttf"
@@ -10,8 +11,19 @@ size = 30
 font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 17
 font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 17
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
 
 [node name="Info_Card" type="CanvasLayer" groups=[
 "info_card",
@@ -57,13 +69,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Popup"]
-margin_left = 10.0
-margin_top = 40.0
-margin_right = 290.0
-margin_bottom = 121.0
+[node name="Descriptions" type="Node2D" parent="Popup"]
+position = Vector2( -170, -170 )
+
+[node name="start" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
 custom_fonts/font = SubResource( 3 )
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec lorem iaculis, molestie neque eu, rutrum tortor. 
+text = "Your journey is start here!
 "
 valign = 1
 autowrap = true
@@ -71,20 +87,75 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pros_Cons" type="Label" parent="Popup"]
-margin_left = 20.0
-margin_top = 120.0
-margin_right = 280.0
-margin_bottom = 264.0
+[node name="random" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
 custom_fonts/font = SubResource( 3 )
-text = "Pros
--Lorem ipsum dolor sit amet
--Lorem ipsum dolor sit amet
-Cons
--Lorem ipsum dolor sit amet
--Lorem ipsum dolor sit amet
+text = "If you like to take risks, try your luck!
 "
-align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dog_fight" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "A relentless conflict between you and space thugs.
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="meteor_shower" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Meteor, meteorites are everywhere!
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="repairshop" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Repair and upgrade your ship! Because you can't know what's gonna face next in space.
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="planet" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Finally the planet. Let's discover it!
+"
 valign = 1
 autowrap = true
 __meta__ = {
@@ -98,7 +169,7 @@ margin_left = 10.0
 margin_top = 260.0
 margin_right = 80.0
 margin_bottom = 290.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Difficulty:"
 valign = 1
 autowrap = true
@@ -112,7 +183,7 @@ margin_left = 80.0
 margin_top = 260.0
 margin_right = 150.0
 margin_bottom = 290.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Lorem"
 valign = 1
 autowrap = true
@@ -136,6 +207,7 @@ margin_left = 230.0
 margin_top = 260.0
 margin_right = 290.0
 margin_bottom = 290.0
+custom_fonts/font = SubResource( 6 )
 text = "GO!"
 [connection signal="pressed" from="Popup/Close_btn" to="." method="_on_Close_btn_pressed"]
 [connection signal="pressed" from="Popup/Go_btn" to="." method="_on_Go_btn_pressed"]
