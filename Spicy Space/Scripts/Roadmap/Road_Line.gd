@@ -11,6 +11,9 @@ onready var end_road_node = get_node(end_road)
 func _ready():
 	_check_roads()
 
+#func _draw():
+#	draw_line(start_road_node.position, end_road_node.position, Color(1,1,1,0.35), 5)
+
 func _check_roads():
 	if start_road_node.mode_completed:
 		if end_road_node.skipped:

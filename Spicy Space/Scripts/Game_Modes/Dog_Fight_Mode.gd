@@ -35,12 +35,12 @@ func setting_for_mode_difficulty(difficulty):
 		elif difficulty == Global.difficulty.normal:
 			min_limit_for_enemy = 2
 			max_limit_for_enemy = 4
-			enemy_shoot_rate = 2
+			enemy_shoot_rate = 2.25
 			increase_rate_for_enemy_dur = 1
 		elif difficulty == Global.difficulty.hard:
 			min_limit_for_enemy = 3
 			max_limit_for_enemy = 5
-			enemy_shoot_rate = 1
+			enemy_shoot_rate = 1.5
 			increase_rate_for_enemy_dur = 2
 #		print(min_limit_for_enemy, max_limit_for_enemy, enemy_shoot_rate)
 
