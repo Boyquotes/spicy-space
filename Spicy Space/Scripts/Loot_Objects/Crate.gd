@@ -2,10 +2,11 @@ extends Area2D
 
 export (Texture) var health_crate_sprite
 export (Texture) var shield_crate_sprite
+export (Texture) var mine_crate_sprite
 
 onready var crate_sprite = $crate_sprite
 
-const CRATES = ["health", "shield"]
+const CRATES = ["health", "shield", "mine"]
 
 var choosen_crate = "health"
 var rot_dir = 1
@@ -35,6 +36,8 @@ func _random_crate():
 			_prepare_crate(health_crate_sprite, "health_crate")
 		"shield":
 			_prepare_crate(shield_crate_sprite, "shield_crate")
+		"mine":
+			_prepare_crate(mine_crate_sprite, "mine_crate")
 
 func _prepare_crate(sprite, group_name):
 	crate_sprite.texture = sprite
@@ -44,6 +47,8 @@ func _prepare_crate(sprite, group_name):
 		self.modulate = Color(0.5, 0.9, 0.35) #green
 	elif group_name == "shield_crate":
 		self.modulate = Color(0.35, 0.9, 0.85) #blue
+	elif group_name == "mine_crate":
+		pass
 
 func remove_crate():
 	call_deferred("free")

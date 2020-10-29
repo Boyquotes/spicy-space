@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Loot_Objects/Crate.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Loot_Objects/Crates/health_crate.png" type="Texture" id=2]
 [ext_resource path="res://Textures/Loot_Objects/Crates/shield_crate.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Loot_Objects/Crates/mine_crate.png" type="Texture" id=4]
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
@@ -17,6 +18,7 @@ scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 1 )
 health_crate_sprite = ExtResource( 2 )
 shield_crate_sprite = ExtResource( 3 )
+mine_crate_sprite = ExtResource( 4 )
 
 [node name="crate_sprite" type="Sprite" parent="."]
 texture = SubResource( 1 )
