@@ -9,16 +9,16 @@ script = ExtResource( 2 )
 
 [node name="Start_HUD" parent="." instance=ExtResource( 3 )]
 
-[node name="Black_Holes" type="Node" parent="."]
+[node name="Black_Holes" type="Node2D" parent="."]
 
 [node name="Black_Hole" parent="Black_Holes" instance=ExtResource( 1 )]
-position = Vector2( 320, 576 )
+position = Vector2( 192, 576 )
 
 [node name="Black_Hole2" parent="Black_Holes" instance=ExtResource( 1 )]
-position = Vector2( 576, 320 )
+position = Vector2( 576, 448 )
 
 [node name="Black_Hole3" parent="Black_Holes" instance=ExtResource( 1 )]
-position = Vector2( 64, 320 )
+position = Vector2( 64, 192 )
 
 [node name="Black_Hole4" parent="Black_Holes" instance=ExtResource( 1 )]
-position = Vector2( 320, 56 )
+position = Vector2( 448, 64 )

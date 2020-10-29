@@ -39,4 +39,6 @@ func _on_Close_btn_pressed():
 func _on_Go_btn_pressed():
 	SFXManager.button.play()
 	popup.hide()
+	SceneManager.show_transition()
+	yield(get_tree().create_timer(0.8), "timeout")
 	get_parent().go_to_road(_difficulty_level)

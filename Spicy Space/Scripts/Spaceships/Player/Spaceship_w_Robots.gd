@@ -63,5 +63,3 @@ func _activate_robots():
 	# add robots to the spaceship
 	spaceship.robots.append(ins_hr)
 	spaceship.robots.append(ins_sr)
-
-

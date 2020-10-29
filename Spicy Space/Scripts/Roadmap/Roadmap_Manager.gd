@@ -16,6 +16,8 @@ func _prepare_roadmap():
 	add_child(selected_roadmap)
 
 func open_roadmap():
+	SceneManager.show_transition()
+	yield(get_tree().create_timer(0.8), "timeout")
 	get_parent().game.visible = false
 	self.visible = true
 	get_parent().ins_game_mode.call_deferred("free")

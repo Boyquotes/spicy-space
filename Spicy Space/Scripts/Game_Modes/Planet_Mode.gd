@@ -18,6 +18,8 @@ func _prepare_planet():
 	add_child(planet)
 
 func show_result(livable):
+	SceneManager.show_transition()
+	yield(get_tree().create_timer(0.8), "timeout")
 	result_hud.visible = true
 	if livable:
 		print("This planet is livable :D")

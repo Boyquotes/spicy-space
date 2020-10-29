@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 #warning-ignore:unused_class_variable
 onready var asteroid = $asteroid

@@ -25,11 +25,11 @@ config/icon="res://Textures/Spaceships/Player/spaceship.png"
 [autoload]
 
 Global="*res://Globals/Global.gd"
-SceneManager="*res://Globals/SceneManager.gd"
 UserDataManager="*res://Globals/UserDataManager.gd"
 GameLogic="*res://Globals/Game_Logic.tscn"
 SFXManager="*res://Globals/SFXManager.tscn"
 EffectManager="*res://Globals/EffectManager.tscn"
+SceneManager="*res://Globals/SceneManager.tscn"
 
 [display]
 

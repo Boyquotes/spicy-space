@@ -13,3 +13,4 @@ func _prepare_black_holes():
 
 func start_mode_completed():
 	emit_signal("mode_completed", Global.game_mode.start)
+	self.visible = false

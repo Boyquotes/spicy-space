@@ -13,7 +13,7 @@ func _rotate(delta):
 	self.rotation = (rotation + rot_speed * 1 * delta)
 
 func _on_Black_Hole_area_entered(area):
-	if area.name == "SpaceShip":
+	if area.is_in_group("player"):
 		GameLogic.choosen_planet = target_planet
 		GameLogic.choosen_roadmap = roadmap
 		SFXManager.enter_to_black_hole.play()
