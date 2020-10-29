@@ -10,9 +10,9 @@ func _check_stages():
 	for road in get_children():
 		if road.mode_completed:
 			stage_completed = true
-			_disable_other_roads()
+			disable_other_roads()
 
-func _disable_other_roads():
+func disable_other_roads():
 	for road in get_children():
 		if !road.mode_completed:
 			road.road("skipped")
