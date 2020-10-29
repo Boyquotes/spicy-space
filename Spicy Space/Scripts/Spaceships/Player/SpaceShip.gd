@@ -133,6 +133,7 @@ func ss_shield_deactivate(situation): #spaceship shield deactivate or not
 
 func ss_explode():
 	SFXManager.ship_explosion.play()
+	EffectManager.explosion_effect(self.position)
 	explode_control = true
 	self.visible = false
 	self.call_deferred("set_monitoring", false)

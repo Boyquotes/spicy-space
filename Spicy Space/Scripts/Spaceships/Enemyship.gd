@@ -112,6 +112,7 @@ func _get_damage(area, damage_value):
 
 func _explode():
 	SFXManager.ship_explosion.play()
+	EffectManager.explosion_effect(self.position)
 	emit_signal("enemyship_exploded", self.position)
 	call_deferred("free")
 	Global.score += 5 #increase score
