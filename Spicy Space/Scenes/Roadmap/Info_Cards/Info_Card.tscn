@@ -1,0 +1,213 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Roadmap/Info_Card.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/advanced_pixel-7.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/advanced_pixel-7.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 17
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 17
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[node name="Info_Card" type="CanvasLayer" groups=[
+"info_card",
+]]
+script = ExtResource( 1 )
+
+[node name="Popup" type="Popup" parent="."]
+anchor_right = 0.423
+margin_left = 170.0
+margin_top = 170.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blur" type="ColorRect" parent="Popup"]
+margin_left = -170.0
+margin_top = -170.0
+margin_right = 470.0
+margin_bottom = 470.0
+color = Color( 0.0627451, 0.0627451, 0.0627451, 0.584314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Popup"]
+modulate = Color( 0.556863, 0.152941, 1, 1 )
+margin_right = 300.0
+margin_bottom = 300.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Popup"]
+margin_left = 10.0
+margin_right = 290.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "Title"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Descriptions" type="Node2D" parent="Popup"]
+position = Vector2( -170, -170 )
+
+[node name="start" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Your journey is start here!
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="random" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "If you like to take risks, try your luck!
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dog_fight" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "A relentless conflict between you and space thugs.
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="meteor_shower" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Meteor, meteorites are everywhere!
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="repairshop" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Repair and upgrade your ship! Because you can't know what's gonna face next in space.
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="planet" type="Label" parent="Popup/Descriptions"]
+visible = false
+margin_left = 180.0
+margin_top = 210.0
+margin_right = 460.0
+margin_bottom = 400.0
+custom_fonts/font = SubResource( 3 )
+text = "Finally the planet. Let's discover it!
+"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Difficulty" type="Node2D" parent="Popup"]
+
+[node name="difficulty_title" type="Label" parent="Popup/Difficulty"]
+margin_left = 10.0
+margin_top = 260.0
+margin_right = 80.0
+margin_bottom = 290.0
+custom_fonts/font = SubResource( 4 )
+text = "Difficulty:"
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="difficulty_level_lbl" type="Label" parent="Popup/Difficulty"]
+margin_left = 80.0
+margin_top = 260.0
+margin_right = 150.0
+margin_bottom = 290.0
+custom_fonts/font = SubResource( 5 )
+text = "Lorem"
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close_btn" type="Button" parent="Popup"]
+modulate = Color( 1, 0.509804, 0.509804, 1 )
+margin_left = 250.0
+margin_right = 300.0
+margin_bottom = 20.0
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Go_btn" type="Button" parent="Popup"]
+margin_left = 230.0
+margin_top = 260.0
+margin_right = 290.0
+margin_bottom = 290.0
+custom_fonts/font = SubResource( 6 )
+text = "GO!"
+[connection signal="pressed" from="Popup/Close_btn" to="." method="_on_Close_btn_pressed"]
+[connection signal="pressed" from="Popup/Go_btn" to="." method="_on_Go_btn_pressed"]

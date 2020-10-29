@@ -1,0 +1,230 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Roadmap/Roads/Start_Road.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Roadmap/Roads/Planet_Road.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Roadmap/Roads/Random_Road.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Roadmap/Roads/Dog_Fight_Road.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Roadmap/Road_Line.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Roadmap/Roads/Meteor_Shower_Road.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Roadmap/Roads/Repairshop_Road.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Roadmap/Stage.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Roadmap/Roadmap.gd" type="Script" id=9]
+
+[node name="Roadmap3" type="Node2D" groups=[
+"roadmap",
+]]
+script = ExtResource( 9 )
+
+[node name="Roadmap_System" type="Node2D" parent="."]
+
+[node name="Stages" type="Node2D" parent="Roadmap_System"]
+
+[node name="Stage" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 1
+stage_completed = true
+
+[node name="Start_Road" parent="Roadmap_System/Stages/Stage" instance=ExtResource( 1 )]
+position = Vector2( 280, 560 )
+
+[node name="Stage2" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 2
+
+[node name="Random_Road" parent="Roadmap_System/Stages/Stage2" instance=ExtResource( 3 )]
+position = Vector2( 272.307, 432.262 )
+difficulty = 1
+
+[node name="Stage3" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 3
+
+[node name="Meteor_Shower_Road" parent="Roadmap_System/Stages/Stage3" instance=ExtResource( 6 )]
+position = Vector2( 56.0633, 368.19 )
+difficulty = 1
+
+[node name="Dog_Fight_Road" parent="Roadmap_System/Stages/Stage3" instance=ExtResource( 4 )]
+position = Vector2( 469.864, 386.878 )
+difficulty = 1
+
+[node name="Stage4" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 4
+
+[node name="Random_Road2" parent="Roadmap_System/Stages/Stage4" instance=ExtResource( 3 )]
+position = Vector2( 372.855, 221.583 )
+difficulty = 2
+
+[node name="Repairshop_Road" parent="Roadmap_System/Stages/Stage4" instance=ExtResource( 7 )]
+position = Vector2( 186.109, 266.968 )
+
+[node name="Stage5" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 5
+
+[node name="Dog_Fight_Road2" parent="Roadmap_System/Stages/Stage5" instance=ExtResource( 4 )]
+position = Vector2( 75.5201, 144.163 )
+difficulty = 2
+
+[node name="Random_Road3" parent="Roadmap_System/Stages/Stage5" instance=ExtResource( 3 )]
+position = Vector2( 251.104, 82.7601 )
+difficulty = 3
+
+[node name="Meteor_Shower_Road2" parent="Roadmap_System/Stages/Stage5" instance=ExtResource( 6 )]
+position = Vector2( 490.48, 104.117 )
+difficulty = 2
+
+[node name="Stage6" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 6
+
+[node name="Repairshop_Road2" parent="Roadmap_System/Stages/Stage6" instance=ExtResource( 7 )]
+position = Vector2( 392.597, -48.0542 )
+
+[node name="Stage7" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 7
+
+[node name="Repairshop_Road3" parent="Roadmap_System/Stages/Stage7" instance=ExtResource( 7 )]
+position = Vector2( 80.4396, -88.0994 )
+
+[node name="Meteor_Shower_Road3" parent="Roadmap_System/Stages/Stage7" instance=ExtResource( 6 )]
+position = Vector2( 255.996, -202.896 )
+difficulty = 3
+
+[node name="Dog_Fight_Road3" parent="Roadmap_System/Stages/Stage7" instance=ExtResource( 4 )]
+position = Vector2( 502.054, -173.529 )
+difficulty = 3
+
+[node name="Stage8" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 8
+
+[node name="Random_Road4" parent="Roadmap_System/Stages/Stage8" instance=ExtResource( 3 )]
+position = Vector2( 432.643, -317.692 )
+difficulty = 3
+
+[node name="Meteor_Shower_Road4" parent="Roadmap_System/Stages/Stage8" instance=ExtResource( 6 )]
+position = Vector2( 142.743, -336.38 )
+difficulty = 3
+
+[node name="Stage9" parent="Roadmap_System/Stages" instance=ExtResource( 8 )]
+stage_no = 9
+
+[node name="Planet_Road" parent="Roadmap_System/Stages/Stage9" instance=ExtResource( 2 )]
+position = Vector2( 320, -450 )
+
+[node name="Road_Lines" type="Node2D" parent="Roadmap_System"]
+
+[node name="Road_Line" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 308.348, 578.981 )
+rotation = -0.135151
+start_road = NodePath("../../Stages/Stage/Start_Road")
+end_road = NodePath("../../Stages/Stage2/Random_Road")
+
+[node name="Road_Line2" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 336.38, 593.665 )
+rotation = 0.682934
+scale = Vector2( 1, 1.91981 )
+start_road = NodePath("../../Stages/Stage/Start_Road")
+end_road = NodePath("../../Stages/Stage3/Dog_Fight_Road")
+
+[node name="Road_Line3" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 277.647, 457.511 )
+rotation = -1.19668
+scale = Vector2( 1, 1.53451 )
+start_road = NodePath("../../Stages/Stage2/Random_Road")
+end_road = NodePath("../../Stages/Stage3/Meteor_Shower_Road")
+
+[node name="Road_Line4" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 506.381, 401.594 )
+rotation = -0.582129
+scale = Vector2( 1, 1.27702 )
+start_road = NodePath("../../Stages/Stage3/Dog_Fight_Road")
+end_road = NodePath("../../Stages/Stage4/Random_Road2")
+
+[node name="Road_Line5" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 109.531, 377.783 )
+rotation = 0.920574
+start_road = NodePath("../../Stages/Stage3/Meteor_Shower_Road")
+end_road = NodePath("../../Stages/Stage4/Repairshop_Road")
+
+[node name="Road_Line6" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 200.013, 274.602 )
+rotation = -0.773752
+start_road = NodePath("../../Stages/Stage4/Repairshop_Road")
+end_road = NodePath("../../Stages/Stage5/Dog_Fight_Road2")
+
+[node name="Road_Line7" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 238.11, 274.602 )
+rotation = 0.243949
+scale = Vector2( 1, 1.41714 )
+start_road = NodePath("../../Stages/Stage4/Repairshop_Road")
+end_road = NodePath("../../Stages/Stage5/Random_Road3")
+
+[node name="Road_Line8" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 404.787, 234.917 )
+rotation = 0.879543
+start_road = NodePath("../../Stages/Stage4/Random_Road2")
+end_road = NodePath("../../Stages/Stage5/Meteor_Shower_Road2")
+
+[node name="Road_Line9" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 528.604, 131.736 )
+rotation = -0.622978
+scale = Vector2( 1, 1.6557 )
+start_road = NodePath("../../Stages/Stage5/Meteor_Shower_Road2")
+end_road = NodePath("../../Stages/Stage6/Repairshop_Road2")
+
+[node name="Road_Line10" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 277.795, 111.099 )
+rotation = 0.806585
+scale = Vector2( 1, 1.5102 )
+start_road = NodePath("../../Stages/Stage5/Random_Road3")
+end_road = NodePath("../../Stages/Stage6/Repairshop_Road2")
+
+[node name="Road_Line11" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 140.076, 177.996 )
+rotation = 0.449447
+scale = Vector2( 1, 3.05951 )
+start_road = NodePath("../../Stages/Stage5/Dog_Fight_Road2")
+end_road = NodePath("../../Stages/Stage7/Meteor_Shower_Road3")
+
+[node name="Road_Line12" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 432, -30 )
+rotation = 0.667481
+start_road = NodePath("../../Stages/Stage6/Repairshop_Road2")
+end_road = NodePath("../../Stages/Stage7/Dog_Fight_Road3")
+
+[node name="Road_Line13" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 532, -154 )
+rotation = -0.489885
+start_road = NodePath("../../Stages/Stage7/Dog_Fight_Road3")
+end_road = NodePath("../../Stages/Stage8/Random_Road4")
+
+[node name="Road_Line14" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 318, -182 )
+rotation = 0.851235
+scale = Vector2( 1, 1.40974 )
+start_road = NodePath("../../Stages/Stage7/Meteor_Shower_Road3")
+end_road = NodePath("../../Stages/Stage8/Random_Road4")
+
+[node name="Road_Line15" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 103.267, 155.202 )
+scale = Vector2( 1.27903, 1.66951 )
+start_road = NodePath("../../Stages/Stage5/Dog_Fight_Road2")
+end_road = NodePath("../../Stages/Stage7/Repairshop_Road3")
+
+[node name="Road_Line16" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 116.736, -79.3922 )
+rotation = 0.297764
+scale = Vector2( 1, 2.02641 )
+start_road = NodePath("../../Stages/Stage7/Repairshop_Road3")
+end_road = NodePath("../../Stages/Stage8/Meteor_Shower_Road4")
+
+[node name="Road_Line17" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 199.798, -320.204 )
+rotation = 0.935322
+scale = Vector2( 1, 1.47966 )
+start_road = NodePath("../../Stages/Stage8/Meteor_Shower_Road4")
+end_road = NodePath("../../Stages/Stage9/Planet_Road")
+
+[node name="Road_Line18" parent="Roadmap_System/Road_Lines" instance=ExtResource( 5 )]
+position = Vector2( 465.822, -304.49 )
+rotation = -0.760978
+scale = Vector2( 1, 1.45103 )
+start_road = NodePath("../../Stages/Stage8/Random_Road4")
+end_road = NodePath("../../Stages/Stage9/Planet_Road")
+[connection signal="hide" from="." to="." method="_on_Roadmap_hide"]
+[connection signal="visibility_changed" from="." to="." method="_on_Roadmap_visibility_changed"]

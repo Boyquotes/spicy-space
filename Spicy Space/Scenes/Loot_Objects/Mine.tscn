@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Loot_Objects/Mine.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Loot_Objects/mine.png" type="Texture" id=2]
+
+
+[node name="Mine" type="Area2D" groups=[
+"mine",
+]]
+scale = Vector2( 0.4, 0.4 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -8.03725, -15.3044, 7.8547, -15.2382, 15.9993, -7.15981, 16.1028, -1.63538, -0.00886536, 16.0301, -15.917, -1.66384, -15.917, -6.96115 )
+[connection signal="area_entered" from="." to="." method="_on_Mine_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Mine_body_entered"]

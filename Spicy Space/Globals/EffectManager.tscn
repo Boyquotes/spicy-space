@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Spaceship_,Parts/Explosion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Globals/EffectManager.gd" type="Script" id=2]
+
+[node name="EffectManager" type="Node"]
+script = ExtResource( 2 )
+explosion = ExtResource( 1 )

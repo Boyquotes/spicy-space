@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Space_Objects/Black_Hole.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Game_Modes/Start_Mode.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/Modes/Start_HUD.tscn" type="PackedScene" id=3]
+
+[node name="Start_Mode" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Start_HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="Black_Holes" type="Node2D" parent="."]
+
+[node name="Black_Hole" parent="Black_Holes" instance=ExtResource( 1 )]
+position = Vector2( 192, 576 )
+
+[node name="Black_Hole2" parent="Black_Holes" instance=ExtResource( 1 )]
+position = Vector2( 576, 448 )
+
+[node name="Black_Hole3" parent="Black_Holes" instance=ExtResource( 1 )]
+position = Vector2( 64, 192 )
+
+[node name="Black_Hole4" parent="Black_Holes" instance=ExtResource( 1 )]
+position = Vector2( 448, 64 )

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/UI/Repairshop/Repairshop_Tab.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI/Repairshop/Upgrade_HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI/Repairshop/Repair_HUD.tscn" type="PackedScene" id=4]
+
+[node name="Repairshop_Tabs" type="TabContainer"]
+self_modulate = Color( 0.831373, 0.615686, 1, 1 )
+margin_right = 640.0
+margin_bottom = 640.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Repair" type="Tabs" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Repair_HUD" parent="Repair" instance=ExtResource( 4 )]
+
+[node name="Upgrade" type="Tabs" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Upgrade_HUD" parent="Upgrade" instance=ExtResource( 3 )]
